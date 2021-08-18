@@ -49,11 +49,18 @@ for (i in 1:nrow(uefa_country_ranking)) {
 #uefa_country_ranking$teams <- sub("\\/.*", "", uefa_country_ranking$teams)
 uefa_country_ranking <- uefa_country_ranking[12:23,]
 
+#Adjustment Serbai
+uefa_country_ranking$overall[1] <- "26.125"
+
 #Calculate gap
 uefa_country_ranking$gap <- as.numeric(uefa_country_ranking$overall) -
   as.numeric(uefa_country_ranking$overall[4])
-  
-#Points gained  
+
+
+#Points gained
+old_data_ranking <- read.csv("https://raw.githubusercontent.com/awp-finanznachrichten/uefa_ranking/master/Output/uefa_country_ranking.csv",encoding = "UTF-8")
+uefa_country_ranking$gained <- as.numeric(uefa_country_ranking$overall)-as.numeric(old_data_ranking$current.points)
+
 uefa_country_ranking$gained <- c(0.125,0.4,0.625,0.5,0.25,0.4,0.4,0.5,0.375,0.75,0.2,0.5)
 
 #Wappen
@@ -131,7 +138,7 @@ gitpull <- function(dir = getwd()){
 #Make Commit
 token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
 
-#git2r::config(user.name = "awp-finanznachrichten",user.email = "sw@awp.ch")
+git2r::config(user.name = "awp-finanznachrichten",user.email = "sw@awp.ch")
 invisible(git2r::cred_token(token))
 gitadd()
 gitcommit()
