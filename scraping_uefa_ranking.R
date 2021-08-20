@@ -49,19 +49,12 @@ for (i in 1:nrow(uefa_country_ranking)) {
 #uefa_country_ranking$teams <- sub("\\/.*", "", uefa_country_ranking$teams)
 uefa_country_ranking <- uefa_country_ranking[12:23,]
 
-#Adjustment Serbai
-uefa_country_ranking$overall[1] <- "26.125"
+#Adjustment Serbia
+#uefa_country_ranking$overall[1] <- "26.125"
 
 #Calculate gap
 uefa_country_ranking$gap <- as.numeric(uefa_country_ranking$overall) -
   as.numeric(uefa_country_ranking$overall[4])
-
-
-#Points gained
-old_data_ranking <- read.csv("https://raw.githubusercontent.com/awp-finanznachrichten/uefa_ranking/master/Output/uefa_country_ranking.csv",encoding = "UTF-8")
-uefa_country_ranking$gained <- as.numeric(uefa_country_ranking$overall)-as.numeric(old_data_ranking$current.points)
-
-uefa_country_ranking$gained <- c(0.125,0.4,0.625,0.5,0.25,0.4,0.4,0.5,0.375,0.75,0.2,0.5)
 
 #Wappen
 uefa_country_ranking$country <- gsub("Serbia",":rs:Serbia",uefa_country_ranking$country)
@@ -77,11 +70,30 @@ uefa_country_ranking$country <- gsub("Sweden",":se:Sweden",uefa_country_ranking$
 uefa_country_ranking$country <- gsub("Denmark",":dk:Denmark",uefa_country_ranking$country)
 uefa_country_ranking$country <- gsub("Israel",":il:Israel",uefa_country_ranking$country)
 
+#Points gained
+old_data_ranking <- read.csv("https://raw.githubusercontent.com/awp-finanznachrichten/uefa_ranking/master/Output/uefa_country_ranking.csv",encoding = "UTF-8")
+old_data_ranking <- old_data_ranking[,1:3]
+colnames(old_data_ranking) <- c("rank_old","country","current_points_old")
+
+uefa_country_ranking <- merge(uefa_country_ranking,old_data_ranking)
+
+uefa_country_ranking$gained <- as.numeric(uefa_country_ranking$overall)-as.numeric(uefa_country_ranking$current_points_old)
+
+#Compare with last rank
+uefa_country_ranking$rank <- paste0(uefa_country_ranking$rank,".",
+                                    "(",gsub("[(].*","",uefa_country_ranking$rank_old),".)") #Punkt entfernen
+
+#uefa_country_ranking$gained <- c(0.125,0.4,0.625,0.5,0.25,0.4,0.4,0.5,0.375,0.75,0.2,0.5)
+
+
+
+
 #Tidy it
-uefa_country_ranking <- uefa_country_ranking[,c(1:2,8,11,10,9)]
+uefa_country_ranking <- uefa_country_ranking[order(uefa_country_ranking$rank),]
+uefa_country_ranking <- uefa_country_ranking[,c(2,1,8,13,10,9)]
 colnames(uefa_country_ranking) <- c("rank","country","current points","points gained",
                                     "gap to 15th place","teams remaining")
-
+print(uefa_country_ranking)
 
 write.csv(uefa_country_ranking,"Output/uefa_country_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
