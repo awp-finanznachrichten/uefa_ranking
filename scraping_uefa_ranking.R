@@ -9,10 +9,8 @@ webpage <- read_html(url)
 
 uefa_table <- html_text(html_nodes(webpage,"td"))
 
-
 uefa_table <- uefa_table[uefa_table!=""]
 uefa_table <- uefa_table[-(496:498)]
-
 
 uefa_country_ranking <- data.frame(1,2,3,4,5,6,7,8,9)
 names(uefa_country_ranking) <- c("rank","country","17/18","18/19","19/20","20/21","21/22","overall","teams")
@@ -92,6 +90,7 @@ if (weekdays(Sys.Date()) == "Donnerstag") {
 
 uefa_country_ranking <- merge(uefa_country_ranking,old_data_ranking)
 
+
 uefa_country_ranking$gained <- as.numeric(uefa_country_ranking$overall)-as.numeric(uefa_country_ranking$current_points_old)
 
 #Compare with last rank
@@ -103,6 +102,7 @@ uefa_country_ranking <- uefa_country_ranking[order(uefa_country_ranking$rank),]
 uefa_country_ranking <- uefa_country_ranking[,c(2,1,8,13,10,9)]
 colnames(uefa_country_ranking) <- c("rank","country","current points","points gained",
                                     "gap to 15th place","teams remaining")
+
 print(uefa_country_ranking)
 
 write.csv(uefa_country_ranking,"Output/uefa_country_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
