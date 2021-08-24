@@ -13,7 +13,7 @@ uefa_table <- html_text(html_nodes(webpage,"td"))
 uefa_table <- uefa_table[uefa_table!=""]
 uefa_table <- uefa_table[-(496:498)]
 
-uefa_table
+
 uefa_country_ranking <- data.frame(1,2,3,4,5,6,7,8,9)
 names(uefa_country_ranking) <- c("rank","country","17/18","18/19","19/20","20/21","21/22","overall","teams")
 repeat {
@@ -75,18 +75,28 @@ old_data_ranking <- read.csv("https://raw.githubusercontent.com/awp-finanznachri
 old_data_ranking <- old_data_ranking[,1:3]
 colnames(old_data_ranking) <- c("rank_old","country","current_points_old")
 
+#Save old ranking with date
+save(old_data_ranking,file=paste0(Sys.Date(),"_old_data_ranking.rdata"))
+
+#Load
+if (weekdays(Sys.Date()) == "Mittwoch") {
+load(paste0(Sys.Date()-1,"_old_data_ranking.rdata"))
+
+}
+
+if (weekdays(Sys.Date()) == "Donnerstag") {
+  load(paste0(Sys.Date()-2,"_old_data_ranking.rdata"))
+  
+}
+
+
 uefa_country_ranking <- merge(uefa_country_ranking,old_data_ranking)
 
 uefa_country_ranking$gained <- as.numeric(uefa_country_ranking$overall)-as.numeric(uefa_country_ranking$current_points_old)
 
 #Compare with last rank
 uefa_country_ranking$rank <- paste0(uefa_country_ranking$rank,".",
-                                    "(",gsub("[(].*","",uefa_country_ranking$rank_old),".)") #Punkt entfernen
-
-#uefa_country_ranking$gained <- c(0.125,0.4,0.625,0.5,0.25,0.4,0.4,0.5,0.375,0.75,0.2,0.5)
-
-
-
+                                    "(",gsub("[(].*","",uefa_country_ranking$rank_old),")") #Punkt entfernen
 
 #Tidy it
 uefa_country_ranking <- uefa_country_ranking[order(uefa_country_ranking$rank),]
