@@ -87,6 +87,11 @@ if (weekdays(Sys.Date()) == "Donnerstag") {
   
 }
 
+if (weekdays(Sys.Date()) == "Freitag") {
+  load(paste0(Sys.Date()-3,"_old_data_ranking.rdata"))
+  
+}
+
 
 uefa_country_ranking <- merge(uefa_country_ranking,old_data_ranking)
 
