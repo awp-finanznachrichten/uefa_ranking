@@ -45,28 +45,20 @@ for (i in 1:nrow(uefa_country_ranking)) {
 
 
 #uefa_country_ranking$teams <- sub("\\/.*", "", uefa_country_ranking$teams)
-uefa_country_ranking <- uefa_country_ranking[12:23,]
+#uefa_country_ranking <- uefa_country_ranking[12:23,]
 
 #Adjustment Serbia
 #uefa_country_ranking$overall[1] <- "26.125"
 
 #Calculate gap
-uefa_country_ranking$gap <- as.numeric(uefa_country_ranking$overall) -
-  as.numeric(uefa_country_ranking$overall[4])
+uefa_country_ranking$gap <- 0
 
-#Wappen
-uefa_country_ranking$country <- gsub("Serbia",":rs:Serbia",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Belgium",":be:Belgium",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Croatia",":hr:Croatia",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Switzerland",":ch:Switzerland",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Cyprus",":cy:Cyprus",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Turkey",":tr:Turkey",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Czech Republic",":cz:Czech Republic",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Norway",":no:Norway",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Greece",":gr:Greece",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Sweden",":se:Sweden",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Denmark",":dk:Denmark",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Israel",":il:Israel",uefa_country_ranking$country)
+for (u in 2:nrow(uefa_country_ranking)) {
+
+uefa_country_ranking$gap[u] <- as.numeric(uefa_country_ranking$overall[u]) -
+  as.numeric(uefa_country_ranking$overall[u-1])
+
+}
 
 #Points gained
 old_data_ranking <- read.csv("https://raw.githubusercontent.com/awp-finanznachrichten/uefa_ranking/master/Output/uefa_country_ranking.csv",encoding = "UTF-8")
@@ -94,13 +86,13 @@ if (weekdays(Sys.Date()) == "Freitag") {
 
 uefa_country_ranking <- merge(uefa_country_ranking,old_data_ranking)
 
-
 uefa_country_ranking$gained <- as.numeric(uefa_country_ranking$overall)-as.numeric(uefa_country_ranking$current_points_old)
 
 #Compare with last rank
 uefa_country_ranking$rank <- paste0(uefa_country_ranking$rank,".",
-                                    "(",gsub("[(].*","",uefa_country_ranking$rank_old),")") #Punkt entfernen
+                                    "(",gsub("[(].*","",uefa_country_ranking$rank),",)") #Punkt entfernen
 
+View(uefa_country_ranking)
 #Tidy it
 uefa_country_ranking <- uefa_country_ranking[order(uefa_country_ranking$rank),]
 uefa_country_ranking <- uefa_country_ranking[,c(2,1,8,13,10,9)]
