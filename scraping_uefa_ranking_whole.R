@@ -92,11 +92,12 @@ uefa_country_ranking_full$gained <- as.numeric(uefa_country_ranking_full$overall
 #uefa_country_ranking_full$gained <- 0
 #Compare with last rank
 uefa_country_ranking_full$rank <- paste0(uefa_country_ranking_full$rank,".",
-                                    "(",gsub("[(].*","",uefa_country_ranking_full$rank),",)") #Punkt entfernen
+                                    "(",gsub("[(].*","",uefa_country_ranking_full$rank),")") #Punkt entfernen
 
+uefa_country_ranking_full$overall <- as.numeric(uefa_country_ranking_full$overall)
 
 #Tidy it
-uefa_country_ranking_full <- uefa_country_ranking_full[-order(uefa_country_ranking_full$overall),]
+uefa_country_ranking_full <- uefa_country_ranking_full[order(-uefa_country_ranking_full$overall),]
 uefa_country_ranking_full <- uefa_country_ranking_full[,c(2,1,8,13,10,9)]
 colnames(uefa_country_ranking_full) <- c("rank","country","current points","points gained",
                                     "gap to team above","teams remaining")
@@ -104,7 +105,7 @@ colnames(uefa_country_ranking_full) <- c("rank","country","current points","poin
 
 print(uefa_country_ranking_full)
 
-write.csv(uefa_country_ranking_full_full,"Output/uefa_country_ranking_full.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(uefa_country_ranking_full,"Output/uefa_country_ranking_full.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
 #Commit and update Datawrapper
 library(git2r)
