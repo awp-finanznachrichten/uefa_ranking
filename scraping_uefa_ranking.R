@@ -77,18 +77,18 @@ colnames(old_data_ranking) <- c("rank_old","country","current_points_old")
 save(old_data_ranking,file=paste0(Sys.Date(),"_old_data_ranking.rdata"))
 
 #Load
-if (weekdays(Sys.Date()) == "Mittwoch") {
-load(paste0(Sys.Date()-1,"_old_data_ranking.rdata"))
+#if (weekdays(Sys.Date()) == "Mittwoch") {
+#load(paste0(Sys.Date()-1,"_old_data_ranking.rdata"))
 
-}
+#}
 
 if (weekdays(Sys.Date()) == "Donnerstag") {
-  load(paste0(Sys.Date()-2,"_old_data_ranking.rdata"))
+  load(paste0(Sys.Date()-1,"_old_data_ranking.rdata"))
   
 }
 
 if (weekdays(Sys.Date()) == "Freitag") {
-  load(paste0(Sys.Date()-3,"_old_data_ranking.rdata"))
+  load(paste0(Sys.Date()-2,"_old_data_ranking.rdata"))
   
 }
 
