@@ -1,16 +1,52 @@
 library(rvest)
 library(stringr)
 library(XML)
+library(RSelenium)
 
 setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
 
-url <- "https://kassiesa.net/uefa/data/method5/crank2022.html"
-webpage <- read_html(url)
+#url <- "https://kassiesa.net/uefa/data/method5/crank2022.html"
+#webpage <- read_html(url)
 
-uefa_table <- html_text(html_nodes(webpage,"td"))
+#uefa_table <- html_text(html_nodes(webpage,"td"))
 
-uefa_table <- uefa_table[uefa_table!=""]
-uefa_table <- uefa_table[-(496:498)]
+#uefa_table <- uefa_table[uefa_table!=""]
+#uefa_table <- uefa_table[-(496:498)]
+
+
+#Browser öffnen
+driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
+
+remote_driver <- driver[["client"]]
+remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
+
+output <- remote_driver$findElement(using="class",value="countrygroup")
+
+text_all <- output$getElementText()
+
+#Close browser
+remote_driver$close()
+
+#Close server
+driver[["server"]]$stop()
+
+#Stop Java-Process
+system("taskkill /F /IM java.exe")
+
+
+text_all <- gsub("\n"," ",text_all)
+text_all <- gsub("/ ","/",text_all)
+
+#Replace Countries
+text_all <- gsub("Czech Republic","Czech_Republic",text_all)
+text_all <- gsub("Northern Ireland","Northern_Ireland",text_all)
+text_all <- gsub("Faroe Island","Faroe_Island",text_all)
+text_all <- gsub("North Macedonia","North_Macedonia",text_all)
+text_all <- gsub("San Marino","San_Marino",text_all)
+text_all <- strsplit(text_all," ")[[1]]
+
+uefa_table <- text_all[-c(1:9)]
+
 
 uefa_country_ranking <- data.frame(1,2,3,4,5,6,7,8,9)
 names(uefa_country_ranking) <- c("rank","country","17/18","18/19","19/20","20/21","21/22","overall","teams")
@@ -30,12 +66,13 @@ if (length(uefa_table) < 9) {
 
 uefa_country_ranking <- uefa_country_ranking[-1,]
 uefa_country_ranking$teams <- gsub(" ","",uefa_country_ranking$teams)
+uefa_country_ranking$country <- gsub("_"," ",uefa_country_ranking$country)
 
 for (i in 1:nrow(uefa_country_ranking)) {
   
   if (nchar(uefa_country_ranking$teams[i]) == 1) {
     
-    uefa_country_ranking$teams[i] <- 0
+    uefa_country_ranking$teams[i] <- paste0("0/",uefa_country_ranking$teams[i])
     
   }
   
@@ -47,26 +84,22 @@ for (i in 1:nrow(uefa_country_ranking)) {
 #uefa_country_ranking$teams <- sub("\\/.*", "", uefa_country_ranking$teams)
 uefa_country_ranking <- uefa_country_ranking[12:23,]
 
-#Adjustment Serbia
-#uefa_country_ranking$overall[1] <- "26.125"
 
 #Calculate gap
 uefa_country_ranking$gap <- as.numeric(uefa_country_ranking$overall) -
   as.numeric(uefa_country_ranking$overall[4])
 
 #Wappen
-uefa_country_ranking$country <- gsub("Serbia",":rs:Serbia",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Belgium",":be:Belgium",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Croatia",":hr:Croatia",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Switzerland",":ch:Switzerland",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Cyprus",":cy:Cyprus",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Turkey",":tr:Turkey",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Czech Republic",":cz:Czech Republic",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Norway",":no:Norway",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Greece",":gr:Greece",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Sweden",":se:Sweden",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Denmark",":dk:Denmark",uefa_country_ranking$country)
-uefa_country_ranking$country <- gsub("Israel",":il:Israel",uefa_country_ranking$country)
+#Add flags
+library(readxl)
+flags <- read_excel("flags.xlsx", col_names = FALSE)
+colnames(flags) <- c("flag","country")
+
+uefa_country_ranking <- merge(uefa_country_ranking,flags,all.x = TRUE)
+
+uefa_country_ranking$country <- paste0(uefa_country_ranking$flag,uefa_country_ranking$country)
+
+
 
 #Points gained
 old_data_ranking <- read.csv("https://raw.githubusercontent.com/awp-finanznachrichten/uefa_ranking/master/Output/uefa_country_ranking.csv",encoding = "UTF-8")
@@ -74,21 +107,21 @@ old_data_ranking <- old_data_ranking[,1:3]
 colnames(old_data_ranking) <- c("rank_old","country","current_points_old")
 
 #Save old ranking with date
-save(old_data_ranking,file=paste0(Sys.Date(),"_old_data_ranking.rdata"))
+save(old_data_ranking,file=paste0("Old_data/",Sys.Date(),"_old_data_ranking.rdata"))
 
 #Load
-#if (weekdays(Sys.Date()) == "Mittwoch") {
-#load(paste0(Sys.Date()-1,"_old_data_ranking.rdata"))
+if (weekdays(Sys.Date()) == "Mittwoch") {
+load(paste0("Old_data/",Sys.Date(),"_old_data_ranking.rdata"))
 
-#}
+}
 
 if (weekdays(Sys.Date()) == "Donnerstag") {
-  load(paste0(Sys.Date()-1,"_old_data_ranking.rdata"))
+  load(paste0("Old_data/",Sys.Date()-2,"_old_data_ranking.rdata"))
   
 }
 
 if (weekdays(Sys.Date()) == "Freitag") {
-  load(paste0(Sys.Date()-2,"_old_data_ranking.rdata"))
+  load(paste0("Old_data/",Sys.Date()-3,"_old_data_ranking.rdata"))
   
 }
 
@@ -97,13 +130,15 @@ uefa_country_ranking <- merge(uefa_country_ranking,old_data_ranking)
 
 uefa_country_ranking$gained <- as.numeric(uefa_country_ranking$overall)-as.numeric(uefa_country_ranking$current_points_old)
 
+
 #Compare with last rank
 uefa_country_ranking$rank <- paste0(uefa_country_ranking$rank,".",
                                     "(",gsub("[(].*","",uefa_country_ranking$rank_old),")") #Punkt entfernen
 
 #Tidy it
 uefa_country_ranking <- uefa_country_ranking[order(uefa_country_ranking$rank),]
-uefa_country_ranking <- uefa_country_ranking[,c(2,1,8,13,10,9)]
+
+uefa_country_ranking <- uefa_country_ranking[,c(2,1,8,14,10,9)]
 colnames(uefa_country_ranking) <- c("rank","country","current points","points gained",
                                     "gap to 15th place","teams remaining")
 
