@@ -3,6 +3,7 @@ library(stringr)
 library(XML)
 library(RSelenium)
 
+
 setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
 
 #Browser öffnen
@@ -144,6 +145,8 @@ uefa_country_ranking_full <- uefa_country_ranking_full[order(-uefa_country_ranki
 uefa_country_ranking_full <- uefa_country_ranking_full[,c(2,1,8,14,10,9)]
 colnames(uefa_country_ranking_full) <- c("rank","country","current points","points gained",
                                     "gap to team ahead","teams remaining")
+
+print(uefa_country_ranking_full)
 
 
 write.csv(uefa_country_ranking_full,"Output/uefa_country_ranking_full.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
