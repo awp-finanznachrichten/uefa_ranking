@@ -111,7 +111,7 @@ save(old_data_ranking,file=paste0("Old_data/",Sys.Date(),"_old_data_ranking.rdat
 
 #Load
 if (weekdays(Sys.Date()) == "Mittwoch") {
-load(paste0("Old_data/",Sys.Date(),"_old_data_ranking.rdata"))
+load(paste0("Old_data/",Sys.Date()-1,"_old_data_ranking.rdata"))
 
 }
 
