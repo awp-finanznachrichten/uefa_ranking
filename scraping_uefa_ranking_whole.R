@@ -11,6 +11,7 @@ driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
 
 remote_driver <- driver[["client"]]
 remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
+remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
 
 output <- remote_driver$findElement(using="class",value="countrygroup")
 
