@@ -151,6 +151,16 @@ print(uefa_country_ranking_full)
 
 write.csv(uefa_country_ranking_full,"Output/uefa_country_ranking_full.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
+
+###Make Access List
+access_list <- read_excel("access_list.xlsx", col_names = TRUE)
+
+access_list$Country <- uefa_country_ranking_full$country
+
+access_list <- access_list[,c(10,2:9)]
+
+write.csv(access_list,"Output/access_list.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+
 #Commit and update Datawrapper
 library(git2r)
 library(DatawRappr)
