@@ -226,3 +226,7 @@ datawrapper_auth("fYNHJEgLlCPgMC8hO0Bxm7j3SG2cOGCPnIJRc5RCVc72zYBFaMxGYIOY081zYa
 dw_edit_chart("6dhKQ", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
 dw_publish_chart("6dhKQ")
 
+#Update Datawrapper
+dw_edit_chart("UFlq7", intro=paste0("Based on the current standing in the UEFA country ranking. Last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+dw_publish_chart("UFlq7")
+

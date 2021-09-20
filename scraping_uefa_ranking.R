@@ -3,7 +3,7 @@ library(stringr)
 library(XML)
 library(RSelenium)
 
-setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
+setwd("C:/Users/sw/Onedrive/Fussballdaten/uefa_ranking")
 
 #url <- "https://kassiesa.net/uefa/data/method5/crank2022.html"
 #webpage <- read_html(url)
@@ -78,16 +78,18 @@ for (i in 1:nrow(uefa_country_ranking)) {
   
 }
 
+
 #colnames(uefa_country_ranking) <- c("")
 
 
 #uefa_country_ranking$teams <- sub("\\/.*", "", uefa_country_ranking$teams)
-uefa_country_ranking <- uefa_country_ranking[12:23,]
-
+uefa_country_ranking <- uefa_country_ranking[8:23,]
 
 #Calculate gap
-uefa_country_ranking$gap <- as.numeric(uefa_country_ranking$overall) -
+uefa_country_ranking$gap_11 <- as.numeric(uefa_country_ranking$overall) -
   as.numeric(uefa_country_ranking$overall[4])
+uefa_country_ranking$gap_15 <- as.numeric(uefa_country_ranking$overall) -
+  as.numeric(uefa_country_ranking$overall[8])
 
 #Wappen
 #Add flags
@@ -124,6 +126,7 @@ if (weekdays(Sys.Date()) == "Freitag") {
   load(paste0("Old_data/",Sys.Date()-3,"_old_data_ranking.rdata"))
   
 }
+
 
 uefa_country_ranking <- merge(uefa_country_ranking,old_data_ranking)
 
