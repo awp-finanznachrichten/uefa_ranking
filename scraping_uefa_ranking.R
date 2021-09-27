@@ -130,7 +130,6 @@ if (weekdays(Sys.Date()) == "Freitag") {
 
 uefa_country_ranking <- merge(uefa_country_ranking,old_data_ranking)
 
-
 uefa_country_ranking$gained <- as.numeric(uefa_country_ranking$overall)-as.numeric(uefa_country_ranking$current_points_old)
 
 
@@ -139,11 +138,13 @@ uefa_country_ranking$rank <- paste0(uefa_country_ranking$rank,".",
                                     "(",gsub("[(].*","",uefa_country_ranking$rank_old),")") #Punkt entfernen
 
 #Tidy it
-uefa_country_ranking <- uefa_country_ranking[order(uefa_country_ranking$rank),]
+uefa_country_ranking$overall <- as.numeric(uefa_country_ranking$overall)
+uefa_country_ranking <- uefa_country_ranking[order(-uefa_country_ranking$overall),]
 
-uefa_country_ranking <- uefa_country_ranking[,c(2,1,8,14,10,9)]
+
+uefa_country_ranking <- uefa_country_ranking[,c(2,1,8,15,10,11,9)]
 colnames(uefa_country_ranking) <- c("rank","country","current points","points gained",
-                                    "gap to 15th place","teams remaining")
+                                    "gap to 11th place","gap to 15th place","teams remaining")
 
 print(uefa_country_ranking)
 
@@ -200,7 +201,7 @@ gitpull <- function(dir = getwd()){
 
 
 #Make Commit
-token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
+token <- read.csv("C:/Users/sw/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
 
 git2r::config(user.name = "awp-finanznachrichten",user.email = "sw@awp.ch")
 invisible(git2r::cred_token(token))
