@@ -3,7 +3,7 @@ library(stringr)
 library(XML)
 library(RSelenium)
 
-setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
+setwd("C:/Users/sw/Onedrive/Fussballdaten/uefa_ranking")
 
 #url <- "https://kassiesa.net/uefa/data/method5/crank2022.html"
 #webpage <- read_html(url)
@@ -81,6 +81,75 @@ for (i in 1:nrow(uefa_country_ranking)) {
 
 #colnames(uefa_country_ranking) <- c("")
 
+###Top 7
+uefa_country_ranking_top7 <- uefa_country_ranking[1:8,] 
+
+#Calculate gap
+uefa_country_ranking_top7$gap_4 <- as.numeric(uefa_country_ranking_top7$overall) -
+  as.numeric(uefa_country_ranking_top7$overall[4])
+uefa_country_ranking_top7$gap_8 <- as.numeric(uefa_country_ranking_top7$overall) -
+  as.numeric(uefa_country_ranking_top7$overall[8])
+
+uefa_country_ranking_top7 <- uefa_country_ranking_top7[-8,]
+
+#Wappen
+library(readxl)
+flags <- read_excel("flags.xlsx", col_names = FALSE)
+colnames(flags) <- c("flag","country")
+
+uefa_country_ranking_top7 <- merge(uefa_country_ranking_top7,flags,all.x = TRUE)
+
+uefa_country_ranking_top7$country <- paste0(uefa_country_ranking_top7$flag,uefa_country_ranking_top7$country)
+
+
+#Points gained
+old_data_ranking_top7 <- read.csv("https://raw.githubusercontent.com/awp-finanznachrichten/uefa_ranking/master/Output/uefa_country_ranking_top7.csv",encoding = "UTF-8")
+old_data_ranking_top7 <- old_data_ranking_top7[,1:3]
+colnames(old_data_ranking_top7) <- c("rank_old","country","current_points_old")
+
+#Save old ranking with date
+save(old_data_ranking_top7,file=paste0("Old_data/",Sys.Date(),"_old_data_ranking_top7.rdata"))
+
+#Load
+if (weekdays(Sys.Date()) == "Mittwoch") {
+  load(paste0("Old_data/",Sys.Date()-1,"_old_data_ranking_top7.rdata"))
+  
+}
+
+if (weekdays(Sys.Date()) == "Donnerstag") {
+  load(paste0("Old_data/",Sys.Date()-2,"_old_data_ranking_top7.rdata"))
+  
+}
+
+if (weekdays(Sys.Date()) == "Freitag") {
+  load(paste0("Old_data/",Sys.Date()-3,"_old_data_ranking_top7.rdata"))
+  
+}
+
+
+uefa_country_ranking_top7 <- merge(uefa_country_ranking_top7,old_data_ranking_top7)
+
+uefa_country_ranking_top7$gained <- as.numeric(uefa_country_ranking_top7$overall)-as.numeric(uefa_country_ranking_top7$current_points_old)
+
+
+#Compare with last rank
+uefa_country_ranking_top7$rank <- paste0(uefa_country_ranking_top7$rank,".",
+                                    "(",gsub("[(].*","",uefa_country_ranking_top7$rank_old),")") #Punkt entfernen
+
+#Tidy it
+uefa_country_ranking_top7$overall <- as.numeric(uefa_country_ranking_top7$overall)
+uefa_country_ranking_top7 <- uefa_country_ranking_top7[order(-uefa_country_ranking_top7$overall),]
+
+
+uefa_country_ranking_top7 <- uefa_country_ranking_top7[,c(2,1,8,15,10,11,9)]
+colnames(uefa_country_ranking_top7) <- c("rank","country","current points","points gained",
+                                    "gap to 4th place","gap to 8th place","teams remaining")
+
+
+write.csv(uefa_country_ranking_top7,"Output/uefa_country_ranking_top7.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+
+
+###Fight for Top 11 and Top 15
 
 #uefa_country_ranking$teams <- sub("\\/.*", "", uefa_country_ranking$teams)
 uefa_country_ranking <- uefa_country_ranking[8:23,]
@@ -92,15 +161,8 @@ uefa_country_ranking$gap_15 <- as.numeric(uefa_country_ranking$overall) -
   as.numeric(uefa_country_ranking$overall[8])
 
 #Wappen
-#Add flags
-library(readxl)
-flags <- read_excel("flags.xlsx", col_names = FALSE)
-colnames(flags) <- c("flag","country")
-
 uefa_country_ranking <- merge(uefa_country_ranking,flags,all.x = TRUE)
-
 uefa_country_ranking$country <- paste0(uefa_country_ranking$flag,uefa_country_ranking$country)
-
 
 
 #Points gained
@@ -201,7 +263,7 @@ gitpull <- function(dir = getwd()){
 
 
 #Make Commit
-token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
+token <- read.csv("C:/Users/sw/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
 
 git2r::config(user.name = "awp-finanznachrichten",user.email = "sw@awp.ch")
 invisible(git2r::cred_token(token))
@@ -214,4 +276,8 @@ gitpush()
 datawrapper_auth("fYNHJEgLlCPgMC8hO0Bxm7j3SG2cOGCPnIJRc5RCVc72zYBFaMxGYIOY081zYaeq", overwrite = TRUE)
 dw_edit_chart("J6Mna", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
 dw_publish_chart("J6Mna")
+
+dw_edit_chart("xlWOs", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+dw_publish_chart("xlWOs")
+
 
