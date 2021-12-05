@@ -80,11 +80,11 @@ complete_table$percentage <- complete_table$overall_points_team/complete_table$o
 
 
 #Wappen
-#library(readxl)
-#flags <- read_excel("flags.xlsx", col_names = FALSE)
-#colnames(flags) <- c("flag","country")
+library(readxl)
+flags <- read_excel("flags.xlsx", col_names = FALSE)
+colnames(flags) <- c("flag","country")
 
-#complete_table <- merge(complete_table,flags,all.x = TRUE)
+complete_table <- merge(complete_table,flags,all.x = TRUE)
 #complete_table$country <- paste0(complete_table$flag,complete_table$country)
 
 
