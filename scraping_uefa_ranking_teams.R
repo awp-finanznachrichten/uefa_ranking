@@ -72,11 +72,8 @@ complete_table <- unique(left_join(points_team,points_country))
 
 complete_table <- complete_table[order(complete_table$team),]
 complete_table <- complete_table[-c(3:4,6:10),]
-complete_table <- complete_table[order(-complete_table$overall_points_country),]
 
 complete_table$percentage <- complete_table$overall_points_team/complete_table$overall_points_country
-
-
 
 
 #Wappen
@@ -86,7 +83,7 @@ colnames(flags) <- c("flag","country")
 
 complete_table <- merge(complete_table,flags,all.x = TRUE)
 #complete_table$country <- paste0(complete_table$flag,complete_table$country)
-
+complete_table <- complete_table[order(-complete_table$overall_points_country),]
 
 #Text
 complete_table$text <- paste0(complete_table$country,": ",round(complete_table$overall_points_country,3)," points")
