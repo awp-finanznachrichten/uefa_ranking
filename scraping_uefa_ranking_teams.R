@@ -76,19 +76,19 @@ complete_table$percentage <- complete_table$overall_points_team/complete_table$o
 
 
 #Wappen
-library(readxl)
-flags <- read_excel("flags.xlsx", col_names = FALSE)
-colnames(flags) <- c("flag","country")
+#library(readxl)
+#flags <- read_excel("flags.xlsx", col_names = FALSE)
+#colnames(flags) <- c("flag","country")
 
-complete_table <- merge(complete_table,flags,all.x = TRUE)
-complete_table$country <- paste0(complete_table$flag,complete_table$country)
+#complete_table <- merge(complete_table,flags,all.x = TRUE)
+#complete_table$country <- paste0(complete_table$flag,complete_table$country)
 
 
 #Text
 complete_table$text <- paste0(complete_table$country,": ",round(complete_table$overall_points_country,3)," points")
 
 
-write.csv(uefa_country_ranking_top7,"Output/uefa_country_ranking_top7.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(complete_table,"Output/overview_teams_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
 
 #Commit and update Datawrapper
@@ -152,11 +152,11 @@ gitpush()
 
 
 #Update Datawrapper
-datawrapper_auth("fYNHJEgLlCPgMC8hO0Bxm7j3SG2cOGCPnIJRc5RCVc72zYBFaMxGYIOY081zYaeq", overwrite = TRUE)
-dw_edit_chart("J6Mna", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
-dw_publish_chart("J6Mna")
+#datawrapper_auth("fYNHJEgLlCPgMC8hO0Bxm7j3SG2cOGCPnIJRc5RCVc72zYBFaMxGYIOY081zYaeq", overwrite = TRUE)
+#dw_edit_chart("J6Mna", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+#dw_publish_chart("J6Mna")
 
-dw_edit_chart("xlWOs", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
-dw_publish_chart("xlWOs")
+#dw_edit_chart("xlWOs", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+#dw_publish_chart("xlWOs")
 
 
