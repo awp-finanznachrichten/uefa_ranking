@@ -3,15 +3,7 @@ library(stringr)
 library(XML)
 library(RSelenium)
 
-setwd("C:/Users/sw/Onedrive/Fussballdaten/uefa_ranking")
-
-#url <- "https://kassiesa.net/uefa/data/method5/crank2022.html"
-#webpage <- read_html(url)
-
-#uefa_table <- html_text(html_nodes(webpage,"td"))
-
-#uefa_table <- uefa_table[uefa_table!=""]
-#uefa_table <- uefa_table[-(496:498)]
+setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
 
 
 #Browser öffnen
@@ -263,7 +255,7 @@ gitpull <- function(dir = getwd()){
 
 
 #Make Commit
-token <- read.csv("C:/Users/sw/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
+token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
 
 git2r::config(user.name = "awp-finanznachrichten",user.email = "sw@awp.ch")
 invisible(git2r::cred_token(token))
