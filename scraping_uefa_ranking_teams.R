@@ -155,11 +155,13 @@ gitpush()
 
 
 #Update Datawrapper
-#datawrapper_auth("fYNHJEgLlCPgMC8hO0Bxm7j3SG2cOGCPnIJRc5RCVc72zYBFaMxGYIOY081zYaeq", overwrite = TRUE)
-#dw_edit_chart("J6Mna", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
-#dw_publish_chart("J6Mna")
+datawrapper_auth("fYNHJEgLlCPgMC8hO0Bxm7j3SG2cOGCPnIJRc5RCVc72zYBFaMxGYIOY081zYaeq", overwrite = TRUE)
+dw_edit_chart("qw90m", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+dw_publish_chart("qw90m")
 
-#dw_edit_chart("xlWOs", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
-#dw_publish_chart("xlWOs")
+dw_edit_chart("up5me", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+dw_publish_chart("up5me")
 
+dw_edit_chart("v88MJ", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+dw_publish_chart("v88MJ")
 
