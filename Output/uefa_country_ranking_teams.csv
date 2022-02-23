@@ -1,146 +1,146 @@
 "country","team","scored_points"
-"England","Liverpool",3
-"England","Chelsea",2.57142857142857
-"England","Manchester City",2.42857142857143
+"England","Liverpool",3.28571428571429
+"England","Chelsea",2.85714285714286
+"England","Manchester City",2.71428571428571
 "England","Manchester United",2.42857142857143
 "England","West Ham United",2
-"England","Leicester City",0.857142857142857
+"England","Leicester City",1.14285714285714
 "England","Tottenham Hotspur",0.857142857142857
-"France","Paris Saint-Germain",2.83333333333333
+"France","Paris Saint-Germain",3.16666666666667
 "France","Lille OSC",2.83333333333333
-"France","AS Monaco",2.58333333333333
-"France","Olympique Lyon",2.5
-"France","Stade Rennais",2
-"France","Olympique Marseille",0.666666666666667
+"France","AS Monaco",2.75
+"France","Olympique Lyon",2.66666666666667
+"France","Stade Rennais",2.33333333333333
+"France","Olympique Marseille",1.33333333333333
 "Netherlands","Ajax",4.2
-"Netherlands","Feyenoord",2.9
-"Netherlands","AZ Alkmaar",2.2
-"Netherlands","PSV Eindhoven",2.1
-"Netherlands","Vitesse Arnhem",1.6
-"Germany","Bayern München",3
-"Germany","Bayer Leverkusen",2
-"Germany","Eintracht Frankfurt",1.42857142857143
-"Germany","Borussia Dortmund",1.42857142857143
-"Germany","RB Leipzig",1.28571428571429
-"Germany","VfL Wolfsburg",1.14285714285714
-"Germany","Union Berlin",0.785714285714286
+"Netherlands","Feyenoord",3.3
+"Netherlands","AZ Alkmaar",2.6
+"Netherlands","PSV Eindhoven",2.5
+"Netherlands","Vitesse Arnhem",2.2
 "Spain","Real Madrid",2.71428571428571
+"Spain","Villarreal",2.42857142857143
 "Spain","Atlético Madrid",2
-"Spain","Villarreal",1.28571428571429
-"Spain","Real Betis",1.28571428571429
-"Spain","FC Barcelona",1.28571428571429
-"Spain","Sevilla",1.28571428571429
-"Spain","Real Sociedad",0.714285714285714
-"Italy","Juventus",2.71428571428571
+"Spain","Sevilla",1.57142857142857
+"Spain","Real Betis",1.57142857142857
+"Spain","FC Barcelona",1.42857142857143
+"Spain","Real Sociedad",1.42857142857143
+"Italy","Juventus",2.85714285714286
 "Italy","Internazionale",2.28571428571429
-"Italy","AS Roma",1.42857142857143
-"Italy","Atalanta",1.28571428571429
-"Italy","Lazio",1.14285714285714
+"Italy","AS Roma",1.85714285714286
+"Italy","Atalanta",1.57142857142857
+"Italy","Napoli",1.42857142857143
+"Italy","Lazio",1.28571428571429
 "Italy","AC Milan",1
-"Italy","Napoli",0.714285714285714
+"Germany","Bayern München",3.14285714285714
+"Germany","Eintracht Frankfurt",2
+"Germany","Bayer Leverkusen",2
+"Germany","RB Leipzig",1.42857142857143
+"Germany","Borussia Dortmund",1.42857142857143
+"Germany","VfL Wolfsburg",1.14285714285714
+"Germany","Union Berlin",0.928571428571429
+"Austria","FC Salzburg",3.8
+"Austria","LASK",3.3
+"Austria","Rapid Wien",2
+"Austria","Sturm Graz",0.8
+"Austria","Austria Wien",0.1
 "Portugal","Benfica",3.08333333333333
 "Portugal","Sporting CP Lisbon",2.5
-"Portugal","FC Porto",1.33333333333333
-"Portugal","Sporting Braga",1
+"Portugal","FC Porto",1.66666666666667
+"Portugal","Sporting Braga",1.5
 "Portugal","CD Santa Clara",0.833333333333333
 "Portugal","Paços de Ferreira",0.333333333333333
-"Austria","FC Salzburg",3.6
-"Austria","LASK",2.9
-"Austria","Rapid Wien",1.2
-"Austria","Sturm Graz",0.6
-"Austria","Austria Wien",0.1
-"Switzerland","FC Basel",3.5
+"Serbia","Red Star Belgrade",4.125
+"Serbia","Partizan Belgrade",3.25
+"Serbia","Cukaricki Belgrade",0.625
+"Serbia","Vojvodina Novi Sad",0.5
+"Switzerland","FC Basel",4.25
 "Switzerland","Young Boys",3.25
 "Switzerland","Servette FC Genève",0.25
 "Switzerland","FC Luzern",0
-"Denmark","FC København",3.1
-"Denmark","FC Midtjylland",1.5
-"Denmark","Randers FC",1.3
+"Denmark","FC København",3.5
+"Denmark","FC Midtjylland",2.1
+"Denmark","Randers FC",1.5
 "Denmark","Brøndby IF",0.4
 "Denmark","AGF Aarhus",0.1
-"Israel","Maccabi Tel-Aviv",3.25
+"Belgium","AA Gent",2.9
+"Belgium","Club Brugge",1.4
+"Belgium","Royal Antwerp",1
+"Belgium","Racing Genk",0.8
+"Belgium","Anderlecht",0.5
+"Greece","Olympiakos Piraeus",3.125
+"Greece","PAOK Thessaloniki",2.875
+"Greece","Aris Thessaloniki",0.25
+"Greece","AEK Athens",0.25
+"Israel","Maccabi Tel-Aviv",3.5
 "Israel","Maccabi Haifa",2
 "Israel","Hapoel Beer-Sheva",0.875
 "Israel","MS Ashdod",0.125
-"Serbia","Red Star Belgrade",2.625
-"Serbia","Partizan Belgrade",2.25
-"Serbia","Cukaricki Belgrade",0.625
-"Serbia","Vojvodina Novi Sad",0.5
-"Belgium","AA Gent",2.5
-"Belgium","Club Brugge",1.4
-"Belgium","Racing Genk",0.8
-"Belgium","Royal Antwerp",0.6
-"Belgium","Anderlecht",0.5
-"Greece","Olympiakos Piraeus",3.125
-"Greece","PAOK Thessaloniki",2.125
-"Greece","Aris Thessaloniki",0.25
-"Greece","AEK Athens",0.25
-"Turkey","Galatasaray",2.6
-"Turkey","Fenerbahçe",1.2
+"Turkey","Galatasaray",3.4
+"Turkey","Fenerbahçe",1.4
 "Turkey","Besiktas",0.8
 "Turkey","Sivasspor",0.7
 "Turkey","Trabzonspor",0.2
-"Norway","Bodø/Glimt",3.375
+"Norway","Bodø/Glimt",4.125
 "Norway","Rosenborg BK",1
 "Norway","Molde FK",0.5
 "Norway","Vålerengens IF",0.25
+"Czech Republic","Slavia Praha",2.1
+"Czech Republic","FK Jablonec",1.4
+"Czech Republic","Sparta Praha",1.2
+"Czech Republic","Viktoria Plzen",0.8
+"Czech Republic","1.FC Slovácko",0.2
+"Croatia","Dinamo Zagreb",3.75
+"Croatia","NK Rijeka",1
+"Croatia","NK Osijek",0.5
+"Croatia","Hajduk Split",0.25
+"Scotland","Glasgow Rangers",2.3
+"Scotland","Celtic",1.9
+"Scotland","Aberdeen",0.6
+"Scotland","Hibernian",0.5
+"Scotland","St. Johnstone",0.2
+"Moldova","Sheriff Tiraspol",4.5
+"Moldova","Milsami Orhei",0.375
+"Moldova","Petrocub Hîncesti",0.375
+"Moldova","Sfântul Gheorghe",0
 "Sweden","Malmö FF",2.75
 "Sweden","IF Elfsborg",1.125
 "Sweden","Hammarby IF",1
 "Sweden","BK Häcken",0.25
-"Moldova","Sheriff Tiraspol",4
-"Moldova","Milsami Orhei",0.375
-"Moldova","Petrocub Hîncesti",0.375
-"Moldova","Sfântul Gheorghe",0
+"Russia","Spartak Moscow",2.4
+"Russia","Zenit St. Petersburg",1.6
+"Russia","FC Sochi",0.6
+"Russia","Lokomotiv Moscow",0.4
+"Russia","Rubin Kazan",0.1
 "Poland","Legia Warsaw",2.5
 "Poland","Slask Wroclaw",1.125
 "Poland","Raków Czestochowa",0.875
 "Poland","Pogon Szczecin",0.125
-"Croatia","Dinamo Zagreb",2.75
-"Croatia","NK Rijeka",1
-"Croatia","NK Osijek",0.5
-"Croatia","Hajduk Split",0.25
-"Scotland","Glasgow Rangers",1.7
-"Scotland","Celtic",1.5
-"Scotland","Aberdeen",0.6
-"Scotland","Hibernian",0.5
-"Scotland","St. Johnstone",0.2
-"Czech Republic","FK Jablonec",1.4
-"Czech Republic","Slavia Praha",1.3
-"Czech Republic","Viktoria Plzen",0.8
-"Czech Republic","Sparta Praha",0.8
-"Czech Republic","1.FC Slovácko",0.2
 "Azerbaijan","Qarabag FK",3.5
 "Azerbaijan","Neftchi Baku",0.75
 "Azerbaijan","Sumgayit FK",0.125
 "Azerbaijan","Kesla FK",0
+"Ukraine","Shakhtar Donetsk",1.9
+"Ukraine","Dinamo Kiev",1
+"Ukraine","Zorya Luhansk",1
+"Ukraine","Kolos Kovalivka",0.2
+"Ukraine","Vorskla Poltava",0.1
+"Cyprus","Anorthosis Famagusta",1.875
+"Cyprus","Omonia Nicosia",1.5
+"Cyprus","126",0
+"Cyprus","AEL Limassol",0.625
+"Cyprus","Apollon Limassol",0.125
 "Slovakia","Slovan Bratislava",2.375
 "Slovakia","MSK Zilina",1.125
 "Slovakia","Spartak Trnava",0.625
 "Slovakia","DAC Dunajska Streda",0
-"Ukraine","Shakhtar Donetsk",1.9
-"Ukraine","Dinamo Kiev",1
-"Ukraine","Zorya Luhansk",0.8
-"Ukraine","Kolos Kovalivka",0.2
-"Ukraine","Vorskla Poltava",0.1
 "Finland","HJK Helsinki",2
 "Finland","KuPS Kuopio",1.125
 "Finland","Honka Espoo",0.5
 "Finland","Inter Turku",0.125
-"Russia","Zenit St. Petersburg",1.6
-"Russia","Spartak Moscow",1
-"Russia","FC Sochi",0.6
-"Russia","Lokomotiv Moscow",0.4
-"Russia","Rubin Kazan",0.1
 "Estonia","Flora Tallinn",3
 "Estonia","Levadia Tallinn",0.666666666666667
 "Estonia","Paide Linnameeskond",0
-"Cyprus","Anorthosis Famagusta",1.625
-"Cyprus","Omonia Nicosia",1.25
-"Cyprus","126",0
-"Cyprus","AEL Limassol",0.625
-"Cyprus","Apollon Limassol",0.125
-"Bulgaria","Ludogorets Razgrad",1.625
+"Bulgaria","Ludogorets Razgrad",1.875
 "Bulgaria","CSKA Sofia",1.125
 "Bulgaria","Lokomotiv Plovdiv",0.375
 "Bulgaria","Arda Kardzhali",0
@@ -152,33 +152,37 @@
 "Ireland","Dundalk",1
 "Ireland","Shamrock Rovers",0.75
 "Ireland","Sligo Rovers",0
+"Kazakhstan","Kairat Almaty",1.75
+"Kazakhstan","Shakhtyor Karaganda",0.5
+"Kazakhstan","FK Astana",0.375
+"Kazakhstan","Tobol Kustanai",0.25
+"Hungary","Ferencváros",1.75
+"Hungary","Újpest TE",0.5
+"Hungary","Puskás Akadémia",0.375
+"Hungary","FC Fehérvár",0.125
 "Latvia","Riga FC",1
 "Latvia","RFS Riga",0.875
 "Latvia","FK Liepaja",0.625
 "Latvia","Valmieras FK",0.125
-"Kazakhstan","Kairat Almaty",1.5
-"Kazakhstan","Shakhtyor Karaganda",0.5
-"Kazakhstan","FK Astana",0.375
-"Kazakhstan","Tobol Kustanai",0.25
 "Kosovo","FC Prishtina",1.33333333333333
 "Kosovo","FC Drita",0.833333333333333
 "Kosovo","KF Llapi",0.166666666666667
-"Hungary","Ferencváros",1.25
-"Hungary","Újpest TE",0.5
-"Hungary","Puskás Akadémia",0.375
-"Hungary","FC Fehérvár",0.125
+"Romania","CFR Cluj",1.625
+"Romania","FCSB",0.25
+"Romania","Sepsi OSK",0.25
+"Romania","Universitatea Craiova",0.125
 "Malta","Hibernians FC",0.75
 "Malta","Birkirkara",0.625
 "Malta","Mosta FC",0.25
 "Malta","Gzira United",0.25
+"Armenia","Alashkert FC",1.125
+"Armenia","Ararat Yerevan",0.5
+"Armenia","FC Noah",0.25
+"Armenia","Urartu FC",0
 "Lithuania","Zalgiris Vilnius",0.75
 "Lithuania","Suduva Marijampole",0.625
 "Lithuania","Kauno Zalgiris",0.375
 "Lithuania","FK Panevezys",0
-"Romania","CFR Cluj",1.125
-"Romania","FCSB",0.25
-"Romania","Sepsi OSK",0.25
-"Romania","Universitatea Craiova",0.125
 "Bosnia-Herzegovina","Velez Mostar",0.875
 "Bosnia-Herzegovina","FK Borac Banja Luka",0.375
 "Bosnia-Herzegovina","Siroki Brijeg",0.25
@@ -191,10 +195,6 @@
 "Albania","Partizani Tirana",0.5
 "Albania","Vllaznia Shkodër",0.25
 "Albania","Teuta Durrës",0.25
-"Armenia","Alashkert FC",0.875
-"Armenia","Ararat Yerevan",0.5
-"Armenia","FC Noah",0.25
-"Armenia","Urartu FC",0
 "Faroe Islands","HB Torshavn",1
 "Faroe Islands","KI Klaksvik",0.333333333333333
 "Faroe Islands","NSI Runavik",0.166666666666667
