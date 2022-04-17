@@ -121,8 +121,8 @@ if (weekdays(Sys.Date()) == "Donnerstag") {
   
 }
 
-if (weekdays(Sys.Date()) == "Freitag") {
-  load(paste0("Old_data/",Sys.Date()-3,"_old_data_ranking_full.rdata"))
+if (weekdays(Sys.Date()) == "Sonntag") {
+  load(paste0("Old_data/",Sys.Date()-5,"_old_data_ranking_full.rdata"))
   
 }
 
