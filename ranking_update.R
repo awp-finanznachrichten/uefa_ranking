@@ -4,8 +4,20 @@ library(XML)
 library(RSelenium)
 library(git2r)
 library(DatawRappr)
+library(readxl)
 
 setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
+
+#Load functions
+source("ranking_funktionen.R",encoding = "UTF-8")
+
+#Update Ranking Data
+
+
+
+#Update Maps
+
+
 
 #Make Commit
 token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
