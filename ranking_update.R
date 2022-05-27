@@ -18,8 +18,6 @@ source("ranking_scraping.R",encoding = "UTF-8")
 #Update Team Data
 source("ranking_teams_scraping.R",encoding = "UTF-8")
 
-
-
 #Update Maps
 
 

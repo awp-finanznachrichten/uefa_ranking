@@ -50,7 +50,7 @@ for (y in years) {
 uefa_country_ranking_teams <- uefa_country_ranking_teams[-1,]
 write.csv(uefa_country_ranking_teams,"Output/ranking_teams.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
-#Tidy table
+#Tidy table for all seasons
 points_team <- uefa_country_ranking_teams %>%
   group_by(team) %>%
   summarise(overall_points_team = sum(scored_points),country=country)
@@ -79,3 +79,38 @@ complete_table <- complete_table[order(-complete_table$overall_points_country),]
 complete_table$text <- paste0(complete_table$country,": ",round(complete_table$overall_points_country,3)," points")
 
 write.csv(complete_table,"Output/ranking_teams_overview.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+
+#Tidy table for current season
+uefa_country_ranking_teams <- uefa_country_ranking_teams[1:238,]
+
+
+points_team <- uefa_country_ranking_teams %>%
+  group_by(team) %>%
+  summarise(overall_points_team = sum(scored_points),country=country)
+
+points_country <- uefa_country_ranking_teams %>%
+  group_by(country) %>%
+  summarise(overall_points_country = sum(scored_points))
+
+
+complete_table_season <- unique(left_join(points_team,points_country))
+
+complete_table_season<- complete_table_season[order(complete_table_season$team),]
+complete_table_season <- complete_table_season[-c(3:4,6:10),]
+
+complete_table_season$percentage <- complete_table_season$overall_points_team/complete_table_season$overall_points_country
+
+#Wappen
+flags <- read_excel("flags.xlsx", col_names = FALSE)
+colnames(flags) <- c("flag","country")
+
+complete_table_season <- merge(complete_table_season,flags,all.x = TRUE)
+#complete_table_season$country <- paste0(complete_table_season$flag,complete_table_season$country)
+complete_table_season <- complete_table_season[order(-complete_table_season$overall_points_country),]
+
+#Text
+complete_table_season$text <- paste0(complete_table_season$country,": ",round(complete_table_season$overall_points_country,3)," points")
+
+write.csv(complete_table_season,"Output/ranking_teams_overview_season.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+
+
