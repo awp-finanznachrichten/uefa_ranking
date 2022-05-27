@@ -42,5 +42,14 @@ print(new_data)
 }
 
 ranking_map_data <- ranking_map_data[-1,]
+
+#Adaptation
+ranking_map_data$country <- gsub("Russia","Russian Federation",ranking_map_data$country)
+ranking_map_data$country <- gsub("Slovakia","Slovak Republik",ranking_map_data$country)
+ranking_map_data$country <- gsub("Bosnia-Herzegovina","Bosnia and Herzegovina",ranking_map_data$country)
+ranking_map_data$country <- gsub("Faroe Islands","Faeroe Is.",ranking_map_data$country)
+
+View(ranking_map_data)
+
 write.csv(ranking_map_data,"Output/ranking_map_data.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
