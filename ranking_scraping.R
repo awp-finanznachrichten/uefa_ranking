@@ -1,4 +1,3 @@
-
 #Browser öffnen
 driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
 
@@ -117,4 +116,12 @@ colnames(uefa_country_ranking_full) <- c("rank","country","points gained","point
 
 write.csv(uefa_country_ranking_full,"Output/uefa_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
+###Make Access List
+access_list <- read_excel("access_list.xlsx", col_names = TRUE)
+
+access_list$Country <- uefa_country_ranking_full$country
+
+access_list <- access_list[,c(10,2:9)]
+
+write.csv(access_list,"Output/ranking_access_list.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 

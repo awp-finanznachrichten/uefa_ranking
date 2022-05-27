@@ -92,7 +92,7 @@ uefa_country_ranking_full$gap[u] <- as.numeric(uefa_country_ranking_full$overall
 
 
 #Add flags
-library(readxl)
+
 flags <- read_excel("flags.xlsx", col_names = FALSE)
 colnames(flags) <- c("flag","country")
 

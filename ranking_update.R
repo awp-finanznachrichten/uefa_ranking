@@ -5,6 +5,7 @@ library(RSelenium)
 library(git2r)
 library(DatawRappr)
 library(readxl)
+library(dplyr)
 
 setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
 
@@ -13,6 +14,10 @@ source("ranking_funktionen.R",encoding = "UTF-8")
 
 #Update Ranking Data
 source("ranking_scraping.R",encoding = "UTF-8")
+
+#Update Team Data
+source("ranking_teams_scraping.R",encoding = "UTF-8")
+
 
 
 #Update Maps
@@ -28,3 +33,4 @@ gitadd()
 gitcommit()
 gitpush()
 
+#Update Datawrapper
