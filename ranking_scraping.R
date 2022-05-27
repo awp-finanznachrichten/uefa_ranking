@@ -112,10 +112,9 @@ uefa_country_ranking_full$overall <- as.numeric(uefa_country_ranking_full$overal
 uefa_country_ranking_full <- uefa_country_ranking_full[order(-uefa_country_ranking_full$overall),]
 
 
-uefa_country_ranking_full <- uefa_country_ranking_full[,c(2,1,7,13,8,9)]
-colnames(uefa_country_ranking_full) <- c("rank","country","points season 22/23","points gained","points overall","teams remaining")
+uefa_country_ranking_full <- uefa_country_ranking_full[,c(2,1,13,7,8,9)]
+colnames(uefa_country_ranking_full) <- c("rank","country","points gained","points season 22/23","points overall","teams remaining")
 
 write.csv(uefa_country_ranking_full,"Output/uefa_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
-print(uefa_country_ranking_full)
 
