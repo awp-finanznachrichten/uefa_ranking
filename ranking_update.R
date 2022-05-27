@@ -19,7 +19,7 @@ source("ranking_scraping.R",encoding = "UTF-8")
 source("ranking_teams_scraping.R",encoding = "UTF-8")
 
 #Update Maps
-
+source("create_maps.R",encoding = "UTF-8")
 
 
 #Make Commit
