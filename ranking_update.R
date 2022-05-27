@@ -12,7 +12,7 @@ setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
 source("ranking_funktionen.R",encoding = "UTF-8")
 
 #Update Ranking Data
-
+source("ranking_scraping.R",encoding = "UTF-8")
 
 
 #Update Maps

@@ -73,10 +73,9 @@ uefa_country_ranking_full$country <- paste0(uefa_country_ranking_full$flag,uefa_
 
 
 #Points gained
-old_data_ranking_full <- read.csv("https://raw.githubusercontent.com/awp-finanznachrichten/uefa_ranking/master/Output/uefa_country_ranking_full.csv",encoding = "UTF-8")
-old_data_ranking_full <- old_data_ranking_full[,1:3]
+old_data_ranking_full <- read.csv("https://raw.githubusercontent.com/awp-finanznachrichten/uefa_ranking/master/Output/uefa_ranking.csv",encoding = "UTF-8")
+old_data_ranking_full <- old_data_ranking_full[,c(1,2,5)]
 colnames(old_data_ranking_full) <- c("rank_old","country","current_points_old")
-
 
 
 #Save old ranking with date
@@ -93,7 +92,7 @@ if (weekdays(Sys.Date()) == "Donnerstag") {
   
 }
 
-if (weekdays(Sys.Date()) == "Freitag") {
+if (weekdays(Sys.Date()) == "Freitagbla") {
   load(paste0("Old_data/",Sys.Date()-3,"_old_data_ranking_full.rdata"))
   
 }
@@ -113,12 +112,10 @@ uefa_country_ranking_full$overall <- as.numeric(uefa_country_ranking_full$overal
 uefa_country_ranking_full <- uefa_country_ranking_full[order(-uefa_country_ranking_full$overall),]
 
 
-View(uefa_country_ranking_full)
-uefa_country_ranking_full <- uefa_country_ranking_full[,c(2,1,8,14,9)]
-colnames(uefa_country_ranking_full) <- c("rank","country","current points","points gained","teams remaining")
-
-print(uefa_country_ranking_full)
-
+uefa_country_ranking_full <- uefa_country_ranking_full[,c(2,1,7,13,8,9)]
+colnames(uefa_country_ranking_full) <- c("rank","country","points season 22/23","points gained","points overall","teams remaining")
 
 write.csv(uefa_country_ranking_full,"Output/uefa_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+
+print(uefa_country_ranking_full)
 
