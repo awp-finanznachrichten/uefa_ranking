@@ -6,6 +6,7 @@ library(git2r)
 library(DatawRappr)
 library(readxl)
 library(dplyr)
+library(readr)
 
 #setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
 setwd("C:/Users/Administrator/Desktop/uefa_ranking")
@@ -22,6 +23,7 @@ repeat {
 Sys.sleep(10)
 current_date <- Sys.Date()
 current_day <- as.numeric(format(Sys.Date(),"%d"))
+remote_driver$navigate("https://kassiesa.net")
 remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
 
 output <- remote_driver$findElement(using="class",value="flex-container")
@@ -72,6 +74,3 @@ gitpush()
 
 #Update Datawrapper
 source("update_datawrapper.R",encoding = "UTF-8")
-
-
-format(Sys.time(),"%M")
