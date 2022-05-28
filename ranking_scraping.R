@@ -76,22 +76,27 @@ old_data_ranking_full <- read.csv("https://raw.githubusercontent.com/awp-finanzn
 old_data_ranking_full <- old_data_ranking_full[,c(1,2,5)]
 colnames(old_data_ranking_full) <- c("rank_old","country","current_points_old")
 
+#Adapt if past midnight
+if (as.numeric(format(Sys.time(),"%H")) < 2) {
+current_date <- current_date-1
+}
+
 #Save old ranking with date
-save(old_data_ranking_full,file=paste0("Old_data/",Sys.Date(),"_old_data_ranking_full.rdata"))
+save(old_data_ranking_full,file=paste0("Old_data/",current_date,"_old_data_ranking_full.rdata"))
 
 #Load
-if (weekdays(Sys.Date()) == "Mittwoch") {
-  load(paste0("Old_data/",Sys.Date()-1,"_old_data_ranking_full.rdata"))
+if (weekdays(current_date) == "Mittwoch") {
+  load(paste0("Old_data/",current_date-1,"_old_data_ranking_full.rdata"))
   
 }
 
-if (weekdays(Sys.Date()) == "Donnerstag") {
-  load(paste0("Old_data/",Sys.Date()-2,"_old_data_ranking_full.rdata"))
+if (weekdays(current_date) == "Donnerstag") {
+  load(paste0("Old_data/",current_date-2,"_old_data_ranking_full.rdata"))
   
 }
 
-if (weekdays(Sys.Date()) == "Freitag|Samstag|Sonntag") {
-  load(paste0("Old_data/",Sys.Date()-3,"_old_data_ranking_full.rdata"))
+if (weekdays(current_date) == "Freitag") {
+  load(paste0("Old_data/",current_date-3,"_old_data_ranking_full.rdata"))
   
 }
 

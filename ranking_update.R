@@ -14,12 +14,14 @@ setwd("C:/Users/Administrator/Desktop/uefa_ranking")
 source("ranking_funktionen.R",encoding = "UTF-8")
 
 #Check Update Time
-current_day <- as.numeric(format(Sys.Date(),"%d"))
+
 driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
 remote_driver <- driver[["client"]]
 
 repeat {
 Sys.sleep(10)
+current_date <- Sys.Date()
+current_day <- as.numeric(format(Sys.Date(),"%d"))
 remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
 
 output <- remote_driver$findElement(using="class",value="flex-container")
@@ -58,7 +60,6 @@ source("ranking_teams_scraping.R",encoding = "UTF-8")
 #Update Maps
 source("create_maps.R",encoding = "UTF-8")
 
-
 #Make Commit
 #token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
 token <- read.csv("C:/Users/Administrator/Desktop/Github_Token/token.txt",header=FALSE)[1,1]
@@ -73,3 +74,4 @@ gitpush()
 source("update_datawrapper.R",encoding = "UTF-8")
 
 
+format(Sys.time(),"%M")
