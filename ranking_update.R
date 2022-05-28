@@ -13,6 +13,42 @@ setwd("C:/Users/Administrator/Desktop/uefa_ranking")
 #Load functions
 source("ranking_funktionen.R",encoding = "UTF-8")
 
+#Check Update Time
+current_day <- as.numeric(format(Sys.Date(),"%d"))
+driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
+remote_driver <- driver[["client"]]
+
+repeat {
+Sys.sleep(10)
+remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
+
+output <- remote_driver$findElement(using="class",value="flex-container")
+text_all <- output$getElementText()
+
+day <- gsub(".*Last update:","",text_all)
+day <- parse_number(day)
+
+if (day == current_day) {
+break
+print("Aktuelle Daten gefunden")
+}
+if (as.numeric(format(Sys.time(),"%H")) == 1) {
+break
+print("Keine neuen Daten gefunden an dem aktuellen Tag")
+
+}  
+print("Noch leine aktuellen Daten gefunden")
+}
+
+#Close browser
+remote_driver$close()
+
+#Close server
+driver[["server"]]$stop()
+
+#Stop Java-Process
+system("taskkill /F /IM java.exe")
+
 #Update Ranking Data
 source("ranking_scraping.R",encoding = "UTF-8")
 
