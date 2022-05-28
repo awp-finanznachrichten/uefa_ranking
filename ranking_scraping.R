@@ -76,7 +76,6 @@ old_data_ranking_full <- read.csv("https://raw.githubusercontent.com/awp-finanzn
 old_data_ranking_full <- old_data_ranking_full[,c(1,2,5)]
 colnames(old_data_ranking_full) <- c("rank_old","country","current_points_old")
 
-
 #Save old ranking with date
 save(old_data_ranking_full,file=paste0("Old_data/",Sys.Date(),"_old_data_ranking_full.rdata"))
 
@@ -91,7 +90,7 @@ if (weekdays(Sys.Date()) == "Donnerstag") {
   
 }
 
-if (weekdays(Sys.Date()) == "Freitagbla") {
+if (weekdays(Sys.Date()) == "Freitag|Samstag|Sonntag") {
   load(paste0("Old_data/",Sys.Date()-3,"_old_data_ranking_full.rdata"))
   
 }
