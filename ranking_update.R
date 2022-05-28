@@ -7,7 +7,8 @@ library(DatawRappr)
 library(readxl)
 library(dplyr)
 
-setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
+#setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
+setwd("C:/Users/Administrator/Desktop/uefa_ranking")
 
 #Load functions
 source("ranking_funktionen.R",encoding = "UTF-8")
