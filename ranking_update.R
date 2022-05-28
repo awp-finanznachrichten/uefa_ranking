@@ -24,7 +24,8 @@ source("create_maps.R",encoding = "UTF-8")
 
 
 #Make Commit
-token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
+#token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
+token <- read.csv("C:/Users/Administrator/Desktop/Github_Token/token.txt",header=FALSE)[1,1]
 
 git2r::config(user.name = "awp-finanznachrichten",user.email = "sw@awp.ch")
 invisible(git2r::cred_token(token))
