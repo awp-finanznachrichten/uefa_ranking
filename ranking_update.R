@@ -32,5 +32,6 @@ gitcommit()
 gitpush()
 
 #Update Datawrapper
+source("update_datawrapper.R",encoding = "UTF-8")
 
 
