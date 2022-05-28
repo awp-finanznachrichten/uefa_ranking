@@ -24,6 +24,7 @@ Sys.sleep(10)
 current_date <- Sys.Date()
 current_day <- as.numeric(format(Sys.Date(),"%d"))
 remote_driver$navigate("https://kassiesa.net")
+Sys.sleep(5)
 remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
 
 output <- remote_driver$findElement(using="class",value="flex-container")
@@ -33,8 +34,8 @@ day <- gsub(".*Last update:","",text_all)
 day <- parse_number(day)
 
 if (day == current_day) {
-break
 print("Aktuelle Daten gefunden")
+break
 }
 if (as.numeric(format(Sys.time(),"%H")) == 1) {
 break
