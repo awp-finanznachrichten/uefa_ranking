@@ -15,7 +15,6 @@ setwd("C:/Users/Administrator/Desktop/uefa_ranking")
 source("ranking_funktionen.R",encoding = "UTF-8")
 
 #Check Update Time
-
 driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
 remote_driver <- driver[["client"]]
 
@@ -75,3 +74,11 @@ gitpush()
 
 #Update Datawrapper
 source("update_datawrapper.R",encoding = "UTF-8")
+
+#Stop Geckodriver
+system("taskkill /F /IM geckodriver.exe")
+
+#Stop Java-Process
+system("taskkill /F /IM java.exe")
+
+
