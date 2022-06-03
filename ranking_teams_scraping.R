@@ -68,7 +68,7 @@ complete_table <- complete_table[-c(3:4,6:10),]
 complete_table$percentage <- complete_table$overall_points_team/complete_table$overall_points_country
 
 #Wappen
-flags <- read_excel("flags.xlsx", col_names = FALSE)
+flags <- read_excel("Data/flags.xlsx", col_names = FALSE)
 colnames(flags) <- c("flag","country")
 
 complete_table <- merge(complete_table,flags,all.x = TRUE)
@@ -101,7 +101,7 @@ complete_table_season <- complete_table_season[-c(3:4,6:10),]
 complete_table_season$percentage <- complete_table_season$overall_points_team/complete_table_season$overall_points_country
 
 #Wappen
-flags <- read_excel("flags.xlsx", col_names = FALSE)
+flags <- read_excel("Data/flags.xlsx", col_names = FALSE)
 colnames(flags) <- c("flag","country")
 
 complete_table_season <- merge(complete_table_season,flags,all.x = TRUE)

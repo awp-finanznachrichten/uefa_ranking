@@ -63,7 +63,7 @@ for (i in 1:nrow(uefa_country_ranking_full)) {
 }
 
 #Add flags
-flags <- read_excel("flags.xlsx", col_names = FALSE)
+flags <- read_excel("Data/flags.xlsx", col_names = FALSE)
 colnames(flags) <- c("flag","country")
 
 uefa_country_ranking_full <- merge(uefa_country_ranking_full,flags,all.x = TRUE)
@@ -121,7 +121,7 @@ colnames(uefa_country_ranking_full) <- c("rank","country","points gained","point
 write.csv(uefa_country_ranking_full,"Output/uefa_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
 ###Make Access List
-access_list <- read_excel("access_list.xlsx", col_names = TRUE)
+access_list <- read_excel("Data/access_list.xlsx", col_names = TRUE)
 
 access_list$Country <- uefa_country_ranking_full$country
 
