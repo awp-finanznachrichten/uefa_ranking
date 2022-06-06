@@ -120,6 +120,7 @@ colnames(uefa_country_ranking_full) <- c("rank","country","points gained","point
 
 write.csv(uefa_country_ranking_full,"Output/uefa_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
+print(uefa_country_ranking_full)
 ###Make Access List
 access_list <- read_excel("Data/access_list.xlsx", col_names = TRUE)
 
