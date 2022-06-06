@@ -1,6 +1,7 @@
 ranking_map_data <- data.frame("country",0,0,"title_datawrapper_overall","text_datawrapper_overall","title_datawrapper_season","text_datawrapper_season")
 colnames(ranking_map_data) <- c("country","overall_points","points_season","title_datawrapper_overall","text_datawrapper_overall","title_datawrapper_season","text_datawrapper_season")
 
+
 for (c in 1:nrow(uefa_country_ranking_full)) {
 
 country_name <- gsub(".*:","",uefa_country_ranking_full$country[c])
@@ -28,9 +29,7 @@ for (t in 1:nrow(teams_season)) {
                                      round(teams_season$percentage[t]*100,1),"%)<br>")
 }  
 
-
-
-new_data <- data.frame(country_name,uefa_country_ranking_full$`points overall`[c],uefa_country_ranking_full$`points season 22/23`[c],
+new_data <- data.frame(country_name,uefa_country_ranking_full[c,5],uefa_country_ranking_full[c,4],
                        teams_overall$text[1],text_datawrapper_overall,
                        teams_season$text[1],text_datawrapper_season)
 colnames(new_data) <- c("country","overall_points","points_season","title_datawrapper_overall","text_datawrapper_overall","title_datawrapper_season","text_datawrapper_season")
