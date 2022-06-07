@@ -18,7 +18,7 @@
 "Spain","Sevilla",2
 "Spain","Real Betis",2
 "Spain","Real Sociedad",1.42857142857143
-"France","Olympique Lyon",3.5
+"France","Olympique Lyonnais",3.5
 "France","Olympique Marseille",3.33333333333333
 "France","Paris Saint-Germain",3.16666666666667
 "France","AS Monaco",2.91666666666667
@@ -49,7 +49,7 @@
 "Austria","Rapid Wien",2
 "Austria","Sturm Graz",0.8
 "Austria","Austria Wien",0.1
-"Serbia","Red Star Belgrade",4.625
+"Serbia","Crvena zvezda",4.625
 "Serbia","Partizan Belgrade",3.75
 "Serbia","Cukaricki Belgrade",0.625
 "Serbia","Vojvodina Novi Sad",0.5
@@ -57,7 +57,7 @@
 "Greece","Olympiakos Piraeus",3.125
 "Greece","Aris Thessaloniki",0.25
 "Greece","AEK Athens",0.25
-"Scotland","Glasgow Rangers",4.7
+"Scotland","Rangers",4.7
 "Scotland","Celtic",1.9
 "Scotland","Aberdeen",0.6
 "Scotland","Hibernian",0.5
@@ -120,7 +120,7 @@
 "Azerbaijan","Sumgayit FK",0.125
 "Azerbaijan","Kesla FK",0
 "Ukraine","Shakhtar Donetsk",1.9
-"Ukraine","Dinamo Kiev",1
+"Ukraine","Dynamo Kyiv",1
 "Ukraine","Zorya Luhansk",1
 "Ukraine","Kolos Kovalivka",0.2
 "Ukraine","Vorskla Poltava",0.1
@@ -275,7 +275,7 @@
 "Netherlands","AZ Alkmaar",1.6
 "Netherlands","Feyenoord",0.8
 "Netherlands","Willem II Tilburg",0.4
-"Scotland","Glasgow Rangers",4.875
+"Scotland","Rangers",4.875
 "Scotland","Celtic",2
 "Scotland","Aberdeen",0.875
 "Scotland","Motherwell",0.75
@@ -290,7 +290,7 @@
 "Israel","Maccabi Haifa",1.25
 "Israel","Beitar Jerusalem",0.125
 "Ukraine","Shakhtar Donetsk",2.8
-"Ukraine","Dinamo Kiev",2.7
+"Ukraine","Dynamo Kyiv",2.7
 "Ukraine","Zorya Luhansk",0.8
 "Ukraine","Kolos Kovalivka",0.4
 "Ukraine","Desna Chernihiv",0.1
@@ -318,7 +318,7 @@
 "Croatia","Hajduk Split",0.4
 "Croatia","Lokomotiva Zagreb",0.2
 "Croatia","NK Osijek",0.1
-"Serbia","Red Star Belgrade",3.875
+"Serbia","Crvena zvezda",3.875
 "Serbia","Partizan Belgrade",0.875
 "Serbia","TSC Backa Topola",0.625
 "Serbia","Vojvodina Novi Sad",0.125
@@ -504,7 +504,7 @@
 "Italy","Lazio",0.571428571428571
 "Italy","Torino",0.5
 "France","Paris Saint-Germain",5.16666666666667
-"France","Olympique Lyon",3.83333333333333
+"France","Olympique Lyonnais",3.83333333333333
 "France","Lille OSC",0.833333333333333
 "France","RC Strasbourg",0.666666666666667
 "France","AS Saint-Étienne",0.666666666666667
@@ -514,7 +514,7 @@
 "Portugal","Sporting CP Lisbon",2
 "Portugal","Vitória Guimarães",1.9
 "Portugal","FC Porto",1.6
-"Scotland","Glasgow Rangers",4.5
+"Scotland","Rangers",4.5
 "Scotland","Celtic",4.125
 "Scotland","Aberdeen",0.875
 "Scotland","Kilmarnock",0.25
@@ -529,7 +529,7 @@
 "Belgium","Racing Genk",1
 "Belgium","Royal Antwerp",0.3
 "Ukraine","Shakhtar Donetsk",4.4
-"Ukraine","Dinamo Kiev",1.3
+"Ukraine","Dynamo Kyiv",1.3
 "Ukraine","Zorya Luhansk",0.8
 "Ukraine","FC Oleksandriya",0.6
 "Ukraine","FC Mariupol",0.1
@@ -539,7 +539,7 @@
 "Switzerland","FC Luzern",0.4
 "Switzerland","FC Thun",0
 "Serbia","Partizan Belgrade",2.625
-"Serbia","Red Star Belgrade",2.625
+"Serbia","Crvena zvezda",2.625
 "Serbia","Cukaricki Belgrade",0.625
 "Serbia","Radnicki Nis",0.125
 "Romania","CFR Cluj",3.5
@@ -748,7 +748,7 @@
 "Portugal","Sporting Braga",0.2
 "Portugal","Rio Ave",0.1
 "France","Paris Saint-Germain",3.16666666666667
-"France","Olympique Lyon",2.83333333333333
+"France","Olympique Lyonnais",2.83333333333333
 "France","Stade Rennais",1.83333333333333
 "France","Girondins Bordeaux",1.75
 "France","AS Monaco",0.833333333333333
@@ -770,7 +770,7 @@
 "Russia","Spartak Moscow",0.75
 "Russia","FC Ufa",0.5
 "Scotland","Celtic",2.875
-"Scotland","Glasgow Rangers",2.75
+"Scotland","Rangers",2.75
 "Scotland","Hibernian",1
 "Scotland","Aberdeen",0.125
 "Czech Republic","Slavia Praha",2.9
@@ -788,7 +788,7 @@
 "Cyprus","81",0
 "Cyprus","APOEL Nicosia",1.125
 "Cyprus","Anorthosis Famagusta",0.25
-"Serbia","Red Star Belgrade",3.25
+"Serbia","Crvena zvezda",3.25
 "Serbia","Partizan Belgrade",1.5
 "Serbia","Radnicki Nis",0.625
 "Serbia","Spartak Subotica",0.625
@@ -796,7 +796,7 @@
 "Croatia","Hajduk Split",0.625
 "Croatia","NK Osijek",0.5
 "Croatia","NK Rijeka",0.125
-"Ukraine","Dinamo Kiev",2.6
+"Ukraine","Dynamo Kyiv",2.6
 "Ukraine","Shakhtar Donetsk",2
 "Ukraine","Vorskla Poltava",0.4
 "Ukraine","FC Mariupol",0.3
@@ -979,7 +979,7 @@
 "Russia","FK Krasnodar",0.6
 "France","Olympique Marseille",3.66666666666667
 "France","Paris Saint-Germain",3.16666666666667
-"France","Olympique Lyon",2.33333333333333
+"France","Olympique Lyonnais",2.33333333333333
 "France","OGC Nice",1.16666666666667
 "France","AS Monaco",1
 "France","Girondins Bordeaux",0.166666666666667
@@ -1001,7 +1001,7 @@
 "Portugal","Vitória Guimarães",0.666666666666667
 "Portugal","Maritimo Funchal",0.333333333333333
 "Ukraine","Shakhtar Donetsk",3.8
-"Ukraine","Dinamo Kiev",2.9
+"Ukraine","Dynamo Kyiv",2.9
 "Ukraine","Zorya Luhansk",0.8
 "Ukraine","FC Oleksandriya",0.4
 "Ukraine","Olimpik Donetsk",0.1
@@ -1021,7 +1021,7 @@
 "Switzerland","Young Boys",1.2
 "Switzerland","FC Luzern",0.2
 "Switzerland","FC Sion",0.1
-"Serbia","Red Star Belgrade",3.5
+"Serbia","Crvena zvezda",3.5
 "Serbia","Partizan Belgrade",2.625
 "Serbia","Vojvodina Novi Sad",0.25
 "Serbia","Mladost Lucani",0
@@ -1065,7 +1065,7 @@
 "Kazakhstan","Ordabasy Shymkent",0.125
 "Scotland","Celtic",3.125
 "Scotland","Aberdeen",0.625
-"Scotland","Glasgow Rangers",0.25
+"Scotland","Rangers",0.25
 "Scotland","St. Johnstone",0
 "Norway","Rosenborg BK",2
 "Norway","Odd Grenland",1.125

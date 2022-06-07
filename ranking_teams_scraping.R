@@ -48,6 +48,13 @@ for (y in years) {
 }
 
 uefa_country_ranking_teams <- uefa_country_ranking_teams[-1,]
+
+#Adaption Teamnames
+uefa_country_ranking_teams$team <- gsub("Glasgow Rangers","Rangers",uefa_country_ranking_teams$team)
+uefa_country_ranking_teams$team <- gsub("Olympique Lyon","Olympique Lyonnais",uefa_country_ranking_teams$team)
+uefa_country_ranking_teams$team <- gsub("Red Star Belgrade","Crvena zvezda",uefa_country_ranking_teams$team)
+uefa_country_ranking_teams$team <- gsub("Dinamo Kiev","Dynamo Kyiv",uefa_country_ranking_teams$team)
+
 write.csv(uefa_country_ranking_teams,"Output/ranking_teams.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
 #Tidy table for all seasons
