@@ -23,5 +23,8 @@ dw_publish_chart("qw90m")
 dw_edit_chart("zXf6G", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
 dw_publish_chart("zXf6G")
 
+dw_edit_chart("Oh2nr", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+dw_publish_chart("Oh2nr")
+
 
 
