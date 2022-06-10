@@ -55,5 +55,9 @@ team_coordinates <- read_excel("Data/coordinates_clubs.xlsx", col_names = TRUE)
 
 team_data_with_coordinates <- merge(complete_table,team_coordinates,all.x=TRUE)
 
+team_data_with_coordinates$overall_points_team <- round(team_data_with_coordinates$overall_points_team,1)
+team_data_with_coordinates$overall_points_team <- round(team_data_with_coordinates$overall_points_country,1)
+team_data_with_coordinates$percentage <- round(team_data_with_coordinates$percentage,1)
+
 write.csv(team_data_with_coordinates,"Output/ranking_map_data_teams.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
