@@ -1,4 +1,4 @@
-"team","country","overall_points_team","overall_points_country","percentage","flag","text","stadium","breitengrad","laengengrad"
+"team","country","overall_points_team","overall_points_country","percentage","flag","text","stadium","latitude","longitude"
 "1.FC Köln","Germany",0.571428571428571,75.2142857142857,0.00759734093067426,":de:","Germany: 75.214 points","RheinEnergie Stadion",50.933611,6.875
 "1.FC Slovácko","Czech Republic",0.2,27.8,0.00719424460431655,":cz:","Czech Republic: 27.8 points","Mestský fotbalový stadion Miroslava Valenty",49.065556,17.471461
 "1899 Hoffenheim","Germany",3.28571428571429,75.2142857142857,0.043684710351377,":de:","Germany: 75.214 points","Prezero-Arena",49.239,8.888278
