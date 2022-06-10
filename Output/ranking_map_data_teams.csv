@@ -68,7 +68,7 @@
 "Cardiff MU","Wales",0.2,5.5,4.5,":gb-wls:","Wales: 5.5 points","Cardiff City Stadium",51.472778,-3.203056
 "CD Santa Clara","Portugal",0.8,53.4,1.6,":pt:","Portugal: 53.383 points","Estádio de São Miguel",37.763708,-25.622589
 "Cefn Druids","Wales",0.1,5.5,2.3,":gb-wls:","Wales: 5.5 points","The Rock",52.977212,-3.069646
-"Celtic","Scotland",14,36.9,38,":gb-sct:","Scotland: 36.9 points","Estádio da Várzea",14.916111,-23.512222
+"Celtic","Scotland",14,36.9,38,":gb-sct:","Scotland: 36.9 points","Celtic Park",54.5891,-5.9626
 "CFR Cluj","Romania",8.1,17.1,47.4,":ro:","Romania: 17.15 points","Stadionul Dr. Constantin Radulescu",46.779678,23.577247
 "Charleroi","Belgium",0.4,30.6,1.3,":be:","Belgium: 30.6 points","Stade du Pays de Charleroi",50.414609,4.453787
 "Chelsea","England",17.6,106.6,16.5,":gb-eng:","England: 106.643 points","Stamford Bridge",51.481666666,-0.191111111
@@ -312,7 +312,7 @@
 "RB Leipzig","Germany",12.9,75.2,17.2,":de:","Germany: 75.214 points","Zentralstadion",51.345833,12.348056
 "RC Strasbourg","France",0.7,60.1,1.1,":fr:","France: 60.083 points","Stade de la Meinau",48.560064,7.754969
 "Real Betis","Spain",3.4,96.1,3.6,":es:","Spain: 96.143 points","Ciudad Deportiva Luis Del Sol",37.3517,-5.98222
-"Real Madrid","Spain",17.7,96.1,18.4,":es:","Spain: 96.143 points","Juan Ramón Loubriel Stadium",18.393333,-66.150833
+"Real Madrid","Spain",17.7,96.1,18.4,":es:","Spain: 96.143 points","Santiago Bernabéu",40.453053,-3.688344
 "Real Sociedad","Spain",3.9,96.1,4,":es:","Spain: 96.143 points","Anoeta Stadium",43.301378,-1.973617
 "Renova Dzepciste","North Macedonia",0.5,7,7.1,":mk:","North Macedonia: 7 points","Gradski stadion Tetovo",42.018692,20.978179
 "RFS Riga","Latvia",1.2,8.6,14.5,":lv:","Latvia: 8.625 points","Latvijas Universitates Stadions",56.961479,24.1436899
@@ -401,7 +401,7 @@
 "Union Titus Pétange","Luxembourg",0.1,8.8,1.4,":lu:","Luxembourg: 8.75 points","Stade Municipal, Pétange",49.557211111,5.856486111
 "Universitatea Craiova","Romania",1.2,17.1,7.3,":ro:","Romania: 17.15 points","Stadionul Ion Oblemenco",44.313889,23.784167
 "Urartu FC","Armenia",0,8.1,0,":am:","Armenia: 8.125 points","Urartu Stadium",40.171426,44.449938
-"Valencia","Spain",5.7,96.1,5.9,":es:","Spain: 96.143 points","Estadio Misael Delgado",10.223403,-68.0115
+"Valencia","Spain",5.7,96.1,5.9,":es:","Spain: 96.143 points","Mestalla Stadium",39.466667,-0.375
 "Vålerengens IF","Norway",0.2,27.2,0.9,":no:","Norway: 27.25 points","Mjörnvallen Idrottsplats",57.930595168,12.504277315
 "Valletta FC","Malta",1.5,7,21.4,":mt:","Malta: 7 points","Ta' Qali National Stadium",35.894863888,14.415372222
 "Valmieras FK","Latvia",0.2,8.6,2.9,":lv:","Latvia: 8.625 points","Örjans Vall",56.684166666,12.866388888

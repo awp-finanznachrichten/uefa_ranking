@@ -57,7 +57,7 @@ team_data_with_coordinates <- merge(complete_table,team_coordinates,all.x=TRUE)
 
 team_data_with_coordinates$overall_points_team <- round(team_data_with_coordinates$overall_points_team,1)
 team_data_with_coordinates$overall_points_country <- round(team_data_with_coordinates$overall_points_country,1)
-team_data_with_coordinates$percentage <- round(team_data_with_coordinates$percentage,1)
+team_data_with_coordinates$percentage <- round(team_data_with_coordinates$percentage*100,1)
 
 write.csv(team_data_with_coordinates,"Output/ranking_map_data_teams.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
@@ -67,6 +67,6 @@ team_data_with_coordinates_season <- merge(complete_table_season,team_coordinate
 
 team_data_with_coordinates_season$overall_points_team <- round(team_data_with_coordinates_season$overall_points_team,1)
 team_data_with_coordinates_season$overall_points_country <- round(team_data_with_coordinates_season$overall_points_country,1)
-team_data_with_coordinates_season$percentage <- round(team_data_with_coordinates_season$percentage,1)
+team_data_with_coordinates_season$percentage <- round(team_data_with_coordinates_season$percentage*100,1)
 
 write.csv(team_data_with_coordinates_season,"Output/ranking_map_data_teams_season.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
