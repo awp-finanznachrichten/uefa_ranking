@@ -50,3 +50,10 @@ ranking_map_data$country <- gsub("Faroe Islands","Faeroe Is.",ranking_map_data$c
 
 write.csv(ranking_map_data,"Output/ranking_map_data.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
+###Team maps
+team_coordinates <- read_excel("Data/coordinates_clubs.xlsx", col_names = TRUE)
+
+team_data_with_coordinates <- merge(complete_table,team_coordinates,all.x=TRUE)
+
+write.csv(team_data_with_coordinates,"Output/ranking_map_data_teams.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+
