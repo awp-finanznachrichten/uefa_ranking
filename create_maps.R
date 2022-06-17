@@ -53,6 +53,8 @@ ranking_map_data$title_datawrapper_season[which(grepl("Russian",ranking_map_data
 ranking_map_data$text_datawrapper_season[which(grepl("Russian",ranking_map_data$country))] <-
   "Due to the war in Ukraine, the Russian Federation got excluded from all UEFA competitions. They receieved 4.333 points for the country ranking, which is the lowest number they have earned in any of the last five seasons."
 
+ranking_map_data$text_datawrapper_season <- gsub("NaN%","0%",ranking_map_data$text_datawrapper_season)
+
 write.csv(ranking_map_data,"Output/ranking_map_data.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
 ###Team maps
