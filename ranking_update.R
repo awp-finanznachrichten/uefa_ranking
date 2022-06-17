@@ -76,8 +76,8 @@ gitpush()
 source("update_datawrapper.R",encoding = "UTF-8")
 
 #Stop Geckodriver
-system("taskkill /F /IM geckodriver.exe")
+try(system("taskkill /F /IM geckodriver.exe"))
 
 #Stop Java-Process
-system("taskkill /F /IM java.exe")
+try(system("taskkill /F /IM java.exe"))
 
