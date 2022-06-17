@@ -24,7 +24,7 @@ current_date <- Sys.Date()
 current_day <- as.numeric(format(Sys.Date(),"%d"))
 remote_driver$navigate("https://kassiesa.net")
 Sys.sleep(5)
-remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
+remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2023.html")
 
 output <- remote_driver$findElement(using="class",value="flex-container")
 text_all <- output$getElementText()

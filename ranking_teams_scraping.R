@@ -1,7 +1,7 @@
 uefa_country_ranking_teams <- data.frame("country","team",0)
 colnames(uefa_country_ranking_teams) <- c("country","team","scored_points")
 
-years <- c("2022","2021","2020","2019","2018")
+years <- c("2023","2022","2021","2020","2019")
 
 for (y in years) {
   url <- paste0("https://kassiesa.net/uefa/data/method5/ccoef",y,".html")
@@ -85,8 +85,7 @@ complete_table$text <- paste0(complete_table$country,": ",round(complete_table$o
 write.csv(complete_table,"Output/ranking_teams_overview.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
 #Tidy table for current season
-uefa_country_ranking_teams <- uefa_country_ranking_teams[1:238,]
-
+uefa_country_ranking_teams <- uefa_country_ranking_teams[1:234,]
 
 points_team <- uefa_country_ranking_teams %>%
   group_by(team) %>%
@@ -95,7 +94,6 @@ points_team <- uefa_country_ranking_teams %>%
 points_country <- uefa_country_ranking_teams %>%
   group_by(country) %>%
   summarise(overall_points_country = sum(scored_points))
-
 
 complete_table_season <- unique(left_join(points_team,points_country))
 
@@ -116,5 +114,4 @@ complete_table_season <- complete_table_season[order(-complete_table_season$over
 complete_table_season$text <- paste0(complete_table_season$country,": ",round(complete_table_season$overall_points_country,3)," points")
 
 write.csv(complete_table_season,"Output/ranking_teams_overview_season.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
-
 

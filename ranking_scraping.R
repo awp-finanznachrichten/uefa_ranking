@@ -2,7 +2,7 @@
 driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
 
 remote_driver <- driver[["client"]]
-remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2022.html")
+remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2023.html")
 
 output <- remote_driver$findElement(using="class",value="countrygroup")
 
@@ -32,11 +32,11 @@ text_all <- strsplit(text_all," ")[[1]]
 uefa_table <- text_all[-c(1:9)]
 
 uefa_country_ranking_full <- data.frame(1,2,3,4,5,6,7,8,9)
-names(uefa_country_ranking_full) <- c("rank","country","17/18","18/19","19/20","20/21","21/22","overall","teams")
+names(uefa_country_ranking_full) <- c("rank","country","18/19","19/20","20/21","21/22","22/23","overall","teams")
 repeat {
   
   country <- uefa_table[1:9]
-  names(country) <- c("rank","country","17/18","18/19","19/20","20/21","21/22","overall","teams")
+  names(country) <- c("rank","country","18/19","19/20","20/21","21/22","22/23","overall","teams")
   uefa_country_ranking_full <- rbind(uefa_country_ranking_full,country)
   uefa_table <- uefa_table[-(1:9)]
   
@@ -46,7 +46,6 @@ repeat {
   }
   
 }
-
 
 uefa_country_ranking_full <- uefa_country_ranking_full[-1,]
 uefa_country_ranking_full$teams <- gsub(" ","",uefa_country_ranking_full$teams)
@@ -111,21 +110,19 @@ uefa_country_ranking_full$rank <- paste0(uefa_country_ranking_full$rank,".",
 uefa_country_ranking_full$overall <- as.numeric(uefa_country_ranking_full$overall)
 
 
+
 #Tidy it
 uefa_country_ranking_full <- uefa_country_ranking_full[order(-uefa_country_ranking_full$overall),]
 
 
 uefa_country_ranking_full <- uefa_country_ranking_full[,c(2,1,13,7,8,9)]
-colnames(uefa_country_ranking_full) <- c("rank","country","points gained","points season 21/22","points overall","teams remaining")
+colnames(uefa_country_ranking_full) <- c("rank","country","points gained","points season 22/23","points overall","teams remaining")
 
 write.csv(uefa_country_ranking_full,"Output/uefa_ranking.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
 print(uefa_country_ranking_full)
 ###Make Access List
-access_list <- read_excel("Data/access_list.xlsx", col_names = TRUE)
-
-access_list$Country <- uefa_country_ranking_full$country
-
-access_list <- access_list[,c(10,2:9)]
-
-write.csv(access_list,"Output/ranking_access_list.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+#access_list <- read_excel("Data/access_list.xlsx", col_names = TRUE)
+#access_list$Country <- uefa_country_ranking_full$country
+#access_list <- access_list[,c(10,2:9)]
+#write.csv(access_list,"Output/ranking_access_list.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
