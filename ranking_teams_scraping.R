@@ -63,6 +63,8 @@ points_country <- uefa_country_ranking_teams %>%
   group_by(country) %>%
   summarise(overall_points_country = sum(scored_points))
 
+#Adapt Russia
+points_country$overall_points_country[44] <- points_country$overall_points_country[44]+4.333
 
 complete_table <- unique(left_join(points_team,points_country))
 
@@ -114,4 +116,3 @@ complete_table_season <- complete_table_season[order(-complete_table_season$over
 complete_table_season$text <- paste0(complete_table_season$country,": ",round(complete_table_season$overall_points_country,3)," points")
 
 write.csv(complete_table_season,"Output/ranking_teams_overview_season.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
-

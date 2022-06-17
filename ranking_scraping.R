@@ -94,10 +94,9 @@ if (weekdays(current_date) == "Donnerstag") {
   
 }
 
-if (weekdays(current_date) == "Freitag") {
-  load(paste0("Old_data/",current_date-3,"_old_data_ranking_full.rdata"))
-  
-}
+#if (weekdays(current_date) == "Freitag") {
+#  load(paste0("Old_data/",current_date-3,"_old_data_ranking_full.rdata"))
+#}
 
 uefa_country_ranking_full <- merge(uefa_country_ranking_full,old_data_ranking_full)
 uefa_country_ranking_full$gained <- as.numeric(uefa_country_ranking_full$overall)-as.numeric(uefa_country_ranking_full$current_points_old)
