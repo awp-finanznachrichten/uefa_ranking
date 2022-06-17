@@ -84,19 +84,32 @@ current_date <- current_date-1
 save(old_data_ranking_full,file=paste0("Old_data/",current_date,"_old_data_ranking_full.rdata"))
 
 #Load
-if (weekdays(current_date) == "Mittwoch") {
+if (weekdays(current_date) == "Dienstag") {
   load(paste0("Old_data/",current_date-1,"_old_data_ranking_full.rdata"))
   
 }
 
-if (weekdays(current_date) == "Donnerstag") {
+if (weekdays(current_date) == "Mittwoch") {
   load(paste0("Old_data/",current_date-2,"_old_data_ranking_full.rdata"))
   
 }
 
-#if (weekdays(current_date) == "Freitag") {
-#  load(paste0("Old_data/",current_date-3,"_old_data_ranking_full.rdata"))
-#}
+if (weekdays(current_date) == "Donnerstag") {
+  load(paste0("Old_data/",current_date-3,"_old_data_ranking_full.rdata"))
+  
+}
+
+if (weekdays(current_date) == "Freitag") {
+  load(paste0("Old_data/",current_date-4,"_old_data_ranking_full.rdata"))
+}
+
+if (weekdays(current_date) == "Samstag") {
+  load(paste0("Old_data/",current_date-5,"_old_data_ranking_full.rdata"))
+}
+
+if (weekdays(current_date) == "Sonntag") {
+  load(paste0("Old_data/",current_date-6,"_old_data_ranking_full.rdata"))
+}
 
 uefa_country_ranking_full <- merge(uefa_country_ranking_full,old_data_ranking_full)
 uefa_country_ranking_full$gained <- as.numeric(uefa_country_ranking_full$overall)-as.numeric(uefa_country_ranking_full$current_points_old)
