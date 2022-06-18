@@ -46,6 +46,7 @@ for (y in years) {
 }
 
 uefa_country_ranking_teams <- uefa_country_ranking_teams[-1,]
+uefa_country_ranking_teams <- uefa_country_ranking_teams[uefa_country_ranking_teams$status != "0.0",]
 
 #Adaption Teamnames
 uefa_country_ranking_teams$team <- gsub("Glasgow Rangers","Rangers",uefa_country_ranking_teams$team)
@@ -70,7 +71,7 @@ points_country$overall_points_country[44] <- points_country$overall_points_count
 complete_table <- unique(left_join(points_team,points_country))
 
 complete_table <- complete_table[order(complete_table$team),]
-complete_table <- complete_table[-c(3:4,6:10),]
+#complete_table <- complete_table[-c(3:4,6:10),]
 
 complete_table$percentage <- complete_table$overall_points_team/complete_table$overall_points_country
 
@@ -88,11 +89,11 @@ complete_table$text <- paste0(complete_table$country,": ",round(complete_table$o
 write.csv(complete_table,"Output/ranking_teams_overview.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
 
 #Tidy table for current season
-uefa_country_ranking_teams <- uefa_country_ranking_teams[1:234,]
+uefa_country_ranking_teams <- uefa_country_ranking_teams[1:233,]
 
 points_team <- uefa_country_ranking_teams %>%
   group_by(team) %>%
-  summarise(overall_points_team = sum(scored_points),country=country)
+  summarise(overall_points_team = sum(scored_points),country=country,status=status)
 
 points_country <- uefa_country_ranking_teams %>%
   group_by(country) %>%
@@ -100,8 +101,9 @@ points_country <- uefa_country_ranking_teams %>%
 
 complete_table_season <- unique(left_join(points_team,points_country))
 
-complete_table_season<- complete_table_season[order(complete_table_season$team),]
-complete_table_season <- complete_table_season[-c(3:4,6:10),]
+complete_table_season <- complete_table_season[order(complete_table_season$team),]
+
+#complete_table_season <- complete_table_season[-c(3:4,6:10),]
 
 complete_table_season$percentage <- complete_table_season$overall_points_team/complete_table_season$overall_points_country
 
