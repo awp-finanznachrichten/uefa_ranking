@@ -25,7 +25,7 @@ for (t in 1:nrow(teams_season)) {
   text_datawrapper_season <- paste0(text_datawrapper_season,teams_season$team[t],": <b>",
                                      round(teams_season$overall_points_team[t],1),
                                      "</b> (",
-                                     round(teams_season$percentage[t]*100,1),"%)<br>")
+                                     round(teams_season$percentage[t]*100,1),"%, ",teams_season$status[t],")<br>")
 }  
 
 new_data <- data.frame(country_name,uefa_country_ranking_full[c,5],uefa_country_ranking_full[c,4],
