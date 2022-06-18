@@ -45,8 +45,9 @@ for (y in years) {
   
 }
 
+#Adaptations
 uefa_country_ranking_teams <- uefa_country_ranking_teams[-1,]
-uefa_country_ranking_teams <- uefa_country_ranking_teams[uefa_country_ranking_teams$status != "0.0",]
+uefa_country_ranking_teams <- uefa_country_ranking_teams[nchar(uefa_country_ranking_teams$team) > 3,]
 uefa_country_ranking_teams$status[uefa_country_ranking_teams$status == ""] <- "out"
 
 #Adaption Teamnames
