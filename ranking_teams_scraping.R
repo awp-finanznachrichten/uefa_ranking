@@ -47,6 +47,7 @@ for (y in years) {
 
 uefa_country_ranking_teams <- uefa_country_ranking_teams[-1,]
 uefa_country_ranking_teams <- uefa_country_ranking_teams[uefa_country_ranking_teams$status != "0.0",]
+uefa_country_ranking_teams$status[uefa_country_ranking_teams$status == ""] <- "out"
 
 #Adaption Teamnames
 uefa_country_ranking_teams$team <- gsub("Glasgow Rangers","Rangers",uefa_country_ranking_teams$team)
@@ -87,6 +88,7 @@ complete_table <- complete_table[order(-complete_table$overall_points_country),]
 complete_table$text <- paste0(complete_table$country,": ",round(complete_table$overall_points_country,3)," points")
 
 write.csv(complete_table,"Output/ranking_teams_overview.csv", na = "", row.names = FALSE, fileEncoding = "UTF-8")
+
 
 #Tidy table for current season
 uefa_country_ranking_teams <- uefa_country_ranking_teams[1:233,]
