@@ -1,5 +1,5 @@
-uefa_country_ranking_teams <- data.frame("country","team",0)
-colnames(uefa_country_ranking_teams) <- c("country","team","scored_points")
+uefa_country_ranking_teams <- data.frame("country","team",0,"bla")
+colnames(uefa_country_ranking_teams) <- c("country","team","scored_points","status")
 
 years <- c("2023","2022","2021","2020","2019")
 
@@ -7,7 +7,7 @@ for (y in years) {
   url <- paste0("https://kassiesa.net/uefa/data/method5/ccoef",y,".html")
   webpage <- read_html(url)
   uefa_table <- html_text(html_nodes(webpage,"td"))
-  
+
   r <- 1
   
   repeat {
@@ -26,9 +26,10 @@ for (y in years) {
       
       team <- uefa_table[r-1]
       team_points <- as.numeric(uefa_table[r+8])/teams_count
+      status <- uefa_table[r+9]
       
-      new_data <- data.frame(country,team,team_points)
-      colnames(new_data) <- c("country","team","scored_points")
+      new_data <- data.frame(country,team,team_points,status)
+      colnames(new_data) <- c("country","team","scored_points","status")
       
       uefa_country_ranking_teams <- rbind(uefa_country_ranking_teams,new_data)
       print(new_data)
