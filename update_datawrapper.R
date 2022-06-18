@@ -26,5 +26,10 @@ dw_publish_chart("zXf6G")
 dw_edit_chart("Oh2nr", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
 dw_publish_chart("Oh2nr")
 
+dw_edit_chart("awxBw", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+dw_publish_chart("awxBw")
+
+dw_edit_chart("M08Ux", intro=paste0("last update: ",format(Sys.time(),"%d.%m.%Y %H:%M Uhr")))
+dw_publish_chart("M08Ux")
 
 
