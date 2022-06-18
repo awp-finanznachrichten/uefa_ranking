@@ -94,10 +94,10 @@ $`moz:headless`
 [1] FALSE
 
 $`moz:processID`
-[1] 7508
+[1] 4536
 
 $`moz:profile`
-[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileYuCWtN"
+[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile5Z41hj"
 
 $`moz:shutdownTimeout`
 [1] 60000
@@ -141,10 +141,10 @@ $unhandledPromptBehavior
 [1] "dismiss and notify"
 
 $webdriver.remote.sessionid
-[1] "8031d947-56df-40e4-98d8-4ed851431fb7"
+[1] "468eefd0-86fc-414f-8c68-c83bf6ed7675"
 
 $id
-[1] "8031d947-56df-40e4-98d8-4ed851431fb7"
+[1] "468eefd0-86fc-414f-8c68-c83bf6ed7675"
 
 > remote_driver <- driver[["client"]]
 > 
@@ -184,7 +184,7 @@ $id
 > 
 > #Stop Java-Process
 > system("taskkill /F /IM java.exe")
-ERFOLGREICH: Der Prozess "java.exe" mit PID 7572 wurde beendet.
+ERFOLGREICH: Der Prozess "java.exe" mit PID 5884 wurde beendet.
 [1] 0
 > 
 > #Update Ranking Data
@@ -228,10 +228,10 @@ $`moz:headless`
 [1] FALSE
 
 $`moz:processID`
-[1] 6156
+[1] 1404
 
 $`moz:profile`
-[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofilevevzLo"
+[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileflxbKb"
 
 $`moz:shutdownTimeout`
 [1] 60000
@@ -275,9 +275,8 @@ $unhandledPromptBehavior
 [1] "dismiss and notify"
 
 $webdriver.remote.sessionid
-[1] "f558fc0f-88b0-4017-9fa3-05555c601339"
+[1] "389098fb-2237-4ba7-85ea-3c3025e59c6c"
 
 $id
-[1] "f558fc0f-88b0-4017-9fa3-05555c601339"
+[1] "389098fb-2237-4ba7-85ea-3c3025e59c6c"
 
-ERFOLGREICH: Der Prozess "java.exe" mit PID 3496 wurde beendet.
