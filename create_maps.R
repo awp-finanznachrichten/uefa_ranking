@@ -51,7 +51,7 @@ ranking_map_data$title_datawrapper_season[which(grepl("Russian",ranking_map_data
   "Russia: 4.333 points"
 
 ranking_map_data$text_datawrapper_season[which(grepl("Russian",ranking_map_data$country))] <-
-  "Due to the war in Ukraine, the Russian Federation got excluded from all UEFA competitions. They receieved 4.333 points for the country ranking, which is the lowest number they have earned in any of the last five seasons."
+  "Due to the war in Ukraine, the Russian Federation got excluded from all UEFA competitions. They recieved 4.333 points for the country ranking, which is the lowest number they have earned in any of the last five seasons."
 
 ranking_map_data$text_datawrapper_season <- gsub("NaN%","0%",ranking_map_data$text_datawrapper_season)
 
