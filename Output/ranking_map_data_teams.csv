@@ -1,12 +1,7 @@
 "team","country","overall_points_team","overall_points_country","percentage","flag","text","stadium","latitude","longitude"
 "1.FC Köln","Germany",0,67.9,0,":de:","Germany: 67.857 points","RheinEnergie Stadion",50.933611,6.875
 "1.FC Slovácko","Czech Republic",0.2,22.3,0.9,":cz:","Czech Republic: 22.3 points","Mestský fotbalový stadion Miroslava Valenty",49.065556,17.471461
-"126","Cyprus",0,19.4,0,":cy:","Cyprus: 19.375 points",,,
-"185","Cyprus",0,19.4,0,":cy:","Cyprus: 19.375 points",,,
 "1899 Hoffenheim","Germany",2.7,67.9,4,":de:","Germany: 67.857 points","Prezero-Arena",49.239,8.888278
-"46","Cyprus",0,19.4,0,":cy:","Cyprus: 19.375 points",,,
-"75","Cyprus",0,19.4,0,":cy:","Cyprus: 19.375 points",,,
-"81","Cyprus",0,19.4,0,":cy:","Cyprus: 19.375 points",,,
 "AA Gent","Belgium",6.5,28.8,22.6,":be:","Belgium: 28.8 points","Jules Ottenstadion",51.031389,3.766111
 "Aberdeen","Scotland",2.5,33.7,7.3,":gb-sct:","Scotland: 33.7 points","Pittodrie Stadium",57.159166666,-2.088888888
 "AC Milan","Italy",4.9,61.9,7.9,":it:","Italy: 61.857 points","Stadio Giuseppe Meazza",45.478055,9.123947
@@ -38,7 +33,7 @@
 "AS Trencín","Slovakia",1.4,13.8,10,":sk:","Slovakia: 13.75 points","Štadión na Sihoti",48.89861111,18.04472222
 "Asteras Tripolis","Greece",0.1,23.1,0.4,":gr:","Greece: 23.1 points","Theodoros Kolokotronis Stadium",37.502676,22.388678
 "Atalanta","Italy",8.8,61.9,14.2,":it:","Italy: 61.857 points","Stadio Atleti Azzurri d'Italia",45.708889,9.680833
-"Atlètic Club d'Escaldes","Andorra",0,4.5,0,":ad:","Andorra: 4.5 points",,,
+"Atlètic Club d'Escaldes","Andorra",0,4.8,0,":ad:","Andorra: 4.833 points",,,
 "Atlético Madrid","Spain",11.6,78.7,14.7,":es:","Spain: 78.714 points","Estadio Metropolitano",40.436111,-3.599444
 "Atromitos FC","Greece",0.6,23.1,2.6,":gr:","Greece: 23.1 points","Peristeri Stadium",38.004858,23.689756
 "Austria Wien","Austria",0.1,29.9,0.3,":at:","Austria: 29.9 points","Generali Arena",48.162306,16.386694
@@ -132,7 +127,7 @@
 "FC Prishtina","Kosovo",3,8.2,36.7,":xk:","Kosovo: 8.167 points","Fadil Vokrri Stadium",42.66297,21.15688
 "FC Salzburg","Austria",12.2,29.9,40.8,":at:","Austria: 29.9 points","Red Bull Arena",47.81625,12.998222222
 "FC Sankt Gallen","Switzerland",0.3,23.2,1.4,":ch:","Switzerland: 23.175 points","kybunpark",47.408333,9.306389
-"FC Santa Coloma","Andorra",1.7,4.5,37,":ad:","Andorra: 4.5 points","Estadi Comunal d'Aixovall",42.476389,1.487667
+"FC Santa Coloma","Andorra",1.7,4.8,34.5,":ad:","Andorra: 4.833 points","Estadi Comunal d'Aixovall",42.476389,1.487667
 "FC Sochi","Russia",0.6,26.2,2.3,":ru:","Russia: 26.216 points","Fisht Olympic Stadium",43.401769445,39.955858093
 "FC Struga","North Macedonia",0.1,3.9,3.2,":mk:","North Macedonia: 3.875 points","Gradska Plaža Stadium",41.1728,20.6842
 "FC Thun","Switzerland",0,23.2,0,":ch:","Switzerland: 23.175 points","Stockhorn Arena",46.744817,7.606075
@@ -198,7 +193,7 @@
 "IFK Göteborg","Sweden",0.1,17.5,0.7,":se:","Sweden: 17.5 points","Gamla Ullevi",57.706111111,11.980555555
 "IFK Norrköping","Sweden",1.1,17.5,6.4,":se:","Sweden: 17.5 points","Idrottsparken",58.584166666,16.173055555
 "Ilves Tampere","Finland",0.2,7.6,3.3,":fi:","Finland: 7.625 points","Tampere Stadium",61.4925,23.764167
-"Inter Club d'Escaldes","Andorra",0.8,4.5,18.5,":ad:","Andorra: 4.5 points","Estadi Comunal d'Aixovall",42.476389,1.487667
+"Inter Club d'Escaldes","Andorra",1.2,4.8,24.1,":ad:","Andorra: 4.833 points","Estadi Comunal d'Aixovall",42.476389,1.487667
 "Inter Turku","Finland",0.5,7.6,6.6,":fi:","Finland: 7.625 points","Veritas Stadion",60.442778,22.291667
 "Internazionale","Italy",10.1,61.9,16.4,":it:","Italy: 61.857 points","Stadio Giuseppe Meazza",45.478055,9.123947
 "Irtysh Pavlodar","Kazakhstan",0.1,11.5,1.1,":kz:","Kazakhstan: 11.5 points","Pavlodar Central Stadium",52.276383,76.949712
@@ -322,7 +317,7 @@
 "Sabail FK","Azerbaijan",0,12.6,0,":az:","Azerbaijan: 12.625 points","Bayil Stadium",40.332217,49.817664
 "Saburtalo Tbilisi","Georgia",0.6,6.9,9.1,":ge:","Georgia: 6.875 points","Mikheil Meskhi Stadium",41.709617,44.746247
 "Samtredia","Georgia",0,6.9,0,":ge:","Georgia: 6.875 points","Erosi Manjgaladze Stadium",42.16084,42.33064
-"Sant Julià","Andorra",0.7,4.5,14.8,":ad:","Andorra: 4.5 points","Poliesportiu d'Andorra",42.504833333,1.516638888
+"Sant Julià","Andorra",0.7,4.8,13.8,":ad:","Andorra: 4.833 points","Poliesportiu d'Andorra",42.504833333,1.516638888
 "Sarpsborg 08","Norway",2.4,23.2,10.2,":no:","Norway: 23.25 points","Sarpsborg Stadion",59.286217,11.097608
 "SC Dnipro-1","Ukraine",0,24.6,0,":ua:","Ukraine: 24.6 points",,,
 "SC Freiburg","Germany",0,67.9,0,":de:","Germany: 67.857 points","Dreisamstadion",47.988889,7.893056
@@ -389,8 +384,8 @@
 "TSC Backa Topola","Serbia",0.6,27,2.3,":rs:","Serbia: 27 points","Stadion Slavko Maletin Vava",45.240278,19.381667
 "TSV Hartberg","Austria",0.1,29.9,0.3,":at:","Austria: 29.9 points","Stadion Hartberg",47.281,15.9772
 "Tuzla City","Bosnia-Herzegovina",0,7.8,0,":ba:","Bosnia-Herzegovina: 7.75 points",,,
-"UE Engordany","Andorra",1.3,4.5,29.6,":ad:","Andorra: 4.5 points","Estadi Comunal d'Aixovall",42.476389,1.487667
-"UE Santa Coloma","Andorra",0,4.5,0,":ad:","Andorra: 4.5 points","Estadi Comunal d'Aixovall",42.476389,1.487667
+"UE Engordany","Andorra",1.3,4.8,27.6,":ad:","Andorra: 4.833 points","Estadi Comunal d'Aixovall",42.476389,1.487667
+"UE Santa Coloma","Andorra",0,4.8,0,":ad:","Andorra: 4.833 points","Estadi Comunal d'Aixovall",42.476389,1.487667
 "Újpest TE","Hungary",0.8,14.8,5.1,":hu:","Hungary: 14.75 points","Ferenc Szusza Stadium",47.574892,19.08465
 "Union Berlin","Germany",0.9,67.9,1.4,":de:","Germany: 67.857 points","Stadion An der Alten Försterei",52.457222,13.568056
 "Union Saint-Gilloise","Belgium",0,28.8,0,":be:","Belgium: 28.8 points",,,
