@@ -1,0 +1,1313 @@
+
+R version 4.0.5 (2021-03-31) -- "Shake and Throw"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R ist freie Software und kommt OHNE JEGLICHE GARANTIE.
+Sie sind eingeladen, es unter bestimmten Bedingungen weiter zu verbreiten.
+Tippen Sie 'license()' or 'licence()' für Details dazu.
+
+R ist ein Gemeinschaftsprojekt mit vielen Beitragenden.
+Tippen Sie 'contributors()' für mehr Information und 'citation()',
+um zu erfahren, wie R oder R packages in Publikationen zitiert werden können.
+
+Tippen Sie 'demo()' für einige Demos, 'help()' für on-line Hilfe, oder
+'help.start()' für eine HTML Browserschnittstelle zur Hilfe.
+Tippen Sie 'q()', um R zu verlassen.
+
+> library(rvest)
+> library(stringr)
+> library(XML)
+> library(RSelenium)
+> library(git2r)
+> library(DatawRappr)
+> library(readxl)
+> library(dplyr)
+
+Attache Paket: 'dplyr'
+
+The following object is masked from 'package:git2r':
+
+    pull
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+> library(readr)
+
+Attache Paket: 'readr'
+
+The following object is masked from 'package:rvest':
+
+    guess_encoding
+
+> 
+> #setwd("C:/Users/simon/Onedrive/Fussballdaten/uefa_ranking")
+> setwd("C:/Users/Administrator/Desktop/uefa_ranking")
+> 
+> #Load functions
+> source("ranking_funktionen.R",encoding = "UTF-8")
+> 
+> #Check Update Time
+> driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
+checking Selenium Server versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+checking chromedriver versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+checking geckodriver versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+checking phantomjs versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+[1] "Connecting to remote server"
+$acceptInsecureCerts
+[1] FALSE
+
+$browserName
+[1] "firefox"
+
+$browserVersion
+[1] "100.0.2"
+
+$`moz:accessibilityChecks`
+[1] FALSE
+
+$`moz:buildID`
+[1] "20220519220738"
+
+$`moz:geckodriverVersion`
+[1] "0.31.0"
+
+$`moz:headless`
+[1] FALSE
+
+$`moz:processID`
+[1] 6336
+
+$`moz:profile`
+[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileBpWMs8"
+
+$`moz:shutdownTimeout`
+[1] 60000
+
+$`moz:useNonSpecCompliantPointerOrigin`
+[1] FALSE
+
+$`moz:webdriverClick`
+[1] TRUE
+
+$pageLoadStrategy
+[1] "normal"
+
+$platformName
+[1] "windows"
+
+$platformVersion
+[1] "10.0"
+
+$proxy
+named list()
+
+$setWindowRect
+[1] TRUE
+
+$strictFileInteractability
+[1] FALSE
+
+$timeouts
+$timeouts$implicit
+[1] 0
+
+$timeouts$pageLoad
+[1] 300000
+
+$timeouts$script
+[1] 30000
+
+
+$unhandledPromptBehavior
+[1] "dismiss and notify"
+
+$webdriver.remote.sessionid
+[1] "50af6848-f858-436a-8e9b-20f6b376ee6e"
+
+$id
+[1] "50af6848-f858-436a-8e9b-20f6b376ee6e"
+
+> remote_driver <- driver[["client"]]
+> 
+> repeat {
++ Sys.sleep(10)
++ current_date <- Sys.Date()
++ current_day <- as.numeric(format(Sys.Date(),"%d"))
++ remote_driver$navigate("https://kassiesa.net")
++ Sys.sleep(5)
++ remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2023.html")
++ 
++ output <- remote_driver$findElement(using="class",value="flex-container")
++ text_all <- output$getElementText()
++ 
++ day <- gsub(".*Last update:","",text_all)
++ day <- parse_number(day)
++ 
++ if (day == current_day) {
++ print("Aktuelle Daten gefunden")
++ break
++ }
++ if (as.numeric(format(Sys.time(),"%H")) == 1) {
++ break
++ print("Keine neuen Daten gefunden an dem aktuellen Tag")
++ 
++ }  
++ print("Noch leine aktuellen Daten gefunden")
++ }
+[1] "Aktuelle Daten gefunden"
+> 
+> #Close browser
+> remote_driver$close()
+> 
+> #Close server
+> driver[["server"]]$stop()
+[1] TRUE
+> 
+> #Stop Java-Process
+> system("taskkill /F /IM java.exe")
+ERFOLGREICH: Der Prozess "java.exe" mit PID 6740 wurde beendet.
+[1] 0
+> 
+> #Update Ranking Data
+> source("ranking_scraping.R",encoding = "UTF-8")
+checking Selenium Server versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+checking chromedriver versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+checking geckodriver versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+checking phantomjs versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+[1] "Connecting to remote server"
+$acceptInsecureCerts
+[1] FALSE
+
+$browserName
+[1] "firefox"
+
+$browserVersion
+[1] "100.0.2"
+
+$`moz:accessibilityChecks`
+[1] FALSE
+
+$`moz:buildID`
+[1] "20220519220738"
+
+$`moz:geckodriverVersion`
+[1] "0.31.0"
+
+$`moz:headless`
+[1] FALSE
+
+$`moz:processID`
+[1] 6760
+
+$`moz:profile`
+[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileDYdKFI"
+
+$`moz:shutdownTimeout`
+[1] 60000
+
+$`moz:useNonSpecCompliantPointerOrigin`
+[1] FALSE
+
+$`moz:webdriverClick`
+[1] TRUE
+
+$pageLoadStrategy
+[1] "normal"
+
+$platformName
+[1] "windows"
+
+$platformVersion
+[1] "10.0"
+
+$proxy
+named list()
+
+$setWindowRect
+[1] TRUE
+
+$strictFileInteractability
+[1] FALSE
+
+$timeouts
+$timeouts$implicit
+[1] 0
+
+$timeouts$pageLoad
+[1] 300000
+
+$timeouts$script
+[1] 30000
+
+
+$unhandledPromptBehavior
+[1] "dismiss and notify"
+
+$webdriver.remote.sessionid
+[1] "d59924e6-6462-43d1-920d-67df46a68986"
+
+$id
+[1] "d59924e6-6462-43d1-920d-67df46a68986"
+
+ERFOLGREICH: Der Prozess "java.exe" mit PID 5924 wurde beendet.
+New names:
+* `` -> `...1`
+* `` -> `...2`
+       rank                  country points gained points season 22/23
+20   1.(1.)          :gb-eng:England         0.000               2.285
+16   2.(2.)                :es:Spain         0.000               2.285
+13   3.(3.)              :de:Germany         0.000               2.500
+32   4.(4.)                :it:Italy         0.000               2.285
+19   5.(5.)               :fr:France         0.000               1.333
+42   6.(6.)          :nl:Netherlands         0.000               0.800
+45   7.(7.)             :pt:Portugal         0.000               1.333
+22   8.(8.)         :gb-sct:Scotland         0.000               0.800
+4    9.(9.)              :at:Austria         0.000               0.800
+7  10.(10.)              :be:Belgium         0.000               0.800
+47 11.(11.)               :rs:Serbia         0.000               0.000
+48 12.(12.)               :ru:Russia         0.000               4.333
+54 13.(13.)              :ua:Ukraine         0.000               0.800
+43 14.(14.)               :no:Norway         0.000               0.000
+10 15.(15.)          :ch:Switzerland         0.000               0.000
+26 16.(16.)               :gr:Greece         0.000               0.000
+12 17.(17.)       :cz:Czech Republic         0.000               0.000
+27 18.(18.)              :hr:Croatia         0.000               0.000
+14 19.(19.)              :dk:Denmark         0.000               0.000
+53 20.(20.)               :tr:Turkey         0.000               0.000
+11 21.(21.)               :cy:Cyprus         0.000               0.000
+30 22.(22.)               :il:Israel         0.000               0.000
+49 23.(23.)               :se:Sweden         0.000               0.000
+8  24.(24.)             :bg:Bulgaria         0.000               0.000
+28 25.(25.)              :hu:Hungary         0.000               0.000
+46 26.(26.)              :ro:Romania         0.000               0.000
+51 27.(27.)             :sk:Slovakia         0.000               0.000
+44 28.(28.)               :pl:Poland         0.000               0.000
+5  29.(29.)           :az:Azerbaijan         0.000               0.000
+33 30.(30.)           :kz:Kazakhstan         0.000               0.000
+50 31.(31.)             :si:Slovenia         0.000               0.000
+9  32.(32.)              :by:Belarus         0.000               0.000
+38 33.(33.)              :md:Moldova         0.000               0.000
+55 34.(34.)               :xk:Kosovo         0.000               0.000
+36 36.(36.)           :lu:Luxembourg         0.000               0.000
+37 35.(35.)               :lv:Latvia         0.000               0.000
+6  37.(37.)   :ba:Bosnia-Herzegovina         0.000               0.000
+17 38.(38.)              :fi:Finland         0.000               0.000
+35 39.(39.)            :lt:Lithuania         0.000               0.000
+3  40.(40.)              :am:Armenia         0.000               0.000
+21 41.(41.) :gb-nir:Northern Ireland         0.000               0.000
+29 42.(42.)              :ie:Ireland         0.000               0.000
+24 43.(43.)              :ge:Georgia         0.000               0.000
+18 44.(44.)        :fo:Faroe Islands         0.000               0.000
+15 45.(45.)              :ee:Estonia         0.000               0.000
+41 46.(46.)                :mt:Malta         0.000               0.000
+2  47.(47.)              :al:Albania         0.000               0.000
+23 48.(48.)            :gb-wls:Wales         0.000               0.000
+25 49.(49.)            :gi:Gibraltar         0.000               0.000
+1  50.(51.)              :ad:Andorra         0.333               0.333
+34 51.(50.)        :li:Liechtenstein         0.000               0.000
+31 52.(52.)              :is:Iceland         0.000               0.000
+40 53.(53.)      :mk:North Macedonia         0.000               0.000
+39 54.(54.)           :me:Montenegro         0.000               0.000
+52 55.(55.)           :sm:San Marino         0.000               0.000
+   points overall teams remaining
+20         88.855             7/7
+16         78.712             7/7
+13         67.856             8/8
+32         61.854             7/7
+19         49.914             6/6
+42         47.200             5/5
+45         45.049             6/6
+22         33.700             5/5
+4          29.900             5/5
+7          28.800             5/5
+47         27.000             4/4
+48         26.215             0/0
+54         24.600             5/5
+43         23.250             4/4
+10         23.175             4/4
+26         23.100             4/4
+12         22.300             4/4
+27         22.025             4/4
+14         21.925             5/5
+53         20.300             5/5
+11         19.375             5/5
+30         18.750             4/4
+49         17.500             4/4
+8          15.500             4/4
+28         14.750             4/4
+46         14.250             4/4
+51         13.750             4/4
+44         13.000             4/4
+5          12.625             4/4
+33         11.500             4/4
+50         10.375             4/4
+9           9.250             4/4
+38          8.500             4/4
+55          8.166             4/4
+36          7.875             4/4
+37          7.875             4/4
+6           7.750             4/4
+17          7.625             4/4
+35          7.625             4/4
+3           7.500             4/4
+21          7.333             4/4
+29          7.000             4/4
+24          6.875             4/4
+18          6.500             4/4
+15          6.416             3/3
+41          5.625             4/4
+2           5.375             4/4
+23          5.000             3/3
+25          4.916             4/4
+1           4.832             3/3
+34          4.500             1/1
+31          4.250             3/3
+40          3.875             4/4
+39          3.750             4/4
+52          1.166             3/3
+> 
+> #Update Team Data
+> source("ranking_teams_scraping.R",encoding = "UTF-8")
+  country                team scored_points  status
+1 Germany Eintracht Frankfurt           0.5 not out
+  country           team scored_points  status
+1 Germany Bayern München           0.5 not out
+  country       team scored_points  status
+1 Germany RB Leipzig           0.5 not out
+  country              team scored_points  status
+1 Germany Borussia Dortmund           0.5 not out
+  country             team scored_points  status
+1 Germany Bayer Leverkusen           0.5 not out
+  country        team scored_points  status
+1 Germany SC Freiburg             0 not out
+  country         team scored_points  status
+1 Germany Union Berlin             0 not out
+  country      team scored_points  status
+1 Germany 1.FC Köln             0 not out
+  country        team scored_points  status
+1   Spain Real Madrid     0.5714286 not out
+  country         team scored_points  status
+1   Spain FC Barcelona     0.5714286 not out
+  country            team scored_points  status
+1   Spain Atlético Madrid     0.5714286 not out
+  country    team scored_points  status
+1   Spain Sevilla     0.5714286 not out
+  country          team scored_points  status
+1   Spain Real Sociedad             0 not out
+  country       team scored_points  status
+1   Spain Real Betis             0 not out
+  country       team scored_points  status
+1   Spain Villarreal             0 not out
+  country            team scored_points  status
+1 England Manchester City     0.5714286 not out
+  country      team scored_points  status
+1 England Liverpool     0.5714286 not out
+  country    team scored_points  status
+1 England Chelsea     0.5714286 not out
+  country              team scored_points  status
+1 England Tottenham Hotspur     0.5714286 not out
+  country              team scored_points  status
+1 England Manchester United             0 not out
+  country    team scored_points  status
+1 England Arsenal             0 not out
+  country            team scored_points  status
+1 England West Ham United             0 not out
+  country     team scored_points  status
+1   Italy AC Milan     0.5714286 not out
+  country     team scored_points  status
+1   Italy Juventus     0.5714286 not out
+  country           team scored_points  status
+1   Italy Internazionale     0.5714286 not out
+  country   team scored_points  status
+1   Italy Napoli     0.5714286 not out
+  country    team scored_points  status
+1   Italy AS Roma             0 not out
+  country  team scored_points  status
+1   Italy Lazio             0 not out
+  country       team scored_points  status
+1   Italy Fiorentina             0 not out
+   country     team scored_points  status
+1 Portugal FC Porto     0.6666667 not out
+   country               team scored_points  status
+1 Portugal Sporting CP Lisbon     0.6666667 not out
+   country    team scored_points  status
+1 Portugal Benfica             0 not out
+   country           team scored_points  status
+1 Portugal Sporting Braga             0 not out
+   country              team scored_points  status
+1 Portugal Vitória Guimarães             0 not out
+   country        team scored_points  status
+1 Portugal Gil Vicente             0 not out
+  country                team scored_points  status
+1  France Paris Saint-Germain     0.6666667 not out
+  country                team scored_points  status
+1  France Olympique Marseille     0.6666667 not out
+  country      team scored_points  status
+1  France AS Monaco             0 not out
+  country          team scored_points  status
+1  France Stade Rennais             0 not out
+  country      team scored_points  status
+1  France FC Nantes             0 not out
+  country     team scored_points  status
+1  France OGC Nice             0 not out
+  country             team scored_points  status
+1 Ukraine Shakhtar Donetsk           0.8 not out
+  country        team scored_points  status
+1 Ukraine Dinamo Kyiv             0 not out
+  country        team scored_points  status
+1 Ukraine SC Dnipro-1             0 not out
+  country            team scored_points  status
+1 Ukraine Vorskla Poltava             0 not out
+  country          team scored_points  status
+1 Ukraine Zorya Luhansk             0 not out
+   country   team scored_points  status
+1 Scotland Celtic           0.8 not out
+   country            team scored_points  status
+1 Scotland Glasgow Rangers             0 not out
+   country      team scored_points  status
+1 Scotland Hearts FC             0 not out
+   country       team scored_points  status
+1 Scotland Motherwell             0 not out
+   country          team scored_points  status
+1 Scotland Dundee United             0 not out
+      country team scored_points  status
+1 Netherlands Ajax           0.8 not out
+      country          team scored_points  status
+1 Netherlands PSV Eindhoven             0 not out
+      country      team scored_points  status
+1 Netherlands Feyenoord             0 not out
+      country       team scored_points  status
+1 Netherlands AZ Alkmaar             0 not out
+      country               team scored_points  status
+1 Netherlands FC Twente Enschede             0 not out
+  country        team scored_points  status
+1 Austria FC Salzburg           0.8 not out
+  country       team scored_points  status
+1 Austria Sturm Graz             0 not out
+  country         team scored_points  status
+1 Austria Austria Wien             0 not out
+  country       team scored_points  status
+1 Austria Rapid Wien             0 not out
+  country           team scored_points  status
+1 Austria Wolfsberger AC             0 not out
+  country        team scored_points  status
+1 Belgium Club Brugge           0.8 not out
+  country                 team scored_points  status
+1 Belgium Union Saint-Gilloise             0 not out
+  country    team scored_points  status
+1 Belgium AA Gent             0 not out
+  country          team scored_points  status
+1 Belgium Royal Antwerp             0 not out
+  country       team scored_points  status
+1 Belgium Anderlecht             0 not out
+  country                  team scored_points  status
+1 Andorra Inter Club d'Escaldes     0.3333333 not out
+  country                    team scored_points  status
+1 Andorra Atlètic Club d'Escaldes             0 not out
+  country            team scored_points  status
+1 Andorra UE Santa Coloma             0 not out
+        country     team scored_points  status
+1 Liechtenstein FC Vaduz             0 not out
+  country            team scored_points  status
+1 Estonia Levadia Tallinn             0 not out
+  country                team scored_points  status
+1 Estonia Paide Linnameeskond             0 not out
+  country          team scored_points  status
+1 Estonia Flora Tallinn             0 not out
+  country               team scored_points  status
+1 Iceland Vikingur Reykjavik             0 not out
+  country       team scored_points  status
+1 Iceland Breidablik             0 not out
+  country         team scored_points  status
+1 Iceland KR Reykjavik             0 not out
+  country           team scored_points  status
+1   Wales The New Saints             0 not out
+  country      team scored_points  status
+1   Wales Bala Town             0 not out
+  country    team scored_points  status
+1   Wales Newtown             0 not out
+     country       team scored_points  status
+1 Azerbaijan Qarabag FK             0 not out
+     country         team scored_points  status
+1 Azerbaijan Neftchi Baku             0 not out
+     country      team scored_points  status
+1 Azerbaijan Gabala FK             0 not out
+     country    team scored_points  status
+1 Azerbaijan Zira FK             0 not out
+  country     team scored_points  status
+1  Sweden Malmö FF             0 not out
+  country          team scored_points  status
+1  Sweden AIK Stockholm             0 not out
+  country        team scored_points  status
+1  Sweden IF Elfsborg             0 not out
+  country           team scored_points  status
+1  Sweden Djurgårdens IF             0 not out
+   country               team scored_points  status
+1 Bulgaria Ludogorets Razgrad             0 not out
+   country       team scored_points  status
+1 Bulgaria CSKA Sofia             0 not out
+   country         team scored_points  status
+1 Bulgaria Levski Sofia             0 not out
+   country          team scored_points  status
+1 Bulgaria Botev Plovdiv             0 not out
+  country             team scored_points  status
+1 Moldova Sheriff Tiraspol             0 not out
+  country          team scored_points  status
+1 Moldova Milsami Orhei             0 not out
+  country             team scored_points  status
+1 Moldova Sfântul Gheorghe             0 not out
+  country              team scored_points  status
+1 Moldova Petrocub Hîncesti             0 not out
+  country     team scored_points  status
+1 Romania CFR Cluj             0 not out
+  country team scored_points  status
+1 Romania FCSB             0 not out
+  country                  team scored_points  status
+1 Romania Universitatea Craiova             0 not out
+  country      team scored_points  status
+1 Romania Sepsi OSK             0 not out
+  country       team scored_points  status
+1  Norway Bodø/Glimt             0 not out
+  country     team scored_points  status
+1  Norway Molde FK             0 not out
+  country             team scored_points  status
+1  Norway Viking Stavanger             0 not out
+  country          team scored_points  status
+1  Norway Lillestrøm SK             0 not out
+  country        team scored_points  status
+1 Hungary Ferencváros             0 not out
+  country        team scored_points  status
+1 Hungary FC Fehérvár             0 not out
+  country        team scored_points  status
+1 Hungary Kisvárda FC             0 not out
+  country            team scored_points  status
+1 Hungary Puskás Akadémia             0 not out
+   country       team scored_points  status
+1 Slovenia NK Maribor             0 not out
+   country               team scored_points  status
+1 Slovenia Mura Murska Sobota             0 not out
+   country               team scored_points  status
+1 Slovenia Olimpija Ljubljana             0 not out
+   country     team scored_points  status
+1 Slovenia NK Koper             0 not out
+   country              team scored_points  status
+1 Slovakia Slovan Bratislava             0 not out
+   country           team scored_points  status
+1 Slovakia MFK Ruzomberok             0 not out
+   country                team scored_points  status
+1 Slovakia DAC Dunajska Streda             0 not out
+   country           team scored_points  status
+1 Slovakia Spartak Trnava             0 not out
+  country         team scored_points  status
+1 Finland HJK Helsinki             0 not out
+  country        team scored_points  status
+1 Finland Inter Turku             0 not out
+  country        team scored_points  status
+1 Finland KuPS Kuopio             0 not out
+  country          team scored_points  status
+1 Finland SJK Seinäjoki             0 not out
+     country          team scored_points  status
+1 Luxembourg F91 Dudelange             0 not out
+     country           team scored_points  status
+1 Luxembourg Differdange 03             0 not out
+     country         team scored_points  status
+1 Luxembourg CS Fola Esch             0 not out
+     country                    team scored_points  status
+1 Luxembourg Racing Union Luxembourg             0 not out
+    country             team scored_points  status
+1 Lithuania Zalgiris Vilnius             0 not out
+    country         team scored_points  status
+1 Lithuania FK Panevezys             0 not out
+    country           team scored_points  status
+1 Lithuania Kauno Zalgiris             0 not out
+    country               team scored_points  status
+1 Lithuania Suduva Marijampole             0 not out
+    country             team scored_points  status
+1 Gibraltar Lincoln Red Imps             0 not out
+    country           team scored_points  status
+1 Gibraltar St Joseph's FC             0 not out
+    country      team scored_points  status
+1 Gibraltar Europa FC             0 not out
+    country        team scored_points  status
+1 Gibraltar FCB Magpies             0 not out
+  country            team scored_points  status
+1 Ireland Shamrock Rovers             0 not out
+  country         team scored_points  status
+1 Ireland Sligo Rovers             0 not out
+  country       team scored_points  status
+1 Ireland Derry City             0 not out
+  country                   team scored_points  status
+1 Ireland St. Patrick's Athletic             0 not out
+           country             team scored_points  status
+1 Northern Ireland Linfield Belfast             0 not out
+           country     team scored_points  status
+1 Northern Ireland Larne FC             0 not out
+           country         team scored_points  status
+1 Northern Ireland Cliftonville             0 not out
+           country              team scored_points  status
+1 Northern Ireland Crusaders Belfast             0 not out
+             country            team scored_points  status
+1 Bosnia-Herzegovina Zrinjski Mostar             0 not out
+             country                team scored_points  status
+1 Bosnia-Herzegovina FK Borac Banja Luka             0 not out
+             country       team scored_points  status
+1 Bosnia-Herzegovina Tuzla City             0 not out
+             country         team scored_points  status
+1 Bosnia-Herzegovina Velez Mostar             0 not out
+  country                team scored_points  status
+1 Belarus Shakhtior Saligorsk             0 not out
+  country         team scored_points  status
+1 Belarus Dinamo Minsk             0 not out
+  country         team scored_points  status
+1 Belarus BATE Borisov             0 not out
+  country     team scored_points  status
+1 Belarus FC Gomel             0 not out
+     country            team scored_points  status
+1 Montenegro Sutjeska Niksic             0 not out
+     country              team scored_points  status
+1 Montenegro Iskra Danilovgrad             0 not out
+     country                team scored_points  status
+1 Montenegro Buducnost Podgorica             0 not out
+     country       team scored_points  status
+1 Montenegro Decic Tuzi             0 not out
+        country        team scored_points  status
+1 Faroe Islands KI Klaksvik             0 not out
+        country         team scored_points  status
+1 Faroe Islands B36 Torshavn             0 not out
+        country     team scored_points  status
+1 Faroe Islands Víkingur             0 not out
+        country        team scored_points  status
+1 Faroe Islands HB Torshavn             0 not out
+  country        team scored_points  status
+1  Poland Lech Poznan             0 not out
+  country          team scored_points  status
+1  Poland Lechia Gdansk             0 not out
+  country           team scored_points  status
+1  Poland Pogon Szczecin             0 not out
+  country              team scored_points  status
+1  Poland Raków Czestochowa             0 not out
+  country          team scored_points  status
+1   Malta Hibernians FC             0 not out
+  country            team scored_points  status
+1   Malta Hamrun Spartans             0 not out
+  country         team scored_points  status
+1   Malta Gzira United             0 not out
+  country     team scored_points  status
+1   Malta Floriana             0 not out
+     country           team scored_points  status
+1 Kazakhstan Tobol Kustanai             0 not out
+     country      team scored_points  status
+1 Kazakhstan FK Astana             0 not out
+     country          team scored_points  status
+1 Kazakhstan Kairat Almaty             0 not out
+     country         team scored_points  status
+1 Kazakhstan FK Kyzylzhar             0 not out
+          country      team scored_points  status
+1 North Macedonia FK Shkupi             0 not out
+          country             team scored_points  status
+1 North Macedonia Akademija Pandev             0 not out
+          country             team scored_points  status
+1 North Macedonia Shkendija Tetovo             0 not out
+          country           team scored_points  status
+1 North Macedonia Makedonija GjP             0 not out
+  country           team scored_points  status
+1 Armenia Pyunik Yerevan             0 not out
+  country         team scored_points  status
+1 Armenia Alashkert FC             0 not out
+  country           team scored_points  status
+1 Armenia Ararat Yerevan             0 not out
+  country           team scored_points  status
+1 Armenia Ararat-Armenia             0 not out
+  country     team scored_points  status
+1  Latvia RFS Riga             0 not out
+  country       team scored_points  status
+1  Latvia FK Liepaja             0 not out
+  country    team scored_points  status
+1  Latvia Riga FC             0 not out
+  country         team scored_points  status
+1  Latvia Valmieras FK             0 not out
+  country          team scored_points  status
+1 Georgia Dinamo Batumi             0 not out
+  country           team scored_points  status
+1 Georgia Dinamo Tbilisi             0 not out
+  country      team scored_points  status
+1 Georgia Dila Gori             0 not out
+  country              team scored_points  status
+1 Georgia Saburtalo Tbilisi             0 not out
+  country      team scored_points  status
+1 Albania KF Tirana             0 not out
+  country    team scored_points  status
+1 Albania KF Laçi             0 not out
+  country             team scored_points  status
+1 Albania Partizani Tirana             0 not out
+  country             team scored_points  status
+1 Albania Vllaznia Shkodër             0 not out
+  country        team scored_points  status
+1  Kosovo FC Ballkani             0 not out
+  country     team scored_points  status
+1  Kosovo FC Drita             0 not out
+  country       team scored_points  status
+1  Kosovo SC Gjilani             0 not out
+  country     team scored_points  status
+1  Kosovo KF Llapi             0 not out
+  country          team scored_points  status
+1 Croatia Dinamo Zagreb             0 not out
+  country      team scored_points  status
+1 Croatia NK Rijeka             0 not out
+  country      team scored_points  status
+1 Croatia NK Osijek             0 not out
+  country         team scored_points  status
+1 Croatia Hajduk Split             0 not out
+  country               team scored_points  status
+1  Greece Olympiakos Piraeus             0 not out
+  country              team scored_points  status
+1  Greece PAOK Thessaloniki             0 not out
+  country              team scored_points  status
+1  Greece Aris Thessaloniki             0 not out
+  country          team scored_points  status
+1  Greece Panathinaikos             0 not out
+         country           team scored_points  status
+1 Czech Republic Viktoria Plzen             0 not out
+         country          team scored_points  status
+1 Czech Republic 1.FC Slovácko             0 not out
+         country         team scored_points  status
+1 Czech Republic Slavia Praha             0 not out
+         country         team scored_points  status
+1 Czech Republic Sparta Praha             0 not out
+  country          team scored_points  status
+1  Israel Maccabi Haifa             0 not out
+  country             team scored_points  status
+1  Israel Maccabi Tel-Aviv             0 not out
+  country              team scored_points  status
+1  Israel Hapoel Beer-Sheva             0 not out
+  country            team scored_points  status
+1  Israel Maccabi Netanya             0 not out
+      country      team scored_points  status
+1 Switzerland FC Zürich             0 not out
+      country     team scored_points  status
+1 Switzerland FC Basel             0 not out
+      country       team scored_points  status
+1 Switzerland Young Boys             0 not out
+      country      team scored_points  status
+1 Switzerland FC Lugano             0 not out
+  country              team scored_points  status
+1  Serbia Red Star Belgrade             0 not out
+  country              team scored_points  status
+1  Serbia Partizan Belgrade             0 not out
+  country               team scored_points  status
+1  Serbia Cukaricki Belgrade             0 not out
+  country         team scored_points  status
+1  Serbia Radnicki Nis             0 not out
+  country           team scored_points  status
+1 Denmark FC Midtjylland             0 not out
+  country         team scored_points  status
+1 Denmark FC København             0 not out
+  country         team scored_points  status
+1 Denmark Silkeborg IF             0 not out
+  country       team scored_points  status
+1 Denmark Brøndby IF             0 not out
+  country      team scored_points  status
+1 Denmark Viborg FF             0 not out
+  country       team scored_points  status
+1  Turkey Fenerbahçe             0 not out
+  country        team scored_points  status
+1  Turkey Trabzonspor             0 not out
+  country      team scored_points  status
+1  Turkey Sivasspor             0 not out
+  country                team scored_points  status
+1  Turkey Istanbul Basaksehir             0 not out
+  country      team scored_points  status
+1  Turkey Konyaspor             0 not out
+  country        team scored_points  status
+1  Cyprus AEK Larnaca             0 not out
+  country             team scored_points  status
+1  Cyprus Apollon Limassol             0 not out
+  country           team scored_points  status
+1  Cyprus Omonia Nicosia             0 not out
+  country team scored_points status
+1  Cyprus   28             0    0.0
+  country          team scored_points  status
+1  Cyprus APOEL Nicosia             0 not out
+  country          team scored_points  status
+1  Cyprus Aris Limassol             0 not out
+     country      team scored_points  status
+1 San Marino Tre Fiori             0 not out
+     country      team scored_points  status
+1 San Marino Tre Penne             0 not out
+     country       team scored_points  status
+1 San Marino La Fiorita             0 not out
+  country      team scored_points status
+1 England Liverpool      4.714286       
+  country            team scored_points status
+1 England Manchester City      3.857143       
+  country    team scored_points status
+1 England Chelsea      3.571429       
+  country            team scored_points status
+1 England West Ham United             3       
+  country              team scored_points status
+1 England Manchester United      2.571429       
+  country           team scored_points status
+1 England Leicester City      2.428571       
+  country              team scored_points status
+1 England Tottenham Hotspur     0.8571429       
+      country      team scored_points status
+1 Netherlands Feyenoord           5.7       
+      country team scored_points status
+1 Netherlands Ajax           4.4       
+      country          team scored_points status
+1 Netherlands PSV Eindhoven           3.5       
+      country       team scored_points status
+1 Netherlands AZ Alkmaar           2.8       
+      country           team scored_points status
+1 Netherlands Vitesse Arnhem           2.8       
+  country        team scored_points status
+1   Spain Real Madrid      4.285714       
+  country       team scored_points status
+1   Spain Villarreal      3.428571       
+  country            team scored_points status
+1   Spain Atlético Madrid      2.714286       
+  country         team scored_points status
+1   Spain FC Barcelona      2.571429       
+  country    team scored_points status
+1   Spain Sevilla             2       
+  country       team scored_points status
+1   Spain Real Betis             2       
+  country          team scored_points status
+1   Spain Real Sociedad      1.428571       
+  country           team scored_points status
+1  France Olympique Lyon           3.5       
+  country                team scored_points status
+1  France Olympique Marseille      3.333333       
+  country                team scored_points status
+1  France Paris Saint-Germain      3.166667       
+  country      team scored_points status
+1  France AS Monaco      2.916667       
+  country      team scored_points status
+1  France Lille OSC      2.833333       
+  country          team scored_points status
+1  France Stade Rennais      2.666667       
+  country                team scored_points status
+1 Germany Eintracht Frankfurt             4       
+  country           team scored_points status
+1 Germany Bayern München      3.714286       
+  country       team scored_points status
+1 Germany RB Leipzig      2.857143       
+  country             team scored_points status
+1 Germany Bayer Leverkusen             2       
+  country              team scored_points status
+1 Germany Borussia Dortmund      1.571429       
+  country          team scored_points status
+1 Germany VfL Wolfsburg      1.142857       
+  country         team scored_points status
+1 Germany Union Berlin     0.9285714       
+  country    team scored_points status
+1   Italy AS Roma      3.571429       
+  country     team scored_points status
+1   Italy Juventus      2.857143       
+  country     team scored_points status
+1   Italy Atalanta      2.857143       
+  country           team scored_points status
+1   Italy Internazionale      2.571429       
+  country   team scored_points status
+1   Italy Napoli      1.428571       
+  country  team scored_points status
+1   Italy Lazio      1.428571       
+  country     team scored_points status
+1   Italy AC Milan             1       
+   country    team scored_points status
+1 Portugal Benfica      3.916667       
+   country           team scored_points status
+1 Portugal Sporting Braga             3       
+   country               team scored_points status
+1 Portugal Sporting CP Lisbon      2.666667       
+   country     team scored_points status
+1 Portugal FC Porto      2.166667       
+   country           team scored_points status
+1 Portugal CD Santa Clara     0.8333333       
+   country              team scored_points status
+1 Portugal Paços de Ferreira     0.3333333       
+  country        team scored_points status
+1 Austria FC Salzburg           3.8       
+  country team scored_points status
+1 Austria LASK           3.7       
+  country       team scored_points status
+1 Austria Rapid Wien             2       
+  country       team scored_points status
+1 Austria Sturm Graz           0.8       
+  country         team scored_points status
+1 Austria Austria Wien           0.1       
+  country              team scored_points status
+1  Serbia Red Star Belgrade         4.625       
+  country              team scored_points status
+1  Serbia Partizan Belgrade          3.75       
+  country               team scored_points status
+1  Serbia Cukaricki Belgrade         0.625       
+  country               team scored_points status
+1  Serbia Vojvodina Novi Sad           0.5       
+  country              team scored_points status
+1  Greece PAOK Thessaloniki         4.375       
+  country               team scored_points status
+1  Greece Olympiakos Piraeus         3.125       
+  country              team scored_points status
+1  Greece Aris Thessaloniki          0.25       
+  country       team scored_points status
+1  Greece AEK Athens          0.25       
+   country            team scored_points status
+1 Scotland Glasgow Rangers           4.7       
+   country   team scored_points status
+1 Scotland Celtic           1.9       
+   country     team scored_points status
+1 Scotland Aberdeen           0.6       
+   country      team scored_points status
+1 Scotland Hibernian           0.5       
+   country          team scored_points status
+1 Scotland St. Johnstone           0.2       
+  country         team scored_points status
+1 Denmark FC København           3.7       
+  country           team scored_points status
+1 Denmark FC Midtjylland           2.1       
+  country       team scored_points status
+1 Denmark Randers FC           1.5       
+  country       team scored_points status
+1 Denmark Brøndby IF           0.4       
+  country       team scored_points status
+1 Denmark AGF Aarhus           0.1       
+      country     team scored_points status
+1 Switzerland FC Basel          4.25       
+      country       team scored_points status
+1 Switzerland Young Boys          3.25       
+      country               team scored_points status
+1 Switzerland Servette FC Genève          0.25       
+      country      team scored_points status
+1 Switzerland FC Luzern             0       
+  country       team scored_points status
+1  Norway Bodø/Glimt         5.875       
+  country         team scored_points status
+1  Norway Rosenborg BK             1       
+  country     team scored_points status
+1  Norway Molde FK           0.5       
+  country           team scored_points status
+1  Norway Vålerengens IF          0.25       
+  country             team scored_points status
+1  Israel Maccabi Tel-Aviv          3.75       
+  country          team scored_points status
+1  Israel Maccabi Haifa             2       
+  country              team scored_points status
+1  Israel Hapoel Beer-Sheva         0.875       
+  country      team scored_points status
+1  Israel MS Ashdod         0.125       
+  country        team scored_points status
+1  Turkey Galatasaray           3.6       
+  country       team scored_points status
+1  Turkey Fenerbahçe           1.4       
+  country     team scored_points status
+1  Turkey Besiktas           0.8       
+  country      team scored_points status
+1  Turkey Sivasspor           0.7       
+  country        team scored_points status
+1  Turkey Trabzonspor           0.2       
+         country         team scored_points status
+1 Czech Republic Slavia Praha           3.1       
+         country        team scored_points status
+1 Czech Republic FK Jablonec           1.4       
+         country         team scored_points status
+1 Czech Republic Sparta Praha           1.2       
+         country           team scored_points status
+1 Czech Republic Viktoria Plzen           0.8       
+         country          team scored_points status
+1 Czech Republic 1.FC Slovácko           0.2       
+  country    team scored_points status
+1 Belgium AA Gent           2.9       
+  country        team scored_points status
+1 Belgium Club Brugge           1.4       
+  country          team scored_points status
+1 Belgium Royal Antwerp             1       
+  country        team scored_points status
+1 Belgium Racing Genk           0.8       
+  country       team scored_points status
+1 Belgium Anderlecht           0.5       
+  country          team scored_points status
+1 Croatia Dinamo Zagreb          4.25       
+  country      team scored_points status
+1 Croatia NK Rijeka             1       
+  country      team scored_points status
+1 Croatia NK Osijek           0.5       
+  country         team scored_points status
+1 Croatia Hajduk Split          0.25       
+  country           team scored_points status
+1  Russia Spartak Moscow           2.4       
+  country                 team scored_points status
+1  Russia Zenit St. Petersburg           1.8       
+  country     team scored_points status
+1  Russia FC Sochi           0.6       
+  country             team scored_points status
+1  Russia Lokomotiv Moscow           0.4       
+  country        team scored_points status
+1  Russia Rubin Kazan           0.1       
+  country             team scored_points status
+1 Moldova Sheriff Tiraspol           4.5       
+  country          team scored_points status
+1 Moldova Milsami Orhei         0.375       
+  country              team scored_points status
+1 Moldova Petrocub Hîncesti         0.375       
+  country             team scored_points status
+1 Moldova Sfântul Gheorghe             0       
+  country     team scored_points status
+1  Sweden Malmö FF          2.75       
+  country        team scored_points status
+1  Sweden IF Elfsborg         1.125       
+  country        team scored_points status
+1  Sweden Hammarby IF             1       
+  country      team scored_points status
+1  Sweden BK Häcken          0.25       
+  country         team scored_points status
+1  Poland Legia Warsaw           2.5       
+  country          team scored_points status
+1  Poland Slask Wroclaw         1.125       
+  country              team scored_points status
+1  Poland Raków Czestochowa         0.875       
+  country           team scored_points status
+1  Poland Pogon Szczecin         0.125       
+     country       team scored_points status
+1 Azerbaijan Qarabag FK           3.5       
+     country         team scored_points status
+1 Azerbaijan Neftchi Baku          0.75       
+     country        team scored_points status
+1 Azerbaijan Sumgayit FK         0.125       
+     country     team scored_points status
+1 Azerbaijan Kesla FK             0       
+  country             team scored_points status
+1 Ukraine Shakhtar Donetsk           1.9       
+  country        team scored_points status
+1 Ukraine Dinamo Kiev             1       
+  country          team scored_points status
+1 Ukraine Zorya Luhansk             1       
+  country            team scored_points status
+1 Ukraine Kolos Kovalivka           0.2       
+  country            team scored_points status
+1 Ukraine Vorskla Poltava           0.1       
+  country                 team scored_points status
+1  Cyprus Anorthosis Famagusta         1.875       
+  country           team scored_points status
+1  Cyprus Omonia Nicosia           1.5       
+  country team scored_points status
+1  Cyprus  126             0    2.5
+  country         team scored_points status
+1  Cyprus AEL Limassol         0.625       
+  country             team scored_points status
+1  Cyprus Apollon Limassol         0.125       
+   country              team scored_points status
+1 Slovakia Slovan Bratislava         2.375       
+   country       team scored_points status
+1 Slovakia MSK Zilina         1.125       
+   country           team scored_points status
+1 Slovakia Spartak Trnava         0.625       
+   country                team scored_points status
+1 Slovakia DAC Dunajska Streda             0       
+  country         team scored_points status
+1 Finland HJK Helsinki             2       
+  country        team scored_points status
+1 Finland KuPS Kuopio         1.125       
+  country        team scored_points status
+1 Finland Honka Espoo           0.5       
+  country        team scored_points status
+1 Finland Inter Turku         0.125       
+  country          team scored_points status
+1 Estonia Flora Tallinn             3       
+  country            team scored_points status
+1 Estonia Levadia Tallinn     0.6666667       
+  country                team scored_points status
+1 Estonia Paide Linnameeskond             0       
+   country               team scored_points status
+1 Bulgaria Ludogorets Razgrad         1.875       
+   country       team scored_points status
+1 Bulgaria CSKA Sofia         1.125       
+   country              team scored_points status
+1 Bulgaria Lokomotiv Plovdiv         0.375       
+   country           team scored_points status
+1 Bulgaria Arda Kardzhali             0       
+   country               team scored_points status
+1 Slovenia Mura Murska Sobota           1.5       
+   country       team scored_points status
+1 Slovenia NK Domzale          0.75       
+   country       team scored_points status
+1 Slovenia NK Maribor           0.5       
+   country               team scored_points status
+1 Slovenia Olimpija Ljubljana          0.25       
+  country             team scored_points status
+1 Ireland Bohemians Dublin         1.125       
+  country    team scored_points status
+1 Ireland Dundalk             1       
+  country            team scored_points status
+1 Ireland Shamrock Rovers          0.75       
+  country         team scored_points status
+1 Ireland Sligo Rovers             0       
+     country          team scored_points status
+1 Kazakhstan Kairat Almaty          1.75       
+     country                team scored_points status
+1 Kazakhstan Shakhtyor Karaganda           0.5       
+     country      team scored_points status
+1 Kazakhstan FK Astana         0.375       
+     country           team scored_points status
+1 Kazakhstan Tobol Kustanai          0.25       
+  country        team scored_points status
+1 Hungary Ferencváros          1.75       
+  country      team scored_points status
+1 Hungary Újpest TE           0.5       
+  country            team scored_points status
+1 Hungary Puskás Akadémia         0.375       
+  country        team scored_points status
+1 Hungary FC Fehérvár         0.125       
+  country    team scored_points status
+1  Latvia Riga FC             1       
+  country     team scored_points status
+1  Latvia RFS Riga         0.875       
+  country       team scored_points status
+1  Latvia FK Liepaja         0.625       
+  country         team scored_points status
+1  Latvia Valmieras FK         0.125       
+  country         team scored_points status
+1  Kosovo FC Prishtina      1.333333       
+  country     team scored_points status
+1  Kosovo FC Drita     0.8333333       
+  country     team scored_points status
+1  Kosovo KF Llapi     0.1666667       
+  country     team scored_points status
+1 Romania CFR Cluj         1.625       
+  country team scored_points status
+1 Romania FCSB          0.25       
+  country      team scored_points status
+1 Romania Sepsi OSK          0.25       
+  country                  team scored_points status
+1 Romania Universitatea Craiova         0.125       
+  country          team scored_points status
+1   Malta Hibernians FC          0.75       
+  country       team scored_points status
+1   Malta Birkirkara         0.625       
+  country     team scored_points status
+1   Malta Mosta FC          0.25       
+  country         team scored_points status
+1   Malta Gzira United          0.25       
+  country         team scored_points status
+1 Armenia Alashkert FC         1.125       
+  country           team scored_points status
+1 Armenia Ararat Yerevan           0.5       
+  country    team scored_points status
+1 Armenia FC Noah          0.25       
+  country      team scored_points status
+1 Armenia Urartu FC             0       
+    country             team scored_points status
+1 Lithuania Zalgiris Vilnius          0.75       
+    country               team scored_points status
+1 Lithuania Suduva Marijampole         0.625       
+    country           team scored_points status
+1 Lithuania Kauno Zalgiris         0.375       
+    country         team scored_points status
+1 Lithuania FK Panevezys             0       
+             country         team scored_points status
+1 Bosnia-Herzegovina Velez Mostar         0.875       
+             country                team scored_points status
+1 Bosnia-Herzegovina FK Borac Banja Luka         0.375       
+             country          team scored_points status
+1 Bosnia-Herzegovina Siroki Brijeg          0.25       
+             country        team scored_points status
+1 Bosnia-Herzegovina FK Sarajevo         0.125       
+           country     team scored_points status
+1 Northern Ireland Larne FC         1.125       
+           country             team scored_points status
+1 Northern Ireland Linfield Belfast         0.375       
+           country      team scored_points status
+1 Northern Ireland Glentoran         0.125       
+           country      team scored_points status
+1 Northern Ireland Coleraine             0       
+  country    team scored_points status
+1 Albania KF Laçi         0.625       
+  country             team scored_points status
+1 Albania Partizani Tirana           0.5       
+  country             team scored_points status
+1 Albania Vllaznia Shkodër          0.25       
+  country         team scored_points status
+1 Albania Teuta Durrës          0.25       
+        country        team scored_points status
+1 Faroe Islands HB Torshavn             1       
+        country        team scored_points status
+1 Faroe Islands KI Klaksvik     0.3333333       
+        country        team scored_points status
+1 Faroe Islands NSI Runavik     0.1666667       
+  country                  team scored_points status
+1 Andorra Inter Club d'Escaldes     0.6666667       
+  country            team scored_points status
+1 Andorra FC Santa Coloma           0.5       
+  country       team scored_points status
+1 Andorra Sant Julià     0.3333333       
+  country           team scored_points status
+1   Wales The New Saints         1.125       
+  country          team scored_points status
+1   Wales Connah's Quay         0.375       
+  country      team scored_points status
+1   Wales Bala Town             0       
+  country    team scored_points status
+1   Wales Newtown             0       
+  country       team scored_points status
+1 Iceland Breidablik         0.875       
+  country             team scored_points status
+1 Iceland FH Hafnarfjardar           0.5       
+  country        team scored_points status
+1 Iceland Stjarnan FC         0.125       
+  country            team scored_points status
+1 Iceland Valur Reykjavik             0       
+     country         team scored_points status
+1 Luxembourg CS Fola Esch         1.125       
+     country             team scored_points status
+1 Luxembourg Swift Hesperange         0.125       
+     country                    team scored_points status
+1 Luxembourg Racing Union Luxembourg             0       
+     country          team scored_points status
+1 Luxembourg F91 Dudelange             0       
+  country          team scored_points status
+1 Georgia Dinamo Batumi         0.875       
+  country      team scored_points status
+1 Georgia Dila Gori          0.25       
+  country          team scored_points status
+1 Georgia Gagra Tbilisi         0.125       
+  country           team scored_points status
+1 Georgia Dinamo Tbilisi             0       
+    country             team scored_points status
+1 Gibraltar Lincoln Red Imps         0.875       
+    country           team scored_points status
+1 Gibraltar St Joseph's FC         0.125       
+    country       team scored_points status
+1 Gibraltar Mons Calpe         0.125       
+    country      team scored_points status
+1 Gibraltar Europa FC         0.125       
