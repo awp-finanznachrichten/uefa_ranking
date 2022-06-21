@@ -15,7 +15,7 @@ teams_season <- complete_table_season %>%
 text_datawrapper_overall <- ""
 for (t in 1:nrow(teams_overall)) {
 text_datawrapper_overall <- paste0(text_datawrapper_overall,teams_overall$team[t],": <b>",
-                                   round(teams_overall$overall_points_team[t],1),
+                                   round(teams_overall$overall_points_team[t],3),
                                    "</b> (",
                                    round(teams_overall$percentage[t]*100,1),"%)<br>")
 }  
@@ -23,7 +23,7 @@ text_datawrapper_overall <- paste0(text_datawrapper_overall,teams_overall$team[t
 text_datawrapper_season <- ""
 for (t in 1:nrow(teams_season)) {
   text_datawrapper_season <- paste0(text_datawrapper_season,teams_season$team[t],": <b>",
-                                     round(teams_season$overall_points_team[t],1),
+                                     round(teams_season$overall_points_team[t],3),
                                      "</b> (",
                                      round(teams_season$percentage[t]*100,1),"%, ",teams_season$status[t],")<br>")
 }  
