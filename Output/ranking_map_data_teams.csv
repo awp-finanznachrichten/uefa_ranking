@@ -94,7 +94,6 @@
 "Dinamo Minsk","Belarus",1.25,9.25,13.5,":by:","Belarus: 9.25 points","Dinamo Stadium",53.895138888,27.560277777
 "Dinamo Moscow","Russia",0.083,26.216,0.3,":ru:","Russia: 26.216 points","VTB Arena",55.7914,37.5597
 "Dinamo Tbilisi","Georgia",1.875,6.875,27.3,":ge:","Georgia: 6.875 points","Dinamo Arena",41.723,44.78975
-"Dinamo Zagreb","Croatia",16,22.025,72.6,":hr:","Croatia: 22.025 points","Stadion Maksimir",45.818858333,16.018077777
 "Djurgårdens IF","Sweden",0.75,17.5,4.3,":se:","Sweden: 17.5 points","Stockholm Olympic Stadium",59.345278,18.078889
 "Dundalk","Ireland",3.125,7,44.6,":ie:","Ireland: 7 points","Oriel Park",53.998944,-6.416917
 "Dundee United","Scotland",0,33.7,0,":gb-sct:","Scotland: 33.7 points",,,
@@ -173,6 +172,7 @@
 "Girondins Bordeaux","France",1.75,49.917,3.5,":fr:","France: 49.917 points","Stade Sainte-Germain",44.8707,-0.617069
 "Glenavon","Northern Ireland",0.25,7.333,3.4,":gb-nir:","Northern Ireland: 7.333 points","Mourneview Park",54.453889,-6.336389
 "Glentoran","Northern Ireland",0.792,7.333,10.8,":gb-nir:","Northern Ireland: 7.333 points","The Oval",54.602964,-5.891319
+"GNK Dinamo","Croatia",16,22.025,72.6,":hr:","Croatia: 22.025 points",,,
 "Górnik Zabrze","Poland",0.375,13,2.9,":pl:","Poland: 13 points","Ernest Pohl Stadium",50.296317,18.768564
 "Granada CF","Spain",2.5,78.714,3.2,":es:","Spain: 78.714 points","Estadio Nuevo Los Cármeness",37.152967,-3.595736
 "Gzira United","Malta",1.125,5.625,20,":mt:","Malta: 5.625 points","Ta' Qali National Stadium",35.894863888,14.415372222
@@ -271,7 +271,7 @@
 "OGC Nice","France",0.333,49.917,0.7,":fr:","France: 49.917 points","Allianz Riviera",43.705138888,7.192583333
 "Olimpija Ljubljana","Slovenia",2.25,10.375,21.7,":si:","Slovenia: 10.375 points","Stožice Stadium",46.081111,14.521389
 "Olympiakos Piraeus","Greece",10.825,23.1,46.9,":gr:","Greece: 23.1 points","Karaiskakis Stadium",37.946169,23.664536
-"Olympique Lyonnais","France",10.167,49.917,20.4,":fr:","France: 49.917 points","Parc Olympique Lyonnais",45.765224,4.982131
+"Olympique Lyonnaisnais","France",10.167,49.917,20.4,":fr:","France: 49.917 points",,,
 "Olympique Marseille","France",5.167,49.917,10.4,":fr:","France: 49.917 points","Stade Vélodrome",43.269722222,5.395833333
 "Omonia Nicosia","Cyprus",3.375,19.375,17.4,":cy:","Cyprus: 19.375 points","Dasaki Stadium",35.033889,33.765
 "Ordabasy Shymkent","Kazakhstan",0.75,11.5,6.5,":kz:","Kazakhstan: 11.5 points","Kazhimukan Munaitpasov Stadium",42.335493,69.593568
@@ -324,7 +324,7 @@
 "SC Gjilani","Kosovo",0.667,8.167,8.2,":xk:","Kosovo: 8.167 points","City Stadium",42.466667,21.464444
 "Schalke 04","Germany",2.429,67.857,3.6,":de:","Germany: 67.857 points","Veltins Arena",51.554502777,7.067588888
 "Sepsi OSK","Romania",0.25,14.25,1.8,":ro:","Romania: 14.25 points","Stadionul Municipal",45.86291667,25.77613889
-"Servette FC Genève","Switzerland",0.75,23.175,3.2,":ch:","Switzerland: 23.175 points","Stade de Genève",46.177778,6.1275
+"Servette FC","Switzerland",0.75,23.175,3.2,":ch:","Switzerland: 23.175 points",,,
 "Sevilla","Spain",11.714,78.714,14.9,":es:","Spain: 78.714 points","Ramón Sánchez Pizjuán Stadium",37.383878,-5.970467
 "Sfântul Gheorghe","Moldova",0.375,8.5,4.4,":md:","Moldova: 8.5 points","Suruceni Stadium",46.9844,28.667
 "Shakhtar Donetsk","Ukraine",11.9,24.6,48.4,":ua:","Ukraine: 24.6 points","Donbass Arena",48.020833,37.809722
