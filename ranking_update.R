@@ -14,16 +14,15 @@ setwd("C:/Users/Administrator/Desktop/uefa_ranking")
 #Load functions
 source("ranking_funktionen.R",encoding = "UTF-8")
 
+repeat {
+Sys.sleep(10)
 #Check Update Time
 driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
 remote_driver <- driver[["client"]]
-
-repeat {
-Sys.sleep(10)
+  
 current_date <- Sys.Date()
 current_day <- as.numeric(format(Sys.Date(),"%d"))
-remote_driver$navigate("https://kassiesa.net")
-Sys.sleep(5)
+
 remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2023.html")
 
 output <- remote_driver$findElement(using="class",value="flex-container")
@@ -31,6 +30,15 @@ text_all <- output$getElementText()
 
 day <- gsub(".*Last update:","",text_all)
 day <- parse_number(day)
+
+#Close browser
+remote_driver$close()
+
+#Close server
+driver[["server"]]$stop()
+
+#Stop Java-Process
+system("taskkill /F /IM java.exe")
 
 if (day == current_day) {
 print("Aktuelle Daten gefunden")
@@ -41,17 +49,9 @@ break
 print("Keine neuen Daten gefunden an dem aktuellen Tag")
 
 }  
-print("Noch leine aktuellen Daten gefunden")
+print("Noch keine aktuellen Daten gefunden")
 }
 
-#Close browser
-remote_driver$close()
-
-#Close server
-driver[["server"]]$stop()
-
-#Stop Java-Process
-system("taskkill /F /IM java.exe")
 
 #Update Ranking Data
 source("ranking_scraping.R",encoding = "UTF-8")
