@@ -21,7 +21,7 @@ driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
 remote_driver <- driver[["client"]]
   
 current_date <- Sys.Date()
-current_day <- as.numeric(format(Sys.Date(),"%d"))
+current_day <- as.numeric(format(Sys.Date(),"%d"))-1
 
 remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2023.html")
 

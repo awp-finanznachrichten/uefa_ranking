@@ -53,8 +53,43 @@ The following object is masked from 'package:rvest':
 > #Load functions
 > source("ranking_funktionen.R",encoding = "UTF-8")
 > 
-> #Check Update Time
-> driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
+> repeat {
++ Sys.sleep(10)
++ #Check Update Time
++ driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
++ remote_driver <- driver[["client"]]
++   
++ current_date <- Sys.Date()
++ current_day <- as.numeric(format(Sys.Date(),"%d"))-1
++ 
++ remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2023.html")
++ 
++ output <- remote_driver$findElement(using="class",value="flex-container")
++ text_all <- output$getElementText()
++ 
++ day <- gsub(".*Last update:","",text_all)
++ day <- parse_number(day)
++ 
++ #Close browser
++ remote_driver$close()
++ 
++ #Close server
++ driver[["server"]]$stop()
++ 
++ #Stop Java-Process
++ system("taskkill /F /IM java.exe")
++ 
++ if (day == current_day) {
++ print("Aktuelle Daten gefunden")
++ break
++ }
++ if (as.numeric(format(Sys.time(),"%H")) == 1) {
++ break
++ print("Keine neuen Daten gefunden an dem aktuellen Tag")
++ 
++ }  
++ print("Noch keine aktuellen Daten gefunden")
++ }
 checking Selenium Server versions:
 BEGIN: PREDOWNLOAD
 BEGIN: DOWNLOAD
@@ -94,10 +129,10 @@ $`moz:headless`
 [1] FALSE
 
 $`moz:processID`
-[1] 4840
+[1] 7852
 
 $`moz:profile`
-[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileitaPjG"
+[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileLk2U50"
 
 $`moz:shutdownTimeout`
 [1] 60000
@@ -141,613 +176,14 @@ $unhandledPromptBehavior
 [1] "dismiss and notify"
 
 $webdriver.remote.sessionid
-[1] "0c70f37e-da07-4499-b072-f1dee0a333e6"
+[1] "2e91dcea-dd97-4e32-a8c6-ccdf5ebf18ef"
 
 $id
-[1] "0c70f37e-da07-4499-b072-f1dee0a333e6"
+[1] "2e91dcea-dd97-4e32-a8c6-ccdf5ebf18ef"
 
-> remote_driver <- driver[["client"]]
+ERFOLGREICH: Der Prozess "java.exe" mit PID 2860 wurde beendet.
+[1] "Aktuelle Daten gefunden"
 > 
-> repeat {
-+ Sys.sleep(10)
-+ current_date <- Sys.Date()
-+ current_day <- as.numeric(format(Sys.Date(),"%d"))
-+ remote_driver$navigate("https://kassiesa.net")
-+ Sys.sleep(5)
-+ remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2023.html")
-+ 
-+ output <- remote_driver$findElement(using="class",value="flex-container")
-+ text_all <- output$getElementText()
-+ 
-+ day <- gsub(".*Last update:","",text_all)
-+ day <- parse_number(day)
-+ 
-+ if (day == current_day) {
-+ print("Aktuelle Daten gefunden")
-+ break
-+ }
-+ if (as.numeric(format(Sys.time(),"%H")) == 1) {
-+ break
-+ print("Keine neuen Daten gefunden an dem aktuellen Tag")
-+ 
-+ }  
-+ print("Noch leine aktuellen Daten gefunden")
-+ }
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-[1] "Noch leine aktuellen Daten gefunden"
-> 
-> #Close browser
-> remote_driver$close()
-> 
-> #Close server
-> driver[["server"]]$stop()
-[1] TRUE
-> 
-> #Stop Java-Process
-> system("taskkill /F /IM java.exe")
-ERFOLGREICH: Der Prozess "java.exe" mit PID 868 wurde beendet.
-[1] 0
 > 
 > #Update Ranking Data
 > source("ranking_scraping.R",encoding = "UTF-8")
@@ -790,10 +226,10 @@ $`moz:headless`
 [1] FALSE
 
 $`moz:processID`
-[1] 2780
+[1] 3816
 
 $`moz:profile`
-[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofilegQMXr2"
+[1] "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileBIltiv"
 
 $`moz:shutdownTimeout`
 [1] 60000
@@ -837,12 +273,12 @@ $unhandledPromptBehavior
 [1] "dismiss and notify"
 
 $webdriver.remote.sessionid
-[1] "6ef9eb77-397c-405c-8c6a-ba2b8cac9382"
+[1] "7ba25eb2-653e-47f6-a0b3-ab9b69d50502"
 
 $id
-[1] "6ef9eb77-397c-405c-8c6a-ba2b8cac9382"
+[1] "7ba25eb2-653e-47f6-a0b3-ab9b69d50502"
 
-ERFOLGREICH: Der Prozess "java.exe" mit PID 7744 wurde beendet.
+ERFOLGREICH: Der Prozess "java.exe" mit PID 3444 wurde beendet.
 New names:
 * `` -> `...1`
 * `` -> `...2`
@@ -895,9 +331,9 @@ New names:
 41 46.(46.)                :mt:Malta         0.000               0.000
 2  47.(47.)              :al:Albania         0.000               0.000
 23 48.(48.)            :gb-wls:Wales         0.000               0.000
-25 49.(49.)            :gi:Gibraltar         0.000               0.000
-1  50.(51.)              :ad:Andorra         0.333               0.333
-31 51.(52.)              :is:Iceland         0.333               0.333
+25 50.(49.)            :gi:Gibraltar         0.000               0.000
+31 49.(52.)              :is:Iceland         0.666               0.666
+1  51.(51.)              :ad:Andorra         0.333               0.333
 34 52.(50.)        :li:Liechtenstein         0.000               0.000
 40 53.(53.)      :mk:North Macedonia         0.000               0.000
 39 54.(54.)           :me:Montenegro         0.000               0.000
@@ -952,8 +388,8 @@ New names:
 2           5.375             4/4
 23          5.000             3/3
 25          4.916             4/4
+31          4.916             3/3
 1           4.832             3/3
-31          4.583             3/3
 34          4.500             1/1
 40          3.875             4/4
 39          3.750             4/4
@@ -1094,7 +530,7 @@ New names:
   country       team scored_points  status
 1 Belgium Anderlecht             0 not out
   country               team scored_points  status
-1 Iceland Vikingur Reykjavik     0.3333333 not out
+1 Iceland Vikingur Reykjavik     0.6666667 not out
   country       team scored_points  status
 1 Iceland Breidablik             0 not out
   country         team scored_points  status
@@ -1113,190 +549,6 @@ New names:
 1   Wales Bala Town             0 not out
   country    team scored_points  status
 1   Wales Newtown             0 not out
-     country       team scored_points  status
-1 Azerbaijan Qarabag FK             0 not out
-     country         team scored_points  status
-1 Azerbaijan Neftchi Baku             0 not out
-     country      team scored_points  status
-1 Azerbaijan Gabala FK             0 not out
-     country    team scored_points  status
-1 Azerbaijan Zira FK             0 not out
-  country     team scored_points  status
-1  Sweden Malmö FF             0 not out
-  country          team scored_points  status
-1  Sweden AIK Stockholm             0 not out
-  country        team scored_points  status
-1  Sweden IF Elfsborg             0 not out
-  country           team scored_points  status
-1  Sweden Djurgårdens IF             0 not out
-   country               team scored_points  status
-1 Bulgaria Ludogorets Razgrad             0 not out
-   country       team scored_points  status
-1 Bulgaria CSKA Sofia             0 not out
-   country         team scored_points  status
-1 Bulgaria Levski Sofia             0 not out
-   country          team scored_points  status
-1 Bulgaria Botev Plovdiv             0 not out
-  country             team scored_points  status
-1 Moldova Sheriff Tiraspol             0 not out
-  country          team scored_points  status
-1 Moldova Milsami Orhei             0 not out
-  country             team scored_points  status
-1 Moldova Sfântul Gheorghe             0 not out
-  country              team scored_points  status
-1 Moldova Petrocub Hîncesti             0 not out
-  country     team scored_points  status
-1 Romania CFR Cluj             0 not out
-  country team scored_points  status
-1 Romania FCSB             0 not out
-  country                  team scored_points  status
-1 Romania Universitatea Craiova             0 not out
-  country      team scored_points  status
-1 Romania Sepsi OSK             0 not out
-  country       team scored_points  status
-1  Norway Bodø/Glimt             0 not out
-  country     team scored_points  status
-1  Norway Molde FK             0 not out
-  country             team scored_points  status
-1  Norway Viking Stavanger             0 not out
-  country          team scored_points  status
-1  Norway Lillestrøm SK             0 not out
-  country        team scored_points  status
-1 Hungary Ferencváros             0 not out
-  country        team scored_points  status
-1 Hungary FC Fehérvár             0 not out
-  country        team scored_points  status
-1 Hungary Kisvárda FC             0 not out
-  country            team scored_points  status
-1 Hungary Puskás Akadémia             0 not out
-   country       team scored_points  status
-1 Slovenia NK Maribor             0 not out
-   country               team scored_points  status
-1 Slovenia Mura Murska Sobota             0 not out
-   country               team scored_points  status
-1 Slovenia Olimpija Ljubljana             0 not out
-   country     team scored_points  status
-1 Slovenia NK Koper             0 not out
-   country              team scored_points  status
-1 Slovakia Slovan Bratislava             0 not out
-   country           team scored_points  status
-1 Slovakia MFK Ruzomberok             0 not out
-   country                team scored_points  status
-1 Slovakia DAC Dunajska Streda             0 not out
-   country           team scored_points  status
-1 Slovakia Spartak Trnava             0 not out
-  country         team scored_points  status
-1 Finland HJK Helsinki             0 not out
-  country        team scored_points  status
-1 Finland Inter Turku             0 not out
-  country        team scored_points  status
-1 Finland KuPS Kuopio             0 not out
-  country          team scored_points  status
-1 Finland SJK Seinäjoki             0 not out
-     country          team scored_points  status
-1 Luxembourg F91 Dudelange             0 not out
-     country           team scored_points  status
-1 Luxembourg Differdange 03             0 not out
-     country         team scored_points  status
-1 Luxembourg CS Fola Esch             0 not out
-     country                    team scored_points  status
-1 Luxembourg Racing Union Luxembourg             0 not out
-    country             team scored_points  status
-1 Lithuania Zalgiris Vilnius             0 not out
-    country         team scored_points  status
-1 Lithuania FK Panevezys             0 not out
-    country           team scored_points  status
-1 Lithuania Kauno Zalgiris             0 not out
-    country               team scored_points  status
-1 Lithuania Suduva Marijampole             0 not out
-    country             team scored_points  status
-1 Gibraltar Lincoln Red Imps             0 not out
-    country           team scored_points  status
-1 Gibraltar St Joseph's FC             0 not out
-    country      team scored_points  status
-1 Gibraltar Europa FC             0 not out
-    country        team scored_points  status
-1 Gibraltar FCB Magpies             0 not out
-  country            team scored_points  status
-1 Ireland Shamrock Rovers             0 not out
-  country         team scored_points  status
-1 Ireland Sligo Rovers             0 not out
-  country       team scored_points  status
-1 Ireland Derry City             0 not out
-  country                   team scored_points  status
-1 Ireland St. Patrick's Athletic             0 not out
-           country             team scored_points  status
-1 Northern Ireland Linfield Belfast             0 not out
-           country     team scored_points  status
-1 Northern Ireland Larne FC             0 not out
-           country         team scored_points  status
-1 Northern Ireland Cliftonville             0 not out
-           country              team scored_points  status
-1 Northern Ireland Crusaders Belfast             0 not out
-             country            team scored_points  status
-1 Bosnia-Herzegovina Zrinjski Mostar             0 not out
-             country                team scored_points  status
-1 Bosnia-Herzegovina FK Borac Banja Luka             0 not out
-             country       team scored_points  status
-1 Bosnia-Herzegovina Tuzla City             0 not out
-             country         team scored_points  status
-1 Bosnia-Herzegovina Velez Mostar             0 not out
-  country                team scored_points  status
-1 Belarus Shakhtior Saligorsk             0 not out
-  country         team scored_points  status
-1 Belarus Dinamo Minsk             0 not out
-  country         team scored_points  status
-1 Belarus BATE Borisov             0 not out
-  country     team scored_points  status
-1 Belarus FC Gomel             0 not out
-     country            team scored_points  status
-1 Montenegro Sutjeska Niksic             0 not out
-     country              team scored_points  status
-1 Montenegro Iskra Danilovgrad             0 not out
-     country                team scored_points  status
-1 Montenegro Buducnost Podgorica             0 not out
-     country       team scored_points  status
-1 Montenegro Decic Tuzi             0 not out
-        country        team scored_points  status
-1 Faroe Islands KI Klaksvik             0 not out
-        country         team scored_points  status
-1 Faroe Islands B36 Torshavn             0 not out
-        country     team scored_points  status
-1 Faroe Islands Víkingur             0 not out
-        country        team scored_points  status
-1 Faroe Islands HB Torshavn             0 not out
-  country        team scored_points  status
-1  Poland Lech Poznan             0 not out
-  country          team scored_points  status
-1  Poland Lechia Gdansk             0 not out
-  country           team scored_points  status
-1  Poland Pogon Szczecin             0 not out
-  country              team scored_points  status
-1  Poland Raków Czestochowa             0 not out
-  country          team scored_points  status
-1   Malta Hibernians FC             0 not out
-  country            team scored_points  status
-1   Malta Hamrun Spartans             0 not out
-  country         team scored_points  status
-1   Malta Gzira United             0 not out
-  country     team scored_points  status
-1   Malta Floriana             0 not out
-     country           team scored_points  status
-1 Kazakhstan Tobol Kustanai             0 not out
-     country      team scored_points  status
-1 Kazakhstan FK Astana             0 not out
-     country          team scored_points  status
-1 Kazakhstan Kairat Almaty             0 not out
-     country         team scored_points  status
-1 Kazakhstan FK Kyzylzhar             0 not out
-          country      team scored_points  status
-1 North Macedonia FK Shkupi             0 not out
-          country             team scored_points  status
-1 North Macedonia Akademija Pandev             0 not out
-          country             team scored_points  status
-1 North Macedonia Shkendija Tetovo             0 not out
-          country           team scored_points  status
-1 North Macedonia Makedonija GjP             0 not out
   country           team scored_points  status
 1 Armenia Pyunik Yerevan             0 not out
   country         team scored_points  status
@@ -1306,21 +558,53 @@ New names:
   country           team scored_points  status
 1 Armenia Ararat-Armenia             0 not out
   country     team scored_points  status
-1  Latvia RFS Riga             0 not out
-  country       team scored_points  status
-1  Latvia FK Liepaja             0 not out
-  country    team scored_points  status
-1  Latvia Riga FC             0 not out
-  country         team scored_points  status
-1  Latvia Valmieras FK             0 not out
-  country          team scored_points  status
-1 Georgia Dinamo Batumi             0 not out
-  country           team scored_points  status
-1 Georgia Dinamo Tbilisi             0 not out
+1 Romania CFR Cluj             0 not out
+  country team scored_points  status
+1 Romania FCSB             0 not out
+  country                  team scored_points  status
+1 Romania Universitatea Craiova             0 not out
   country      team scored_points  status
-1 Georgia Dila Gori             0 not out
-  country              team scored_points  status
-1 Georgia Saburtalo Tbilisi             0 not out
+1 Romania Sepsi OSK             0 not out
+   country       team scored_points  status
+1 Slovenia NK Maribor             0 not out
+   country               team scored_points  status
+1 Slovenia Mura Murska Sobota             0 not out
+   country               team scored_points  status
+1 Slovenia Olimpija Ljubljana             0 not out
+   country     team scored_points  status
+1 Slovenia NK Koper             0 not out
+  country                team scored_points  status
+1 Belarus Shakhtior Saligorsk             0 not out
+  country         team scored_points  status
+1 Belarus Dinamo Minsk             0 not out
+  country         team scored_points  status
+1 Belarus BATE Borisov             0 not out
+  country     team scored_points  status
+1 Belarus FC Gomel             0 not out
+   country               team scored_points  status
+1 Bulgaria Ludogorets Razgrad             0 not out
+   country       team scored_points  status
+1 Bulgaria CSKA Sofia             0 not out
+   country         team scored_points  status
+1 Bulgaria Levski Sofia             0 not out
+   country          team scored_points  status
+1 Bulgaria Botev Plovdiv             0 not out
+     country            team scored_points  status
+1 Montenegro Sutjeska Niksic             0 not out
+     country              team scored_points  status
+1 Montenegro Iskra Danilovgrad             0 not out
+     country                team scored_points  status
+1 Montenegro Buducnost Podgorica             0 not out
+     country       team scored_points  status
+1 Montenegro Decic Tuzi             0 not out
+     country          team scored_points  status
+1 Luxembourg F91 Dudelange             0 not out
+     country           team scored_points  status
+1 Luxembourg Differdange 03             0 not out
+     country         team scored_points  status
+1 Luxembourg CS Fola Esch             0 not out
+     country                    team scored_points  status
+1 Luxembourg Racing Union Luxembourg             0 not out
   country      team scored_points  status
 1 Albania KF Tirana             0 not out
   country    team scored_points  status
@@ -1329,6 +613,30 @@ New names:
 1 Albania Partizani Tirana             0 not out
   country             team scored_points  status
 1 Albania Vllaznia Shkodër             0 not out
+     country           team scored_points  status
+1 Kazakhstan Tobol Kustanai             0 not out
+     country      team scored_points  status
+1 Kazakhstan FK Astana             0 not out
+     country          team scored_points  status
+1 Kazakhstan Kairat Almaty             0 not out
+     country         team scored_points  status
+1 Kazakhstan FK Kyzylzhar             0 not out
+  country        team scored_points  status
+1 Hungary Ferencváros             0 not out
+  country        team scored_points  status
+1 Hungary FC Fehérvár             0 not out
+  country        team scored_points  status
+1 Hungary Kisvárda FC             0 not out
+  country            team scored_points  status
+1 Hungary Puskás Akadémia             0 not out
+  country     team scored_points  status
+1  Sweden Malmö FF             0 not out
+  country          team scored_points  status
+1  Sweden AIK Stockholm             0 not out
+  country        team scored_points  status
+1  Sweden IF Elfsborg             0 not out
+  country           team scored_points  status
+1  Sweden Djurgårdens IF             0 not out
   country        team scored_points  status
 1  Kosovo FC Ballkani             0 not out
   country     team scored_points  status
@@ -1337,6 +645,134 @@ New names:
 1  Kosovo SC Gjilani             0 not out
   country     team scored_points  status
 1  Kosovo KF Llapi             0 not out
+    country             team scored_points  status
+1 Lithuania Zalgiris Vilnius             0 not out
+    country         team scored_points  status
+1 Lithuania FK Panevezys             0 not out
+    country           team scored_points  status
+1 Lithuania Kauno Zalgiris             0 not out
+    country               team scored_points  status
+1 Lithuania Suduva Marijampole             0 not out
+  country         team scored_points  status
+1 Finland HJK Helsinki             0 not out
+  country        team scored_points  status
+1 Finland Inter Turku             0 not out
+  country        team scored_points  status
+1 Finland KuPS Kuopio             0 not out
+  country          team scored_points  status
+1 Finland SJK Seinäjoki             0 not out
+  country     team scored_points  status
+1  Latvia RFS Riga             0 not out
+  country       team scored_points  status
+1  Latvia FK Liepaja             0 not out
+  country    team scored_points  status
+1  Latvia Riga FC             0 not out
+  country         team scored_points  status
+1  Latvia Valmieras FK             0 not out
+  country       team scored_points  status
+1  Norway Bodø/Glimt             0 not out
+  country     team scored_points  status
+1  Norway Molde FK             0 not out
+  country             team scored_points  status
+1  Norway Viking Stavanger             0 not out
+  country          team scored_points  status
+1  Norway Lillestrøm SK             0 not out
+        country        team scored_points  status
+1 Faroe Islands KI Klaksvik             0 not out
+        country         team scored_points  status
+1 Faroe Islands B36 Torshavn             0 not out
+        country     team scored_points  status
+1 Faroe Islands Víkingur             0 not out
+        country        team scored_points  status
+1 Faroe Islands HB Torshavn             0 not out
+           country             team scored_points  status
+1 Northern Ireland Linfield Belfast             0 not out
+           country     team scored_points  status
+1 Northern Ireland Larne FC             0 not out
+           country         team scored_points  status
+1 Northern Ireland Cliftonville             0 not out
+           country              team scored_points  status
+1 Northern Ireland Crusaders Belfast             0 not out
+  country            team scored_points  status
+1 Ireland Shamrock Rovers             0 not out
+  country         team scored_points  status
+1 Ireland Sligo Rovers             0 not out
+  country       team scored_points  status
+1 Ireland Derry City             0 not out
+  country                   team scored_points  status
+1 Ireland St. Patrick's Athletic             0 not out
+  country          team scored_points  status
+1   Malta Hibernians FC             0 not out
+  country            team scored_points  status
+1   Malta Hamrun Spartans             0 not out
+  country         team scored_points  status
+1   Malta Gzira United             0 not out
+  country     team scored_points  status
+1   Malta Floriana             0 not out
+  country        team scored_points  status
+1  Poland Lech Poznan             0 not out
+  country          team scored_points  status
+1  Poland Lechia Gdansk             0 not out
+  country           team scored_points  status
+1  Poland Pogon Szczecin             0 not out
+  country              team scored_points  status
+1  Poland Raków Czestochowa             0 not out
+     country       team scored_points  status
+1 Azerbaijan Qarabag FK             0 not out
+     country         team scored_points  status
+1 Azerbaijan Neftchi Baku             0 not out
+     country      team scored_points  status
+1 Azerbaijan Gabala FK             0 not out
+     country    team scored_points  status
+1 Azerbaijan Zira FK             0 not out
+          country      team scored_points  status
+1 North Macedonia FK Shkupi             0 not out
+          country             team scored_points  status
+1 North Macedonia Akademija Pandev             0 not out
+          country             team scored_points  status
+1 North Macedonia Shkendija Tetovo             0 not out
+          country           team scored_points  status
+1 North Macedonia Makedonija GjP             0 not out
+    country             team scored_points  status
+1 Gibraltar Lincoln Red Imps             0 not out
+    country           team scored_points  status
+1 Gibraltar St Joseph's FC             0 not out
+    country      team scored_points  status
+1 Gibraltar Europa FC             0 not out
+    country        team scored_points  status
+1 Gibraltar FCB Magpies             0 not out
+             country            team scored_points  status
+1 Bosnia-Herzegovina Zrinjski Mostar             0 not out
+             country                team scored_points  status
+1 Bosnia-Herzegovina FK Borac Banja Luka             0 not out
+             country       team scored_points  status
+1 Bosnia-Herzegovina Tuzla City             0 not out
+             country         team scored_points  status
+1 Bosnia-Herzegovina Velez Mostar             0 not out
+  country             team scored_points  status
+1 Moldova Sheriff Tiraspol             0 not out
+  country          team scored_points  status
+1 Moldova Milsami Orhei             0 not out
+  country             team scored_points  status
+1 Moldova Sfântul Gheorghe             0 not out
+  country              team scored_points  status
+1 Moldova Petrocub Hîncesti             0 not out
+   country              team scored_points  status
+1 Slovakia Slovan Bratislava             0 not out
+   country           team scored_points  status
+1 Slovakia MFK Ruzomberok             0 not out
+   country                team scored_points  status
+1 Slovakia DAC Dunajska Streda             0 not out
+   country           team scored_points  status
+1 Slovakia Spartak Trnava             0 not out
+  country          team scored_points  status
+1 Georgia Dinamo Batumi             0 not out
+  country           team scored_points  status
+1 Georgia Dinamo Tbilisi             0 not out
+  country      team scored_points  status
+1 Georgia Dila Gori             0 not out
+  country              team scored_points  status
+1 Georgia Saburtalo Tbilisi             0 not out
   country          team scored_points  status
 1 Croatia Dinamo Zagreb             0 not out
   country      team scored_points  status
@@ -3355,7 +2791,7 @@ New names:
   title_datawrapper_season
 1    England: 2.286 points
                                                                                                                                                                                                                                                                                           text_datawrapper_season
-1 Chelsea: <b>0.571</b> (25%, not out)<br>Tottenham Hotspur: <b>0.571</b> (25%, not out)<br>Liverpool: <b>0.571</b> (25%, not out)<br>Manchester City: <b>0.571</b> (25%, not out)<br>West Ham United: <b>0</b> (0%, not out)<br>Manchester United: <b>0</b> (0%, not out)<br>Arsenal: <b>0</b> (0%, not out)<br>
+1 Chelsea: <b>0.571</b> (25%, not out)<br>Tottenham Hotspur: <b>0.571</b> (25%, not out)<br>Manchester City: <b>0.571</b> (25%, not out)<br>Liverpool: <b>0.571</b> (25%, not out)<br>Manchester United: <b>0</b> (0%, not out)<br>West Ham United: <b>0</b> (0%, not out)<br>Arsenal: <b>0</b> (0%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1   Spain         78.712         2.285      Spain: 78.714 points
                                                                                                                                                                                                                                                                                                                                                                              text_datawrapper_overall
@@ -3363,7 +2799,7 @@ New names:
   title_datawrapper_season
 1      Spain: 2.286 points
                                                                                                                                                                                                                                                                                  text_datawrapper_season
-1 FC Barcelona: <b>0.571</b> (25%, not out)<br>Sevilla: <b>0.571</b> (25%, not out)<br>Atlético Madrid: <b>0.571</b> (25%, not out)<br>Real Madrid: <b>0.571</b> (25%, not out)<br>Villarreal: <b>0</b> (0%, not out)<br>Real Betis: <b>0</b> (0%, not out)<br>Real Sociedad: <b>0</b> (0%, not out)<br>
+1 FC Barcelona: <b>0.571</b> (25%, not out)<br>Sevilla: <b>0.571</b> (25%, not out)<br>Atlético Madrid: <b>0.571</b> (25%, not out)<br>Real Madrid: <b>0.571</b> (25%, not out)<br>Real Betis: <b>0</b> (0%, not out)<br>Villarreal: <b>0</b> (0%, not out)<br>Real Sociedad: <b>0</b> (0%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Germany         67.856         2.500    Germany: 67.857 points
                                                                                                                                                                                                                                                                                                                                                                                                                                                   text_datawrapper_overall
@@ -3371,7 +2807,7 @@ New names:
   title_datawrapper_season
 1      Germany: 2.5 points
                                                                                                                                                                                                                                                                                                                                       text_datawrapper_season
-1 Bayern München: <b>0.5</b> (20%, not out)<br>Eintracht Frankfurt: <b>0.5</b> (20%, not out)<br>RB Leipzig: <b>0.5</b> (20%, not out)<br>Bayer Leverkusen: <b>0.5</b> (20%, not out)<br>Borussia Dortmund: <b>0.5</b> (20%, not out)<br>1.FC Köln: <b>0</b> (0%, not out)<br>SC Freiburg: <b>0</b> (0%, not out)<br>Union Berlin: <b>0</b> (0%, not out)<br>
+1 Bayern München: <b>0.5</b> (20%, not out)<br>Eintracht Frankfurt: <b>0.5</b> (20%, not out)<br>Borussia Dortmund: <b>0.5</b> (20%, not out)<br>RB Leipzig: <b>0.5</b> (20%, not out)<br>Bayer Leverkusen: <b>0.5</b> (20%, not out)<br>1.FC Köln: <b>0</b> (0%, not out)<br>SC Freiburg: <b>0</b> (0%, not out)<br>Union Berlin: <b>0</b> (0%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1   Italy         61.854         2.285      Italy: 61.857 points
                                                                                                                                                                                                                                                                                text_datawrapper_overall
@@ -3379,7 +2815,7 @@ New names:
   title_datawrapper_season
 1      Italy: 2.286 points
                                                                                                                                                                                                                                                              text_datawrapper_season
-1 AC Milan: <b>0.571</b> (25%, not out)<br>Napoli: <b>0.571</b> (25%, not out)<br>Juventus: <b>0.571</b> (25%, not out)<br>Internazionale: <b>0.571</b> (25%, not out)<br>Fiorentina: <b>0</b> (0%, not out)<br>AS Roma: <b>0</b> (0%, not out)<br>Lazio: <b>0</b> (0%, not out)<br>
+1 Napoli: <b>0.571</b> (25%, not out)<br>AC Milan: <b>0.571</b> (25%, not out)<br>Juventus: <b>0.571</b> (25%, not out)<br>Internazionale: <b>0.571</b> (25%, not out)<br>Fiorentina: <b>0</b> (0%, not out)<br>AS Roma: <b>0</b> (0%, not out)<br>Lazio: <b>0</b> (0%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1  France         49.914         1.333     France: 49.917 points
                                                                                                                                                                                                                                                                                                                                                                                                                                                     text_datawrapper_overall
@@ -3387,7 +2823,7 @@ New names:
   title_datawrapper_season
 1     France: 1.333 points
                                                                                                                                                                                                                                           text_datawrapper_season
-1 Olympique Marseille: <b>0.667</b> (50%, not out)<br>Paris Saint-Germain: <b>0.667</b> (50%, not out)<br>AS Monaco: <b>0</b> (0%, not out)<br>Stade Rennais: <b>0</b> (0%, not out)<br>FC Nantes: <b>0</b> (0%, not out)<br>OGC Nice: <b>0</b> (0%, not out)<br>
+1 Olympique Marseille: <b>0.667</b> (50%, not out)<br>Paris Saint-Germain: <b>0.667</b> (50%, not out)<br>OGC Nice: <b>0</b> (0%, not out)<br>AS Monaco: <b>0</b> (0%, not out)<br>Stade Rennais: <b>0</b> (0%, not out)<br>FC Nantes: <b>0</b> (0%, not out)<br>
       country overall_points points_season title_datawrapper_overall
 1 Netherlands           47.2         0.800  Netherlands: 47.2 points
                                                                                                                                                                                                                                                                 text_datawrapper_overall
@@ -3395,7 +2831,7 @@ New names:
   title_datawrapper_season
 1  Netherlands: 0.8 points
                                                                                                                                                                                  text_datawrapper_season
-1 Ajax: <b>0.8</b> (100%, not out)<br>PSV Eindhoven: <b>0</b> (0%, not out)<br>Feyenoord: <b>0</b> (0%, not out)<br>AZ Alkmaar: <b>0</b> (0%, not out)<br>FC Twente Enschede: <b>0</b> (0%, not out)<br>
+1 Ajax: <b>0.8</b> (100%, not out)<br>PSV Eindhoven: <b>0</b> (0%, not out)<br>FC Twente Enschede: <b>0</b> (0%, not out)<br>Feyenoord: <b>0</b> (0%, not out)<br>AZ Alkmaar: <b>0</b> (0%, not out)<br>
    country overall_points points_season title_datawrapper_overall
 1 Portugal         45.049         1.333    Portugal: 45.05 points
                                                                                                                                                                                                                                                                                                                       text_datawrapper_overall
@@ -3403,7 +2839,7 @@ New names:
   title_datawrapper_season
 1   Portugal: 1.333 points
                                                                                                                                                                                                                                         text_datawrapper_season
-1 FC Porto: <b>0.667</b> (50%, not out)<br>Sporting CP Lisbon: <b>0.667</b> (50%, not out)<br>Sporting Braga: <b>0</b> (0%, not out)<br>Gil Vicente: <b>0</b> (0%, not out)<br>Vitória Guimarães: <b>0</b> (0%, not out)<br>Benfica: <b>0</b> (0%, not out)<br>
+1 FC Porto: <b>0.667</b> (50%, not out)<br>Sporting CP Lisbon: <b>0.667</b> (50%, not out)<br>Vitória Guimarães: <b>0</b> (0%, not out)<br>Benfica: <b>0</b> (0%, not out)<br>Sporting Braga: <b>0</b> (0%, not out)<br>Gil Vicente: <b>0</b> (0%, not out)<br>
    country overall_points points_season title_datawrapper_overall
 1 Scotland           33.7         0.800     Scotland: 33.7 points
                                                                                                                                                                                                                                                                                 text_datawrapper_overall
@@ -3415,11 +2851,11 @@ New names:
   country overall_points points_season title_datawrapper_overall
 1 Austria           29.9         0.800      Austria: 29.9 points
                                                                                                                                                                                                                                                                                     text_datawrapper_overall
-1 FC Salzburg: <b>12.2</b> (40.8%)<br>LASK: <b>8.5</b> (28.4%)<br>Rapid Wien: <b>5.2</b> (17.4%)<br>Wolfsberger AC: <b>2.2</b> (7.4%)<br>Sturm Graz: <b>1</b> (3.3%)<br>LASK Linz: <b>0.6</b> (2%)<br>TSV Hartberg: <b>0.1</b> (0.3%)<br>Austria Wien: <b>0.1</b> (0.3%)<br>Admira Wacker: <b>0</b> (0%)<br>
+1 FC Salzburg: <b>12.2</b> (40.8%)<br>LASK: <b>8.5</b> (28.4%)<br>Rapid Wien: <b>5.2</b> (17.4%)<br>Wolfsberger AC: <b>2.2</b> (7.4%)<br>Sturm Graz: <b>1</b> (3.3%)<br>LASK Linz: <b>0.6</b> (2%)<br>Austria Wien: <b>0.1</b> (0.3%)<br>TSV Hartberg: <b>0.1</b> (0.3%)<br>Admira Wacker: <b>0</b> (0%)<br>
   title_datawrapper_season
 1      Austria: 0.8 points
                                                                                                                                                                                     text_datawrapper_season
-1 FC Salzburg: <b>0.8</b> (100%, not out)<br>Austria Wien: <b>0</b> (0%, not out)<br>Wolfsberger AC: <b>0</b> (0%, not out)<br>Rapid Wien: <b>0</b> (0%, not out)<br>Sturm Graz: <b>0</b> (0%, not out)<br>
+1 FC Salzburg: <b>0.8</b> (100%, not out)<br>Austria Wien: <b>0</b> (0%, not out)<br>Rapid Wien: <b>0</b> (0%, not out)<br>Wolfsberger AC: <b>0</b> (0%, not out)<br>Sturm Graz: <b>0</b> (0%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Belgium           28.8         0.800      Belgium: 28.8 points
                                                                                                                                                                                                                                                                   text_datawrapper_overall
@@ -3431,11 +2867,11 @@ New names:
   country overall_points points_season title_datawrapper_overall
 1  Serbia             27         0.000         Serbia: 27 points
                                                                                                                                                                                                                                                                        text_datawrapper_overall
-1 Crvena zvezda: <b>14.375</b> (53.2%)<br>Partizan Belgrade: <b>8.75</b> (32.4%)<br>Cukaricki Belgrade: <b>1.25</b> (4.6%)<br>Radnicki Nis: <b>0.75</b> (2.8%)<br>TSC Backa Topola: <b>0.625</b> (2.3%)<br>Spartak Subotica: <b>0.625</b> (2.3%)<br>Vojvodina Novi Sad: <b>0.625</b> (2.3%)<br>
+1 Crvena zvezda: <b>14.375</b> (53.2%)<br>Partizan Belgrade: <b>8.75</b> (32.4%)<br>Cukaricki Belgrade: <b>1.25</b> (4.6%)<br>Radnicki Nis: <b>0.75</b> (2.8%)<br>Vojvodina Novi Sad: <b>0.625</b> (2.3%)<br>Spartak Subotica: <b>0.625</b> (2.3%)<br>TSC Backa Topola: <b>0.625</b> (2.3%)<br>
   title_datawrapper_season
 1         Serbia: 0 points
                                                                                                                                                                text_datawrapper_season
-1 Cukaricki Belgrade: <b>0</b> (NaN%, not out)<br>Radnicki Nis: <b>0</b> (NaN%, not out)<br>Partizan Belgrade: <b>0</b> (NaN%, not out)<br>Crvena zvezda: <b>0</b> (NaN%, not out)<br>
+1 Cukaricki Belgrade: <b>0</b> (NaN%, not out)<br>Partizan Belgrade: <b>0</b> (NaN%, not out)<br>Radnicki Nis: <b>0</b> (NaN%, not out)<br>Crvena zvezda: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1  Russia         26.215         4.333     Russia: 26.216 points
                                                                                                                                                                                                                                                                                                                                                                                           text_datawrapper_overall
@@ -3453,19 +2889,19 @@ New names:
   country overall_points points_season title_datawrapper_overall
 1  Norway          23.25         0.000      Norway: 23.25 points
                                                                                                                                                                                                                                                                                                                   text_datawrapper_overall
-1 Molde FK: <b>7.25</b> (31.2%)<br>Bodø/Glimt: <b>6.75</b> (29%)<br>Rosenborg BK: <b>5.5</b> (23.7%)<br>Sarpsborg 08: <b>2.375</b> (10.2%)<br>FK Haugesund: <b>0.875</b> (3.8%)<br>Vålerengens IF: <b>0.25</b> (1.1%)<br>SK Brann Bergen: <b>0.125</b> (0.5%)<br>Viking Stavanger: <b>0.125</b> (0.5%)<br>Lillestrøm SK: <b>0</b> (0%)<br>
+1 Molde FK: <b>7.25</b> (31.2%)<br>Bodø/Glimt: <b>6.75</b> (29%)<br>Rosenborg BK: <b>5.5</b> (23.7%)<br>Sarpsborg 08: <b>2.375</b> (10.2%)<br>FK Haugesund: <b>0.875</b> (3.8%)<br>Vålerengens IF: <b>0.25</b> (1.1%)<br>Viking Stavanger: <b>0.125</b> (0.5%)<br>SK Brann Bergen: <b>0.125</b> (0.5%)<br>Lillestrøm SK: <b>0</b> (0%)<br>
   title_datawrapper_season
 1         Norway: 0 points
                                                                                                                                                   text_datawrapper_season
-1 Molde FK: <b>0</b> (NaN%, not out)<br>Bodø/Glimt: <b>0</b> (NaN%, not out)<br>Viking Stavanger: <b>0</b> (NaN%, not out)<br>Lillestrøm SK: <b>0</b> (NaN%, not out)<br>
+1 Bodø/Glimt: <b>0</b> (NaN%, not out)<br>Viking Stavanger: <b>0</b> (NaN%, not out)<br>Molde FK: <b>0</b> (NaN%, not out)<br>Lillestrøm SK: <b>0</b> (NaN%, not out)<br>
       country overall_points points_season  title_datawrapper_overall
 1 Switzerland         23.175         0.000 Switzerland: 23.175 points
-                                                                                                                                                                                                                                                      text_datawrapper_overall
-1 Young Boys: <b>9.975</b> (43%)<br>FC Basel: <b>9.725</b> (42%)<br>FC Zürich: <b>1.4</b> (6%)<br>Servette FC Genève: <b>0.75</b> (3.2%)<br>FC Lugano: <b>0.6</b> (2.6%)<br>FC Luzern: <b>0.4</b> (1.7%)<br>FC Sankt Gallen: <b>0.325</b> (1.4%)<br>FC Thun: <b>0</b> (0%)<br>
+                                                                                                                                                                                                                                               text_datawrapper_overall
+1 Young Boys: <b>9.975</b> (43%)<br>FC Basel: <b>9.725</b> (42%)<br>FC Zürich: <b>1.4</b> (6%)<br>Servette FC: <b>0.75</b> (3.2%)<br>FC Lugano: <b>0.6</b> (2.6%)<br>FC Luzern: <b>0.4</b> (1.7%)<br>FC Sankt Gallen: <b>0.325</b> (1.4%)<br>FC Thun: <b>0</b> (0%)<br>
   title_datawrapper_season
 1    Switzerland: 0 points
                                                                                                                                        text_datawrapper_season
-1 Young Boys: <b>0</b> (NaN%, not out)<br>FC Basel: <b>0</b> (NaN%, not out)<br>FC Lugano: <b>0</b> (NaN%, not out)<br>FC Zürich: <b>0</b> (NaN%, not out)<br>
+1 FC Lugano: <b>0</b> (NaN%, not out)<br>FC Zürich: <b>0</b> (NaN%, not out)<br>Young Boys: <b>0</b> (NaN%, not out)<br>FC Basel: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1  Greece           23.1         0.000       Greece: 23.1 points
                                                                                                                                                                                                                                                                                             text_datawrapper_overall
@@ -3473,31 +2909,31 @@ New names:
   title_datawrapper_season
 1         Greece: 0 points
                                                                                                                                                                     text_datawrapper_season
-1 PAOK Thessaloniki: <b>0</b> (NaN%, not out)<br>Olympiakos Piraeus: <b>0</b> (NaN%, not out)<br>Aris Thessaloniki: <b>0</b> (NaN%, not out)<br>Panathinaikos: <b>0</b> (NaN%, not out)<br>
+1 Olympiakos Piraeus: <b>0</b> (NaN%, not out)<br>PAOK Thessaloniki: <b>0</b> (NaN%, not out)<br>Panathinaikos: <b>0</b> (NaN%, not out)<br>Aris Thessaloniki: <b>0</b> (NaN%, not out)<br>
          country overall_points points_season   title_datawrapper_overall
 1 Czech Republic           22.3         0.000 Czech Republic: 22.3 points
                                                                                                                                                                                                                                                                             text_datawrapper_overall
-1 Slavia Praha: <b>10.9</b> (48.9%)<br>Viktoria Plzen: <b>3.8</b> (17%)<br>FK Jablonec: <b>2.4</b> (10.8%)<br>Sparta Praha: <b>2.3</b> (10.3%)<br>Slovan Liberec: <b>1.9</b> (8.5%)<br>Mladá Boleslav: <b>0.4</b> (1.8%)<br>Sigma Olomouc: <b>0.4</b> (1.8%)<br>1.FC Slovácko: <b>0.2</b> (0.9%)<br>
+1 Slavia Praha: <b>10.9</b> (48.9%)<br>Viktoria Plzen: <b>3.8</b> (17%)<br>FK Jablonec: <b>2.4</b> (10.8%)<br>Sparta Praha: <b>2.3</b> (10.3%)<br>Slovan Liberec: <b>1.9</b> (8.5%)<br>Sigma Olomouc: <b>0.4</b> (1.8%)<br>Mladá Boleslav: <b>0.4</b> (1.8%)<br>1.FC Slovácko: <b>0.2</b> (0.9%)<br>
   title_datawrapper_season
 1 Czech Republic: 0 points
                                                                                                                                                       text_datawrapper_season
 1 1.FC Slovácko: <b>0</b> (NaN%, not out)<br>Slavia Praha: <b>0</b> (NaN%, not out)<br>Viktoria Plzen: <b>0</b> (NaN%, not out)<br>Sparta Praha: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Croatia         22.025         0.000    Croatia: 22.025 points
-                                                                                                                                                              text_datawrapper_overall
-1 Dinamo Zagreb: <b>16</b> (72.6%)<br>NK Rijeka: <b>2.95</b> (13.4%)<br>Hajduk Split: <b>1.525</b> (6.9%)<br>NK Osijek: <b>1.35</b> (6.1%)<br>Lokomotiva Zagreb: <b>0.2</b> (0.9%)<br>
+                                                                                                                                                           text_datawrapper_overall
+1 GNK Dinamo: <b>16</b> (72.6%)<br>NK Rijeka: <b>2.95</b> (13.4%)<br>Hajduk Split: <b>1.525</b> (6.9%)<br>NK Osijek: <b>1.35</b> (6.1%)<br>Lokomotiva Zagreb: <b>0.2</b> (0.9%)<br>
   title_datawrapper_season
 1        Croatia: 0 points
-                                                                                                                                              text_datawrapper_season
-1 Dinamo Zagreb: <b>0</b> (NaN%, not out)<br>Hajduk Split: <b>0</b> (NaN%, not out)<br>NK Rijeka: <b>0</b> (NaN%, not out)<br>NK Osijek: <b>0</b> (NaN%, not out)<br>
+                                                                                                                                           text_datawrapper_season
+1 NK Osijek: <b>0</b> (NaN%, not out)<br>NK Rijeka: <b>0</b> (NaN%, not out)<br>GNK Dinamo: <b>0</b> (NaN%, not out)<br>Hajduk Split: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Denmark         21.925         0.000    Denmark: 21.925 points
                                                                                                                                                                                                                                                                                                                               text_datawrapper_overall
-1 FC København: <b>11.7</b> (53.4%)<br>FC Midtjylland: <b>5.475</b> (25%)<br>Randers FC: <b>1.5</b> (6.8%)<br>Brøndby IF: <b>1.4</b> (6.4%)<br>FC Nordsjælland: <b>1</b> (4.6%)<br>AGF Aarhus: <b>0.6</b> (2.7%)<br>SønderjyskE: <b>0.125</b> (0.6%)<br>Esbjerg fB: <b>0.125</b> (0.6%)<br>Viborg FF: <b>0</b> (0%)<br>Silkeborg IF: <b>0</b> (0%)<br>
+1 FC København: <b>11.7</b> (53.4%)<br>FC Midtjylland: <b>5.475</b> (25%)<br>Randers FC: <b>1.5</b> (6.8%)<br>Brøndby IF: <b>1.4</b> (6.4%)<br>FC Nordsjælland: <b>1</b> (4.6%)<br>AGF Aarhus: <b>0.6</b> (2.7%)<br>Esbjerg fB: <b>0.125</b> (0.6%)<br>SønderjyskE: <b>0.125</b> (0.6%)<br>Viborg FF: <b>0</b> (0%)<br>Silkeborg IF: <b>0</b> (0%)<br>
   title_datawrapper_season
 1        Denmark: 0 points
                                                                                                                                                                                           text_datawrapper_season
-1 FC Midtjylland: <b>0</b> (NaN%, not out)<br>Silkeborg IF: <b>0</b> (NaN%, not out)<br>Viborg FF: <b>0</b> (NaN%, not out)<br>Brøndby IF: <b>0</b> (NaN%, not out)<br>FC København: <b>0</b> (NaN%, not out)<br>
+1 Viborg FF: <b>0</b> (NaN%, not out)<br>FC København: <b>0</b> (NaN%, not out)<br>FC Midtjylland: <b>0</b> (NaN%, not out)<br>Brøndby IF: <b>0</b> (NaN%, not out)<br>Silkeborg IF: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1  Turkey           20.3         0.000       Turkey: 20.3 points
                                                                                                                                                                                                                                                                                                                               text_datawrapper_overall
@@ -3505,19 +2941,19 @@ New names:
   title_datawrapper_season
 1         Turkey: 0 points
                                                                                                                                                                                            text_datawrapper_season
-1 Trabzonspor: <b>0</b> (NaN%, not out)<br>Sivasspor: <b>0</b> (NaN%, not out)<br>Istanbul Basaksehir: <b>0</b> (NaN%, not out)<br>Fenerbahçe: <b>0</b> (NaN%, not out)<br>Konyaspor: <b>0</b> (NaN%, not out)<br>
+1 Fenerbahçe: <b>0</b> (NaN%, not out)<br>Konyaspor: <b>0</b> (NaN%, not out)<br>Sivasspor: <b>0</b> (NaN%, not out)<br>Istanbul Basaksehir: <b>0</b> (NaN%, not out)<br>Trabzonspor: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1  Cyprus         19.375         0.000     Cyprus: 19.375 points
                                                                                                                                                                                                                                                         text_datawrapper_overall
-1 APOEL Nicosia: <b>4.875</b> (25.2%)<br>Apollon Limassol: <b>4.75</b> (24.5%)<br>Omonia Nicosia: <b>3.375</b> (17.4%)<br>AEK Larnaca: <b>3.375</b> (17.4%)<br>Anorthosis Famagusta: <b>2.25</b> (11.6%)<br>AEL Limassol: <b>0.75</b> (3.9%)<br>Aris Limassol: <b>0</b> (0%)<br>
+1 APOEL Nicosia: <b>4.875</b> (25.2%)<br>Apollon Limassol: <b>4.75</b> (24.5%)<br>AEK Larnaca: <b>3.375</b> (17.4%)<br>Omonia Nicosia: <b>3.375</b> (17.4%)<br>Anorthosis Famagusta: <b>2.25</b> (11.6%)<br>AEL Limassol: <b>0.75</b> (3.9%)<br>Aris Limassol: <b>0</b> (0%)<br>
   title_datawrapper_season
 1         Cyprus: 0 points
                                                                                                                                                                                                     text_datawrapper_season
-1 Aris Limassol: <b>0</b> (NaN%, not out)<br>Apollon Limassol: <b>0</b> (NaN%, not out)<br>Omonia Nicosia: <b>0</b> (NaN%, not out)<br>APOEL Nicosia: <b>0</b> (NaN%, not out)<br>AEK Larnaca: <b>0</b> (NaN%, not out)<br>
+1 Aris Limassol: <b>0</b> (NaN%, not out)<br>Apollon Limassol: <b>0</b> (NaN%, not out)<br>AEK Larnaca: <b>0</b> (NaN%, not out)<br>Omonia Nicosia: <b>0</b> (NaN%, not out)<br>APOEL Nicosia: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1  Israel          18.75         0.000      Israel: 18.75 points
                                                                                                                                                                                                                                                                                 text_datawrapper_overall
-1 Maccabi Tel-Aviv: <b>8.375</b> (44.7%)<br>Hapoel Beer-Sheva: <b>5.25</b> (28%)<br>Maccabi Haifa: <b>4</b> (21.3%)<br>Bnei Yehuda: <b>0.375</b> (2%)<br>Hapoel Haifa: <b>0.375</b> (2%)<br>Beitar Jerusalem: <b>0.25</b> (1.3%)<br>MS Ashdod: <b>0.125</b> (0.7%)<br>Maccabi Netanya: <b>0</b> (0%)<br>
+1 Maccabi Tel-Aviv: <b>8.375</b> (44.7%)<br>Hapoel Beer-Sheva: <b>5.25</b> (28%)<br>Maccabi Haifa: <b>4</b> (21.3%)<br>Hapoel Haifa: <b>0.375</b> (2%)<br>Bnei Yehuda: <b>0.375</b> (2%)<br>Beitar Jerusalem: <b>0.25</b> (1.3%)<br>MS Ashdod: <b>0.125</b> (0.7%)<br>Maccabi Netanya: <b>0</b> (0%)<br>
   title_datawrapper_season
 1         Israel: 0 points
                                                                                                                                                                 text_datawrapper_season
@@ -3525,7 +2961,7 @@ New names:
   country overall_points points_season title_datawrapper_overall
 1  Sweden           17.5         0.000       Sweden: 17.5 points
                                                                                                                                                                                                                                                                            text_datawrapper_overall
-1 Malmö FF: <b>10.875</b> (62.1%)<br>Hammarby IF: <b>1.5</b> (8.6%)<br>AIK Stockholm: <b>1.25</b> (7.1%)<br>IF Elfsborg: <b>1.125</b> (6.4%)<br>IFK Norrköping: <b>1.125</b> (6.4%)<br>BK Häcken: <b>0.75</b> (4.3%)<br>Djurgårdens IF: <b>0.75</b> (4.3%)<br>IFK Göteborg: <b>0.125</b> (0.7%)<br>
+1 Malmö FF: <b>10.875</b> (62.1%)<br>Hammarby IF: <b>1.5</b> (8.6%)<br>AIK Stockholm: <b>1.25</b> (7.1%)<br>IFK Norrköping: <b>1.125</b> (6.4%)<br>IF Elfsborg: <b>1.125</b> (6.4%)<br>BK Häcken: <b>0.75</b> (4.3%)<br>Djurgårdens IF: <b>0.75</b> (4.3%)<br>IFK Göteborg: <b>0.125</b> (0.7%)<br>
   title_datawrapper_season
 1         Sweden: 0 points
                                                                                                                                                  text_datawrapper_season
@@ -3537,7 +2973,7 @@ New names:
   title_datawrapper_season
 1       Bulgaria: 0 points
                                                                                                                                                         text_datawrapper_season
-1 Levski Sofia: <b>0</b> (NaN%, not out)<br>Ludogorets Razgrad: <b>0</b> (NaN%, not out)<br>CSKA Sofia: <b>0</b> (NaN%, not out)<br>Botev Plovdiv: <b>0</b> (NaN%, not out)<br>
+1 CSKA Sofia: <b>0</b> (NaN%, not out)<br>Botev Plovdiv: <b>0</b> (NaN%, not out)<br>Ludogorets Razgrad: <b>0</b> (NaN%, not out)<br>Levski Sofia: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Hungary          14.75         0.000     Hungary: 14.75 points
                                                                                                                                                                                                                                                                               text_datawrapper_overall
@@ -3545,7 +2981,7 @@ New names:
   title_datawrapper_season
 1        Hungary: 0 points
                                                                                                                                                    text_datawrapper_season
-1 Kisvárda FC: <b>0</b> (NaN%, not out)<br>Ferencváros: <b>0</b> (NaN%, not out)<br>Puskás Akadémia: <b>0</b> (NaN%, not out)<br>FC Fehérvár: <b>0</b> (NaN%, not out)<br>
+1 Ferencváros: <b>0</b> (NaN%, not out)<br>Puskás Akadémia: <b>0</b> (NaN%, not out)<br>FC Fehérvár: <b>0</b> (NaN%, not out)<br>Kisvárda FC: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Romania          14.25         0.000     Romania: 14.25 points
                                                                                                                                                                                                   text_datawrapper_overall
@@ -3553,7 +2989,7 @@ New names:
   title_datawrapper_season
 1        Romania: 0 points
                                                                                                                                              text_datawrapper_season
-1 Universitatea Craiova: <b>0</b> (NaN%, not out)<br>CFR Cluj: <b>0</b> (NaN%, not out)<br>Sepsi OSK: <b>0</b> (NaN%, not out)<br>FCSB: <b>0</b> (NaN%, not out)<br>
+1 Sepsi OSK: <b>0</b> (NaN%, not out)<br>CFR Cluj: <b>0</b> (NaN%, not out)<br>FCSB: <b>0</b> (NaN%, not out)<br>Universitatea Craiova: <b>0</b> (NaN%, not out)<br>
    country overall_points points_season title_datawrapper_overall
 1 Slovakia          13.75         0.000    Slovakia: 13.75 points
                                                                                                                                                                                                              text_datawrapper_overall
@@ -3561,7 +2997,7 @@ New names:
   title_datawrapper_season
 1       Slovakia: 0 points
                                                                                                                                                                    text_datawrapper_season
-1 DAC Dunajska Streda: <b>0</b> (NaN%, not out)<br>MFK Ruzomberok: <b>0</b> (NaN%, not out)<br>Slovan Bratislava: <b>0</b> (NaN%, not out)<br>Spartak Trnava: <b>0</b> (NaN%, not out)<br>
+1 MFK Ruzomberok: <b>0</b> (NaN%, not out)<br>Slovan Bratislava: <b>0</b> (NaN%, not out)<br>Spartak Trnava: <b>0</b> (NaN%, not out)<br>DAC Dunajska Streda: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1  Poland             13         0.000         Poland: 13 points
                                                                                                                                                                                                                                                                                                                                                                                 text_datawrapper_overall
@@ -3573,19 +3009,19 @@ New names:
      country overall_points points_season title_datawrapper_overall
 1 Azerbaijan         12.625         0.000 Azerbaijan: 12.625 points
                                                                                                                                                                                                    text_datawrapper_overall
-1 Qarabag FK: <b>9</b> (71.3%)<br>Neftchi Baku: <b>2.625</b> (20.8%)<br>Kesla FK: <b>0.5</b> (4%)<br>Sumgayit FK: <b>0.25</b> (2%)<br>Gabala FK: <b>0.25</b> (2%)<br>Sabail FK: <b>0</b> (0%)<br>Zira FK: <b>0</b> (0%)<br>
+1 Qarabag FK: <b>9</b> (71.3%)<br>Neftchi Baku: <b>2.625</b> (20.8%)<br>Kesla FK: <b>0.5</b> (4%)<br>Gabala FK: <b>0.25</b> (2%)<br>Sumgayit FK: <b>0.25</b> (2%)<br>Zira FK: <b>0</b> (0%)<br>Sabail FK: <b>0</b> (0%)<br>
   title_datawrapper_season
 1     Azerbaijan: 0 points
                                                                                                                                          text_datawrapper_season
-1 Qarabag FK: <b>0</b> (NaN%, not out)<br>Gabala FK: <b>0</b> (NaN%, not out)<br>Neftchi Baku: <b>0</b> (NaN%, not out)<br>Zira FK: <b>0</b> (NaN%, not out)<br>
+1 Qarabag FK: <b>0</b> (NaN%, not out)<br>Neftchi Baku: <b>0</b> (NaN%, not out)<br>Gabala FK: <b>0</b> (NaN%, not out)<br>Zira FK: <b>0</b> (NaN%, not out)<br>
      country overall_points points_season title_datawrapper_overall
 1 Kazakhstan           11.5         0.000   Kazakhstan: 11.5 points
                                                                                                                                                                                                                                                                                               text_datawrapper_overall
-1 FK Astana: <b>5.125</b> (44.6%)<br>Kairat Almaty: <b>3.625</b> (31.5%)<br>Tobol Kustanai: <b>1.25</b> (10.9%)<br>Ordabasy Shymkent: <b>0.75</b> (6.5%)<br>Shakhtyor Karaganda: <b>0.5</b> (4.3%)<br>Irtysh Pavlodar: <b>0.125</b> (1.1%)<br>Kaysar Kyzylorda: <b>0.125</b> (1.1%)<br>FK Kyzylzhar: <b>0</b> (0%)<br>
+1 FK Astana: <b>5.125</b> (44.6%)<br>Kairat Almaty: <b>3.625</b> (31.5%)<br>Tobol Kustanai: <b>1.25</b> (10.9%)<br>Ordabasy Shymkent: <b>0.75</b> (6.5%)<br>Shakhtyor Karaganda: <b>0.5</b> (4.3%)<br>Kaysar Kyzylorda: <b>0.125</b> (1.1%)<br>Irtysh Pavlodar: <b>0.125</b> (1.1%)<br>FK Kyzylzhar: <b>0</b> (0%)<br>
   title_datawrapper_season
 1     Kazakhstan: 0 points
                                                                                                                                                    text_datawrapper_season
-1 FK Kyzylzhar: <b>0</b> (NaN%, not out)<br>Tobol Kustanai: <b>0</b> (NaN%, not out)<br>FK Astana: <b>0</b> (NaN%, not out)<br>Kairat Almaty: <b>0</b> (NaN%, not out)<br>
+1 FK Astana: <b>0</b> (NaN%, not out)<br>Kairat Almaty: <b>0</b> (NaN%, not out)<br>FK Kyzylzhar: <b>0</b> (NaN%, not out)<br>Tobol Kustanai: <b>0</b> (NaN%, not out)<br>
    country overall_points points_season title_datawrapper_overall
 1 Slovenia         10.375         0.000   Slovenia: 10.375 points
                                                                                                                                                                                                                                       text_datawrapper_overall
@@ -3597,15 +3033,15 @@ New names:
   country overall_points points_season title_datawrapper_overall
 1 Belarus           9.25         0.000      Belarus: 9.25 points
                                                                                                                                                                                                                                         text_datawrapper_overall
-1 BATE Borisov: <b>4.375</b> (47.3%)<br>Shakhtior Saligorsk: <b>1.875</b> (20.3%)<br>Dynamo Brest: <b>1.625</b> (17.6%)<br>Dinamo Minsk: <b>1.25</b> (13.5%)<br>FC Vitebsk: <b>0.125</b> (1.4%)<br>FC Gomel: <b>0</b> (0%)<br>Torpedo Zhodino: <b>0</b> (0%)<br>
+1 BATE Borisov: <b>4.375</b> (47.3%)<br>Shakhtior Saligorsk: <b>1.875</b> (20.3%)<br>Dynamo Brest: <b>1.625</b> (17.6%)<br>Dinamo Minsk: <b>1.25</b> (13.5%)<br>FC Vitebsk: <b>0.125</b> (1.4%)<br>Torpedo Zhodino: <b>0</b> (0%)<br>FC Gomel: <b>0</b> (0%)<br>
   title_datawrapper_season
 1        Belarus: 0 points
                                                                                                                                                       text_datawrapper_season
-1 BATE Borisov: <b>0</b> (NaN%, not out)<br>Dinamo Minsk: <b>0</b> (NaN%, not out)<br>Shakhtior Saligorsk: <b>0</b> (NaN%, not out)<br>FC Gomel: <b>0</b> (NaN%, not out)<br>
+1 Shakhtior Saligorsk: <b>0</b> (NaN%, not out)<br>Dinamo Minsk: <b>0</b> (NaN%, not out)<br>BATE Borisov: <b>0</b> (NaN%, not out)<br>FC Gomel: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Moldova            8.5         0.000       Moldova: 8.5 points
                                                                                                                                                                                                                                                                    text_datawrapper_overall
-1 Sheriff Tiraspol: <b>6.875</b> (80.9%)<br>Petrocub Hîncesti: <b>0.625</b> (7.4%)<br>Sfântul Gheorghe: <b>0.375</b> (4.4%)<br>Milsami Orhei: <b>0.375</b> (4.4%)<br>Zaria Balti: <b>0.125</b> (1.5%)<br>Dinamo-Auto Tiraspol: <b>0.125</b> (1.5%)<br>Speranta Nisporeni: <b>0</b> (0%)<br>
+1 Sheriff Tiraspol: <b>6.875</b> (80.9%)<br>Petrocub Hîncesti: <b>0.625</b> (7.4%)<br>Milsami Orhei: <b>0.375</b> (4.4%)<br>Sfântul Gheorghe: <b>0.375</b> (4.4%)<br>Dinamo-Auto Tiraspol: <b>0.125</b> (1.5%)<br>Zaria Balti: <b>0.125</b> (1.5%)<br>Speranta Nisporeni: <b>0</b> (0%)<br>
   title_datawrapper_season
 1        Moldova: 0 points
                                                                                                                                                                  text_datawrapper_season
@@ -3617,15 +3053,15 @@ New names:
   title_datawrapper_season
 1         Kosovo: 0 points
                                                                                                                                         text_datawrapper_season
-1 FC Ballkani: <b>0</b> (NaN%, not out)<br>FC Drita: <b>0</b> (NaN%, not out)<br>KF Llapi: <b>0</b> (NaN%, not out)<br>SC Gjilani: <b>0</b> (NaN%, not out)<br>
+1 KF Llapi: <b>0</b> (NaN%, not out)<br>FC Drita: <b>0</b> (NaN%, not out)<br>SC Gjilani: <b>0</b> (NaN%, not out)<br>FC Ballkani: <b>0</b> (NaN%, not out)<br>
      country overall_points points_season title_datawrapper_overall
 1 Luxembourg          7.875         0.000  Luxembourg: 7.875 points
                                                                                                                                                                                                                                                                                                                     text_datawrapper_overall
-1 F91 Dudelange: <b>3.75</b> (47.6%)<br>Progrès Niederkorn: <b>1.75</b> (22.2%)<br>CS Fola Esch: <b>1.625</b> (20.6%)<br>Jeunesse d'Esch: <b>0.25</b> (3.2%)<br>Union Titus Pétange: <b>0.125</b> (1.6%)<br>Swift Hesperange: <b>0.125</b> (1.6%)<br>Differdange 03: <b>0.125</b> (1.6%)<br>Racing Union Luxembourg: <b>0.125</b> (1.6%)<br>
+1 F91 Dudelange: <b>3.75</b> (47.6%)<br>Progrès Niederkorn: <b>1.75</b> (22.2%)<br>CS Fola Esch: <b>1.625</b> (20.6%)<br>Jeunesse d'Esch: <b>0.25</b> (3.2%)<br>Differdange 03: <b>0.125</b> (1.6%)<br>Union Titus Pétange: <b>0.125</b> (1.6%)<br>Swift Hesperange: <b>0.125</b> (1.6%)<br>Racing Union Luxembourg: <b>0.125</b> (1.6%)<br>
   title_datawrapper_season
 1     Luxembourg: 0 points
                                                                                                                                                                  text_datawrapper_season
-1 CS Fola Esch: <b>0</b> (NaN%, not out)<br>Differdange 03: <b>0</b> (NaN%, not out)<br>F91 Dudelange: <b>0</b> (NaN%, not out)<br>Racing Union Luxembourg: <b>0</b> (NaN%, not out)<br>
+1 Racing Union Luxembourg: <b>0</b> (NaN%, not out)<br>CS Fola Esch: <b>0</b> (NaN%, not out)<br>Differdange 03: <b>0</b> (NaN%, not out)<br>F91 Dudelange: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1  Latvia          7.875         0.000      Latvia: 7.875 points
                                                                                                                                                                                              text_datawrapper_overall
@@ -3633,21 +3069,21 @@ New names:
   title_datawrapper_season
 1         Latvia: 0 points
                                                                                                                                         text_datawrapper_season
-1 Valmieras FK: <b>0</b> (NaN%, not out)<br>FK Liepaja: <b>0</b> (NaN%, not out)<br>RFS Riga: <b>0</b> (NaN%, not out)<br>Riga FC: <b>0</b> (NaN%, not out)<br>
+1 FK Liepaja: <b>0</b> (NaN%, not out)<br>RFS Riga: <b>0</b> (NaN%, not out)<br>Riga FC: <b>0</b> (NaN%, not out)<br>Valmieras FK: <b>0</b> (NaN%, not out)<br>
              country overall_points points_season
 1 Bosnia-Herzegovina           7.75         0.000
         title_datawrapper_overall
 1 Bosnia-Herzegovina: 7.75 points
                                                                                                                                                                                                                                                                                                 text_datawrapper_overall
-1 Zrinjski Mostar: <b>2.75</b> (35.5%)<br>FK Sarajevo: <b>1.875</b> (24.2%)<br>FK Borac Banja Luka: <b>0.875</b> (11.3%)<br>Velez Mostar: <b>0.875</b> (11.3%)<br>Zeljeznicar Sarajevo: <b>0.625</b> (8.1%)<br>Siroki Brijeg: <b>0.5</b> (6.5%)<br>Radnik Bijeljina: <b>0.25</b> (3.2%)<br>Tuzla City: <b>0</b> (0%)<br>
+1 Zrinjski Mostar: <b>2.75</b> (35.5%)<br>FK Sarajevo: <b>1.875</b> (24.2%)<br>Velez Mostar: <b>0.875</b> (11.3%)<br>FK Borac Banja Luka: <b>0.875</b> (11.3%)<br>Zeljeznicar Sarajevo: <b>0.625</b> (8.1%)<br>Siroki Brijeg: <b>0.5</b> (6.5%)<br>Radnik Bijeljina: <b>0.25</b> (3.2%)<br>Tuzla City: <b>0</b> (0%)<br>
       title_datawrapper_season
 1 Bosnia-Herzegovina: 0 points
                                                                                                                                                            text_datawrapper_season
-1 Zrinjski Mostar: <b>0</b> (NaN%, not out)<br>Velez Mostar: <b>0</b> (NaN%, not out)<br>FK Borac Banja Luka: <b>0</b> (NaN%, not out)<br>Tuzla City: <b>0</b> (NaN%, not out)<br>
+1 Tuzla City: <b>0</b> (NaN%, not out)<br>FK Borac Banja Luka: <b>0</b> (NaN%, not out)<br>Zrinjski Mostar: <b>0</b> (NaN%, not out)<br>Velez Mostar: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Finland          7.625         0.000     Finland: 7.625 points
                                                                                                                                                                                                                                                                 text_datawrapper_overall
-1 HJK Helsinki: <b>3.5</b> (45.9%)<br>KuPS Kuopio: <b>2.625</b> (34.4%)<br>Honka Espoo: <b>0.625</b> (8.2%)<br>Inter Turku: <b>0.5</b> (6.6%)<br>Ilves Tampere: <b>0.25</b> (3.3%)<br>FC Lahti: <b>0.125</b> (1.6%)<br>SJK Seinäjoki: <b>0</b> (0%)<br>RoPS Rovaniemi: <b>0</b> (0%)<br>
+1 HJK Helsinki: <b>3.5</b> (45.9%)<br>KuPS Kuopio: <b>2.625</b> (34.4%)<br>Honka Espoo: <b>0.625</b> (8.2%)<br>Inter Turku: <b>0.5</b> (6.6%)<br>Ilves Tampere: <b>0.25</b> (3.3%)<br>FC Lahti: <b>0.125</b> (1.6%)<br>RoPS Rovaniemi: <b>0</b> (0%)<br>SJK Seinäjoki: <b>0</b> (0%)<br>
   title_datawrapper_season
 1        Finland: 0 points
                                                                                                                                                   text_datawrapper_season
@@ -3659,7 +3095,7 @@ New names:
   title_datawrapper_season
 1      Lithuania: 0 points
                                                                                                                                                                text_datawrapper_season
-1 Zalgiris Vilnius: <b>0</b> (NaN%, not out)<br>Suduva Marijampole: <b>0</b> (NaN%, not out)<br>FK Panevezys: <b>0</b> (NaN%, not out)<br>Kauno Zalgiris: <b>0</b> (NaN%, not out)<br>
+1 Zalgiris Vilnius: <b>0</b> (NaN%, not out)<br>Suduva Marijampole: <b>0</b> (NaN%, not out)<br>Kauno Zalgiris: <b>0</b> (NaN%, not out)<br>FK Panevezys: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Armenia            7.5         0.000       Armenia: 7.5 points
                                                                                                                                                                                                                                                                                                            text_datawrapper_overall
@@ -3667,7 +3103,7 @@ New names:
   title_datawrapper_season
 1        Armenia: 0 points
                                                                                                                                                          text_datawrapper_season
-1 Alashkert FC: <b>0</b> (NaN%, not out)<br>Ararat-Armenia: <b>0</b> (NaN%, not out)<br>Pyunik Yerevan: <b>0</b> (NaN%, not out)<br>Ararat Yerevan: <b>0</b> (NaN%, not out)<br>
+1 Alashkert FC: <b>0</b> (NaN%, not out)<br>Ararat Yerevan: <b>0</b> (NaN%, not out)<br>Ararat-Armenia: <b>0</b> (NaN%, not out)<br>Pyunik Yerevan: <b>0</b> (NaN%, not out)<br>
            country overall_points points_season      title_datawrapper_overall
 1 Northern Ireland          7.333         0.000 Northern Ireland: 7.333 points
                                                                                                                                                                                                                                                                                   text_datawrapper_overall
@@ -3675,15 +3111,15 @@ New names:
     title_datawrapper_season
 1 Northern Ireland: 0 points
                                                                                                                                                         text_datawrapper_season
-1 Cliftonville: <b>0</b> (NaN%, not out)<br>Larne FC: <b>0</b> (NaN%, not out)<br>Linfield Belfast: <b>0</b> (NaN%, not out)<br>Crusaders Belfast: <b>0</b> (NaN%, not out)<br>
+1 Cliftonville: <b>0</b> (NaN%, not out)<br>Crusaders Belfast: <b>0</b> (NaN%, not out)<br>Larne FC: <b>0</b> (NaN%, not out)<br>Linfield Belfast: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Ireland              7         0.000         Ireland: 7 points
                                                                                                                                                                                                                                           text_datawrapper_overall
-1 Dundalk: <b>3.125</b> (44.6%)<br>Shamrock Rovers: <b>1.875</b> (26.8%)<br>Bohemians Dublin: <b>1.375</b> (19.6%)<br>Derry City: <b>0.375</b> (5.4%)<br>Cork City: <b>0.25</b> (3.6%)<br>St. Patrick's Athletic: <b>0</b> (0%)<br>Sligo Rovers: <b>0</b> (0%)<br>
+1 Dundalk: <b>3.125</b> (44.6%)<br>Shamrock Rovers: <b>1.875</b> (26.8%)<br>Bohemians Dublin: <b>1.375</b> (19.6%)<br>Derry City: <b>0.375</b> (5.4%)<br>Cork City: <b>0.25</b> (3.6%)<br>Sligo Rovers: <b>0</b> (0%)<br>St. Patrick's Athletic: <b>0</b> (0%)<br>
   title_datawrapper_season
 1        Ireland: 0 points
                                                                                                                                                               text_datawrapper_season
-1 Sligo Rovers: <b>0</b> (NaN%, not out)<br>St. Patrick's Athletic: <b>0</b> (NaN%, not out)<br>Shamrock Rovers: <b>0</b> (NaN%, not out)<br>Derry City: <b>0</b> (NaN%, not out)<br>
+1 St. Patrick's Athletic: <b>0</b> (NaN%, not out)<br>Sligo Rovers: <b>0</b> (NaN%, not out)<br>Shamrock Rovers: <b>0</b> (NaN%, not out)<br>Derry City: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Georgia          6.875         0.000     Georgia: 6.875 points
                                                                                                                                                                                                                                                                                                                                text_datawrapper_overall
@@ -3691,7 +3127,7 @@ New names:
   title_datawrapper_season
 1        Georgia: 0 points
                                                                                                                                                         text_datawrapper_season
-1 Dinamo Batumi: <b>0</b> (NaN%, not out)<br>Dinamo Tbilisi: <b>0</b> (NaN%, not out)<br>Dila Gori: <b>0</b> (NaN%, not out)<br>Saburtalo Tbilisi: <b>0</b> (NaN%, not out)<br>
+1 Dinamo Tbilisi: <b>0</b> (NaN%, not out)<br>Dinamo Batumi: <b>0</b> (NaN%, not out)<br>Saburtalo Tbilisi: <b>0</b> (NaN%, not out)<br>Dila Gori: <b>0</b> (NaN%, not out)<br>
         country overall_points points_season title_datawrapper_overall
 1 Faroe Islands            6.5         0.000 Faroe Islands: 6.5 points
                                                                                                                                                          text_datawrapper_overall
@@ -3699,7 +3135,7 @@ New names:
   title_datawrapper_season
 1  Faroe Islands: 0 points
                                                                                                                                              text_datawrapper_season
-1 B36 Torshavn: <b>0</b> (NaN%, not out)<br>HB Torshavn: <b>0</b> (NaN%, not out)<br>KI Klaksvik: <b>0</b> (NaN%, not out)<br>Víkingur: <b>0</b> (NaN%, not out)<br>
+1 HB Torshavn: <b>0</b> (NaN%, not out)<br>B36 Torshavn: <b>0</b> (NaN%, not out)<br>Víkingur: <b>0</b> (NaN%, not out)<br>KI Klaksvik: <b>0</b> (NaN%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Estonia          6.416         0.000     Estonia: 6.417 points
                                                                                                                                                                         text_datawrapper_overall
@@ -3731,7 +3167,7 @@ New names:
   title_datawrapper_season
 1          Wales: 0 points
                                                                                                    text_datawrapper_season
-1 The New Saints: <b>0</b> (NaN%, not out)<br>Newtown: <b>0</b> (NaN%, not out)<br>Bala Town: <b>0</b> (NaN%, not out)<br>
+1 Newtown: <b>0</b> (NaN%, not out)<br>Bala Town: <b>0</b> (NaN%, not out)<br>The New Saints: <b>0</b> (NaN%, not out)<br>
     country overall_points points_season title_datawrapper_overall
 1 Gibraltar          4.916         0.000   Gibraltar: 4.917 points
                                                                                                                                                                 text_datawrapper_overall
@@ -3739,7 +3175,15 @@ New names:
   title_datawrapper_season
 1      Gibraltar: 0 points
                                                                                                                                                      text_datawrapper_season
-1 St Joseph's FC: <b>0</b> (NaN%, not out)<br>FCB Magpies: <b>0</b> (NaN%, not out)<br>Europa FC: <b>0</b> (NaN%, not out)<br>Lincoln Red Imps: <b>0</b> (NaN%, not out)<br>
+1 St Joseph's FC: <b>0</b> (NaN%, not out)<br>Lincoln Red Imps: <b>0</b> (NaN%, not out)<br>Europa FC: <b>0</b> (NaN%, not out)<br>FCB Magpies: <b>0</b> (NaN%, not out)<br>
+  country overall_points points_season title_datawrapper_overall
+1 Iceland          4.916         0.666     Iceland: 4.917 points
+                                                                                                                                                                                                                                                            text_datawrapper_overall
+1 Breidablik: <b>1.125</b> (22.9%)<br>FH Hafnarfjardar: <b>1.125</b> (22.9%)<br>Valur Reykjavik: <b>0.875</b> (17.8%)<br>Vikingur Reykjavik: <b>0.792</b> (16.1%)<br>Stjarnan FC: <b>0.625</b> (12.7%)<br>KR Reykjavik: <b>0.375</b> (7.6%)<br>IBV Vestmannaeyjar: <b>0</b> (0%)<br>
+  title_datawrapper_season
+1    Iceland: 0.667 points
+                                                                                                             text_datawrapper_season
+1 Vikingur Reykjavik: <b>0.667</b> (100%, not out)<br>KR Reykjavik: <b>0</b> (0%, not out)<br>Breidablik: <b>0</b> (0%, not out)<br>
   country overall_points points_season title_datawrapper_overall
 1 Andorra          4.832         0.333     Andorra: 4.833 points
                                                                                                                                                                                                                         text_datawrapper_overall
@@ -3748,14 +3192,6 @@ New names:
 1    Andorra: 0.333 points
                                                                                                                                 text_datawrapper_season
 1 Inter Club d'Escaldes: <b>0.333</b> (100%, not out)<br>UE Santa Coloma: <b>0</b> (0%, not out)<br>Atlètic Club d'Escaldes: <b>0</b> (0%, not out)<br>
-  country overall_points points_season title_datawrapper_overall
-1 Iceland          4.583         0.333     Iceland: 4.583 points
-                                                                                                                                                                                                                                                          text_datawrapper_overall
-1 Breidablik: <b>1.125</b> (24.5%)<br>FH Hafnarfjardar: <b>1.125</b> (24.5%)<br>Valur Reykjavik: <b>0.875</b> (19.1%)<br>Stjarnan FC: <b>0.625</b> (13.6%)<br>Vikingur Reykjavik: <b>0.458</b> (10%)<br>KR Reykjavik: <b>0.375</b> (8.2%)<br>IBV Vestmannaeyjar: <b>0</b> (0%)<br>
-  title_datawrapper_season
-1    Iceland: 0.333 points
-                                                                                                             text_datawrapper_season
-1 Vikingur Reykjavik: <b>0.333</b> (100%, not out)<br>KR Reykjavik: <b>0</b> (0%, not out)<br>Breidablik: <b>0</b> (0%, not out)<br>
         country overall_points points_season title_datawrapper_overall
 1 Liechtenstein            4.5         0.000 Liechtenstein: 4.5 points
          text_datawrapper_overall title_datawrapper_season
@@ -3765,7 +3201,7 @@ New names:
           country overall_points points_season     title_datawrapper_overall
 1 North Macedonia          3.875         0.000 North Macedonia: 3.875 points
                                                                                                                                                                                                                                                                                                                     text_datawrapper_overall
-1 Shkendija Tetovo: <b>1.875</b> (48.4%)<br>FK Shkupi: <b>0.75</b> (19.4%)<br>Renova Dzepciste: <b>0.5</b> (12.9%)<br>Sileks Kratovo: <b>0.375</b> (9.7%)<br>Rabotnicki Skopje: <b>0.25</b> (6.5%)<br>FC Struga: <b>0.125</b> (3.2%)<br>Vardar Skopje: <b>0</b> (0%)<br>Akademija Pandev: <b>0</b> (0%)<br>Makedonija GjP: <b>0</b> (0%)<br>
+1 Shkendija Tetovo: <b>1.875</b> (48.4%)<br>FK Shkupi: <b>0.75</b> (19.4%)<br>Renova Dzepciste: <b>0.5</b> (12.9%)<br>Sileks Kratovo: <b>0.375</b> (9.7%)<br>Rabotnicki Skopje: <b>0.25</b> (6.5%)<br>FC Struga: <b>0.125</b> (3.2%)<br>Vardar Skopje: <b>0</b> (0%)<br>Makedonija GjP: <b>0</b> (0%)<br>Akademija Pandev: <b>0</b> (0%)<br>
    title_datawrapper_season
 1 North Macedonia: 0 points
                                                                                                                                                           text_datawrapper_season
@@ -3773,11 +3209,11 @@ New names:
      country overall_points points_season title_datawrapper_overall
 1 Montenegro           3.75         0.000   Montenegro: 3.75 points
                                                                                                                                                                                                                                                                                   text_datawrapper_overall
-1 Buducnost Podgorica: <b>1.25</b> (33.3%)<br>Sutjeska Niksic: <b>1</b> (26.7%)<br>Zeta Golubovci: <b>0.625</b> (16.7%)<br>Iskra Danilovgrad: <b>0.375</b> (10%)<br>FK Podgorica: <b>0.25</b> (6.7%)<br>OFK Titograd: <b>0.25</b> (6.7%)<br>Rudar Pljevlja: <b>0</b> (0%)<br>Decic Tuzi: <b>0</b> (0%)<br>
+1 Buducnost Podgorica: <b>1.25</b> (33.3%)<br>Sutjeska Niksic: <b>1</b> (26.7%)<br>Zeta Golubovci: <b>0.625</b> (16.7%)<br>Iskra Danilovgrad: <b>0.375</b> (10%)<br>OFK Titograd: <b>0.25</b> (6.7%)<br>FK Podgorica: <b>0.25</b> (6.7%)<br>Rudar Pljevlja: <b>0</b> (0%)<br>Decic Tuzi: <b>0</b> (0%)<br>
   title_datawrapper_season
 1     Montenegro: 0 points
                                                                                                                                                                 text_datawrapper_season
-1 Buducnost Podgorica: <b>0</b> (NaN%, not out)<br>Iskra Danilovgrad: <b>0</b> (NaN%, not out)<br>Sutjeska Niksic: <b>0</b> (NaN%, not out)<br>Decic Tuzi: <b>0</b> (NaN%, not out)<br>
+1 Iskra Danilovgrad: <b>0</b> (NaN%, not out)<br>Sutjeska Niksic: <b>0</b> (NaN%, not out)<br>Buducnost Podgorica: <b>0</b> (NaN%, not out)<br>Decic Tuzi: <b>0</b> (NaN%, not out)<br>
      country overall_points points_season title_datawrapper_overall
 1 San Marino          1.166         0.000  San Marino: 1.167 points
                                                                                                                    text_datawrapper_overall
@@ -3797,120 +3233,3 @@ In read.table(file = file, header = header, sep = sep, quote = quote,  :
 > git2r::config(user.name = "awp-finanznachrichten",user.email = "sw@awp.ch")
 > invisible(git2r::cred_token(token))
 > gitadd()
-> gitcommit()
-[master cd99ebe] commit from Rstudio
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 Old_data/2022-06-23_old_data_ranking_full.rdata
-[1] 0
-> gitpush()
-To https://github.com/awp-finanznachrichten/uefa_ranking.git
-   e3955d7..cd99ebe  master -> master
-> 
-> #Update Datawrapper
-> source("update_datawrapper.R",encoding = "UTF-8")
-[1] "New key was saved!"
-Chart VViWE succesfully updated.
-
-Chart VViWE published!
-### Responsive iFrame-code: ###
-<iframe title="UEFA Country Ranking: Live Standings" aria-label="Table" id="datawrapper-chart-VViWE" src="https://datawrapper.dwcdn.net/VViWE/44/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="922"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/VViWE/44/
-Chart oSHCF succesfully updated.
-
-Chart oSHCF published!
-### Responsive iFrame-code: ###
-<iframe title="Power Map of International Club Football Season 22/23" aria-label="Map" id="datawrapper-chart-oSHCF" src="https://datawrapper.dwcdn.net/oSHCF/46/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="724"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/oSHCF/46/
-Chart xFGfR succesfully updated.
-
-Chart xFGfR published!
-### Responsive iFrame-code: ###
-<iframe title="Power Map of International Club Football: Nations Overview" aria-label="Map" id="datawrapper-chart-xFGfR" src="https://datawrapper.dwcdn.net/xFGfR/43/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="724"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/xFGfR/43/
-Chart v88MJ succesfully updated.
-
-Chart v88MJ published!
-### Responsive iFrame-code: ###
-<iframe title="Uefa Country Ranking: Which teams contribute the most to the overall score in the last 5 seasons?" aria-label="Split Bars" id="datawrapper-chart-v88MJ" src="https://datawrapper.dwcdn.net/v88MJ/45/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="12742"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/v88MJ/45/
-Chart up5me succesfully updated.
-
-Chart up5me published!
-### Responsive iFrame-code: ###
-<iframe title="Uefa Country Ranking: The teams with the largest share of overall points in their country" aria-label="Table" id="datawrapper-chart-up5me" src="https://datawrapper.dwcdn.net/up5me/43/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/up5me/43/
-Chart qw90m succesfully updated.
-
-Chart qw90m published!
-### Responsive iFrame-code: ###
-<iframe title="Uefa Country Ranking: The most successful teams in the last five seasons" aria-label="Table" id="datawrapper-chart-qw90m" src="https://datawrapper.dwcdn.net/qw90m/43/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="787"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/qw90m/43/
-Chart zXf6G succesfully updated.
-
-Chart zXf6G published!
-### Responsive iFrame-code: ###
-<iframe title="Power Map of International Club Football: Teams Overview" aria-label="Map" id="datawrapper-chart-zXf6G" src="https://datawrapper.dwcdn.net/zXf6G/25/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="672"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/zXf6G/25/
-Chart Oh2nr succesfully updated.
-
-Chart Oh2nr published!
-### Responsive iFrame-code: ###
-<iframe title="Power Map of International Club Football Season 22/23: Teams Overview" aria-label="Map" id="datawrapper-chart-Oh2nr" src="https://datawrapper.dwcdn.net/Oh2nr/24/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="699"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/Oh2nr/24/
-Chart awxBw succesfully updated.
-
-Chart awxBw published!
-### Responsive iFrame-code: ###
-<iframe title="Uefa Country Ranking: The most successful teams in the current season" aria-label="Table" id="datawrapper-chart-awxBw" src="https://datawrapper.dwcdn.net/awxBw/16/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="782"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/awxBw/16/
-Chart M08Ux succesfully updated.
-
-Chart M08Ux published!
-### Responsive iFrame-code: ###
-<iframe title="Uefa Country Ranking: Which teams contribute the most to the overall score in the current season? " aria-label="Split Bars" id="datawrapper-chart-M08Ux" src="https://datawrapper.dwcdn.net/M08Ux/14/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="7902"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>
-
-### Chart-URL:###
-https://datawrapper.dwcdn.net/M08Ux/14/
-> 
-> #Stop Geckodriver
-> try(system("taskkill /F /IM geckodriver.exe"))
-ERFOLGREICH: Der Prozess "geckodriver.exe" mit PID 4816 wurde beendet.
-[1] 0
-> 
-> #Stop Java-Process
-> try(system("taskkill /F /IM java.exe"))
-FEHLER: Der Prozess "java.exe" wurde nicht gefunden.
-[1] 128
-> 
-> 
-> proc.time()
-       User      System verstrichen 
-      35.82        1.54    10927.60 
