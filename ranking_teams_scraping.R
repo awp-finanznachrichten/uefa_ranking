@@ -51,9 +51,6 @@ uefa_country_ranking_teams <- uefa_country_ranking_teams[nchar(uefa_country_rank
 uefa_country_ranking_teams$status[uefa_country_ranking_teams$status == ""] <- "out"
 
 #Adaption Teamnames
-uefa_country_ranking_teams$team <- gsub("Glasgow Rangers","Rangers",uefa_country_ranking_teams$team)
-uefa_country_ranking_teams$team <- gsub("Olympique Lyon","Olympique Lyonnais",uefa_country_ranking_teams$team)
-uefa_country_ranking_teams$team <- gsub("Red Star Belgrade","Crvena zvezda",uefa_country_ranking_teams$team)
 uefa_country_ranking_teams$team <- gsub("Dinamo Kiev","Dynamo Kyiv",uefa_country_ranking_teams$team)
 uefa_country_ranking_teams$team <- gsub("Glasgow Rangers","Rangers",uefa_country_ranking_teams$team)
 uefa_country_ranking_teams$team <- gsub("Olympique Lyon","Olympique Lyonnais",uefa_country_ranking_teams$team)
