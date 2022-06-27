@@ -14,8 +14,14 @@ setwd("C:/Users/Administrator/Desktop/uefa_ranking")
 #Load functions
 source("ranking_funktionen.R",encoding = "UTF-8")
 
-repeat {
-Sys.sleep(10)
+#repeat {
+#Sys.sleep(10)
+
+#Stop Geckodriver
+try(system("taskkill /F /IM geckodriver.exe"))
+
+#Stop Java-Process
+try(system("taskkill /F /IM java.exe"))
 
 #Check Update Time
 driver <- RSelenium::rsDriver(port= 4568L, browser = "firefox")
@@ -26,10 +32,11 @@ current_day <- as.numeric(format(Sys.Date(),"%d"))
 
 remote_driver$navigate("https://kassiesa.net/uefa/data/method5/crank2023.html")
 output <- remote_driver$findElement(using="class",value="flex-container")
-text_all <- output$getElementText()
+text_datum <- output$getElementText()[[1]]
+text_datum <- strsplit(text_datum,"\n")[[1]][3]
 
-day <- gsub(".*Last update:","",text_all)
-day <- parse_number(day)
+#day <- gsub(".*Last update:","",text_datum)
+#day <- parse_number(day)
 
 #Close browser
 remote_driver$close()
@@ -43,23 +50,26 @@ try(system("taskkill /F /IM geckodriver.exe"))
 #Stop Java-Process
 try(system("taskkill /F /IM java.exe"))
 
-if (day == current_day) {
+#Letztes Update laden
+last_update <- read.delim("last_update.txt",header=FALSE)
+
+if (last_update != text_datum) {
 print("Aktuelle Daten gefunden")
-break
-}
+#break
+#}
 
-hour_number <- as.numeric(format(Sys.time(),"%H"))
-if (hour_number == 0) {
-hour_number <- 24  
-}  
+#hour_number <- as.numeric(format(Sys.time(),"%H"))
+#if (hour_number == 0) {
+#hour_number <- 24  
+#}  
 
-if (hour_number < 22) {
-break
-print("Keine neuen Daten gefunden an dem aktuellen Tag")
+#if (hour_number < 22) {
+#break
+#print("Keine neuen Daten gefunden an dem aktuellen Tag")
 
-}  
-print("Noch keine aktuellen Daten gefunden")
-}
+#}  
+#print("Noch keine aktuellen Daten gefunden")
+#}
 
 #Update Ranking Data
 source("ranking_scraping.R",encoding = "UTF-8")
@@ -69,6 +79,9 @@ source("ranking_teams_scraping.R",encoding = "UTF-8")
 
 #Update Maps
 source("create_maps.R",encoding = "UTF-8")
+  
+#Store Last update
+cat(text_datum,file="last_update.txt")
 
 #Make Commit
 #token <- read.csv("C:/Users/simon/OneDrive/Github_Token/token.txt",header=FALSE)[1,1]
@@ -89,3 +102,6 @@ try(system("taskkill /F /IM geckodriver.exe"))
 #Stop Java-Process
 try(system("taskkill /F /IM java.exe"))
 
+} else {
+print("Noch keine aktuellen Daten gefunden")  
+}  
